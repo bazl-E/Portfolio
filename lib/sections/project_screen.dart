@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ProjectScreen extends StatefulWidget {
   ProjectScreen({Key? key, this.height}) : super(key: key);
@@ -311,10 +310,10 @@ class _ProjectScreenState extends State<ProjectScreen>
             padding: const EdgeInsets.all(20.0),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 600),
-              // width: 1170,
+              width: 1170,
               child: Wrap(
                 alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
+                // crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   for (var i = 0; i < 9; i++)
                     // AnimatedPositioned(
@@ -348,184 +347,137 @@ class _ProjectScreenState extends State<ProjectScreen>
                             //   duration: Duration(milliseconds: 500),
                             //   alignment: alignementGetter(i),
                             //   child:
-                            AnimationLimiter(
-                          child: GridView.count(
-                            crossAxisCount: 3,
-                            children: List.generate(
-                              100,
-                              (int index) {
-                                return AnimationConfiguration.staggeredGrid(
-                                  position: index,
-                                  duration: const Duration(milliseconds: 375),
-                                  columnCount: 3,
-                                  child: ScaleAnimation(
-                                    child: FadeInAnimation(
-                                      child: AnimatedContainer(
-                                        duration: Duration(milliseconds: 500),
-                                        width: sizeGetter(i).width,
-                                        height: sizeGetter(i).height,
-                                        curve: Curves.fastOutSlowIn,
-                                        child: Stack(
-                                          children: [
-                                            // SizeTransition(
-                                            //   axisAlignment: 0.0,
-                                            //   axis: Axis.horizontal,
-                                            //   sizeFactor: sizeAnimations[i],
-                                            //   child:
-                                            Container(
-                                              // duration: Duration(milliseconds: 500),
-                                              // width: contsizeanime[i].value.width,
-                                              // height: contsizeanime[i].value.height,
-                                              // width: sizeGetter(i).width,
-                                              // height: sizeGetter(i).height,
-                                              width: 390,
-                                              height: 300,
-                                              child: Image.asset(
-                                                // listLenght == 9
-                                                //     ?
-                                                all[i],
+                            AnimatedContainer(
+                          duration: Duration(milliseconds: 500),
+                          width: sizeGetter(i).width,
+                          height: sizeGetter(i).height,
+                          curve: Curves.fastOutSlowIn,
+                          child: Stack(
+                            children: [
+                              // SizeTransition(
+                              //   axisAlignment: 0.0,
+                              //   axis: Axis.horizontal,
+                              //   sizeFactor: sizeAnimations[i],
+                              //   child:
+                              Container(
+                                // duration: Duration(milliseconds: 500),
+                                // width: contsizeanime[i].value.width,
+                                // height: contsizeanime[i].value.height,
+                                // width: sizeGetter(i).width,
+                                // height: sizeGetter(i).height,
+                                width: 390,
+                                height: 300,
+                                child: Image.asset(
+                                  // listLenght == 9
+                                  //     ?
+                                  all[i],
 
-                                                // : listLenght == 2
-                                                //     ? flutter[i]
-                                                //     : listLenght == 3
-                                                //         ? flutterFirebase[i]
-                                                //         : listLenght == 4
-                                                //             ? flutterWeb[i]
-                                                //             : '',
-                                                fit: BoxFit.cover,
+                                  // : listLenght == 2
+                                  //     ? flutter[i]
+                                  //     : listLenght == 3
+                                  //         ? flutterFirebase[i]
+                                  //         : listLenght == 4
+                                  //             ? flutterWeb[i]
+                                  //             : '',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              // ),
+                              // if (isHovered && (i == hoveredIndex))
+                              AnimatedOpacity(
+                                opacity:
+                                    (isHovered && (i == hoveredIndex)) ? 1 : 0,
+                                duration: Duration(milliseconds: 100),
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 500),
+                                  // width: contsizeanime[i].value.width,
+                                  // height: contsizeanime[i].value.height,
+                                  // width: sizeGetter(i).width,
+                                  // height: sizeGetter(i).height,
+                                  // duration: Duration(seconds: 1),
+                                  width: 390,
+                                  height: 300,
+                                  child: Column(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SlideTransition(
+                                        position: bottomAnimations[i],
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              subTiltles.keys.toList()[i],
+                                              style: GoogleFonts.raleway(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 21.3,
+                                                color: Color(0xff1b242f),
                                               ),
                                             ),
-                                            // ),
-                                            // if (isHovered && (i == hoveredIndex))
-                                            AnimatedOpacity(
-                                              opacity: (isHovered &&
-                                                      (i == hoveredIndex))
-                                                  ? 1
-                                                  : 0,
-                                              duration:
-                                                  Duration(milliseconds: 100),
-                                              child: AnimatedContainer(
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                                // width: contsizeanime[i].value.width,
-                                                // height: contsizeanime[i].value.height,
-                                                // width: sizeGetter(i).width,
-                                                // height: sizeGetter(i).height,
-                                                // duration: Duration(seconds: 1),
-                                                width: 390,
-                                                height: 300,
-                                                child: Column(
-                                                  // mainAxisSize: MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    SlideTransition(
-                                                      position:
-                                                          bottomAnimations[i],
-                                                      child: Column(
-                                                        children: [
-                                                          Text(
-                                                            subTiltles.keys
-                                                                .toList()[i],
-                                                            style: GoogleFonts
-                                                                .raleway(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 21.3,
-                                                              color: Color(
-                                                                  0xff1b242f),
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            subTiltles.values
-                                                                .toList()[i],
-                                                            style: GoogleFonts
-                                                                .raleway(
-                                                              fontSize: 16,
-                                                              color: Color(
-                                                                  0xffe31b6d),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    SlideTransition(
-                                                      position:
-                                                          topAnimations[i],
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          // setState(() {
-                                                          //   buttonHovered = true;
-                                                          // });
-                                                        },
-                                                        onHover: (t) {
-                                                          if (t) {
-                                                            setState(() {
-                                                              buttonHovered =
-                                                                  true;
-                                                            });
-                                                          } else {
-                                                            setState(() {
-                                                              buttonHovered =
-                                                                  false;
-                                                            });
-                                                          }
-                                                        },
-                                                        child:
-                                                            AnimatedContainer(
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  200),
-                                                          width: 170,
-                                                          decoration: BoxDecoration(
-                                                              color: (buttonHovered &&
-                                                                      hoveredIndex ==
-                                                                          i)
-                                                                  ? Color(
-                                                                      0xffe31c6e)
-                                                                  : null,
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .pink,
-                                                                  width: 2)),
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal: 5,
-                                                                  vertical: 10),
-                                                          child: Center(
-                                                            child: Text(
-                                                              'LEARN MORE',
-                                                              style: GoogleFonts
-                                                                  .raleway(
-                                                                fontSize: 17.3,
-                                                                color: (buttonHovered &&
-                                                                        hoveredIndex ==
-                                                                            i)
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Color(
-                                                                        0xff1b242f),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                color: Color(0xfff5f5f5),
+                                            Text(
+                                              subTiltles.values.toList()[i],
+                                              style: GoogleFonts.raleway(
+                                                fontSize: 16,
+                                                color: Color(0xffe31b6d),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
+                                      SlideTransition(
+                                        position: topAnimations[i],
+                                        child: InkWell(
+                                          onTap: () {
+                                            // setState(() {
+                                            //   buttonHovered = true;
+                                            // });
+                                          },
+                                          onHover: (t) {
+                                            if (t) {
+                                              setState(() {
+                                                buttonHovered = true;
+                                              });
+                                            } else {
+                                              setState(() {
+                                                buttonHovered = false;
+                                              });
+                                            }
+                                          },
+                                          child: AnimatedContainer(
+                                            duration:
+                                                Duration(milliseconds: 200),
+                                            width: 170,
+                                            decoration: BoxDecoration(
+                                                color: (buttonHovered &&
+                                                        hoveredIndex == i)
+                                                    ? Color(0xffe31c6e)
+                                                    : null,
+                                                border: Border.all(
+                                                    color: Colors.pink,
+                                                    width: 2)),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 10),
+                                            child: Center(
+                                              child: Text(
+                                                'LEARN MORE',
+                                                style: GoogleFonts.raleway(
+                                                  fontSize: 17.3,
+                                                  color: (buttonHovered &&
+                                                          hoveredIndex == i)
+                                                      ? Colors.white
+                                                      : Color(0xff1b242f),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                );
-                              },
-                            ),
+                                  color: Color(0xfff5f5f5),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
