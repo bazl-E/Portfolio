@@ -350,7 +350,7 @@ class _ProjectScreenState extends State<ProjectScreen>
                             AnimatedContainer(
                           duration: Duration(milliseconds: 500),
                           width: sizeGetter(i).width,
-                          height: sizeGetter(i).height,
+                          height: 300,
                           curve: Curves.fastOutSlowIn,
                           child: Stack(
                             children: [

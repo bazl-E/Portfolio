@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Findbasilprofilo',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
