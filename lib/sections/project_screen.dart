@@ -354,31 +354,16 @@ class _ProjectScreenState extends State<ProjectScreen>
                           curve: Curves.fastOutSlowIn,
                           child: Stack(
                             children: [
-                              // SizeTransition(
-                              //   axisAlignment: 0.0,
-                              //   axis: Axis.horizontal,
-                              //   sizeFactor: sizeAnimations[i],
-                              //   child:
+                            
                               Container(
-                                // duration: Duration(milliseconds: 500),
-                                // width: contsizeanime[i].value.width,
-                                // height: contsizeanime[i].value.height,
-                                // width: sizeGetter(i).width,
-                                // height: sizeGetter(i).height,
+                               
                                 width: 390,
                                 height: 300,
                                 child: Image.asset(
-                                  // listLenght == 9
-                                  //     ?
+                               
                                   all[i],
 
-                                  // : listLenght == 2
-                                  //     ? flutter[i]
-                                  //     : listLenght == 3
-                                  //         ? flutterFirebase[i]
-                                  //         : listLenght == 4
-                                  //             ? flutterWeb[i]
-                                  //             : '',
+                                 
                                   fit: BoxFit.cover,
                                 ),
                               ),
