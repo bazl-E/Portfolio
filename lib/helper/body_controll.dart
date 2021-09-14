@@ -39,6 +39,10 @@ class _BodyControllerState extends State<BodyController>
         _autoScrollController!.offset > (160 - kToolbarHeight);
   }
 
+  void goToHome() {
+    Scrollable.ensureVisible(dataKey.currentContext!);
+  }
+
   @override
   void initState() {
     _autoScrollController = AutoScrollController(
@@ -107,7 +111,7 @@ class _BodyControllerState extends State<BodyController>
         print(i);
         if (i == 0) {
           // _sscrollToIndex(i);
-          Scrollable.ensureVisible(dataKey.currentContext!);
+          goToHome();
         } else {
           _scrollToIndex(i);
         }
@@ -239,6 +243,7 @@ class _BodyControllerState extends State<BodyController>
                   index: 4,
                   child: ContactScreen(
                     height: size - kToolbarHeight,
+                    gotoHome: goToHome,
                   ),
                 ),
               ],

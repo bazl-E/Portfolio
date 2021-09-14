@@ -1,21 +1,193 @@
 import 'dart:math';
 
+import 'package:basil_personal_web/helper/firebaseconnect.dart';
+import 'package:basil_personal_web/sections/welcome_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ContactScreen extends StatefulWidget {
-  ContactScreen({Key? key, this.height}) : super(key: key);
+  ContactScreen({Key? key, this.height, this.gotoHome}) : super(key: key);
   final double? height;
+  final VoidCallback? gotoHome;
 
   @override
   State<ContactScreen> createState() => _ContactScreenState();
 }
 
-class _ContactScreenState extends State<ContactScreen> {
+class _ContactScreenState extends State<ContactScreen>
+    with TickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   // Color? color = Colors.transparent;
   // Color? borderColor = Colors.white;
+
   bool isHovered = false;
+  bool socialHovered = false;
+  double intialpostion = 0;
+  bool isSaving = false;
+  double opacity = 1;
+  int? hoveredindex;
+  String? name = '';
+  String? email = '';
+  String? message = '';
+  List<AnimationController> controllers = [];
+  List<Animation<Offset>> animations = [];
+  List<Animation<Offset>> animations2 = [];
+
+  void launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < 4; i++) {
+      controllers.add(AnimationController(
+          vsync: this, duration: Duration(milliseconds: 1000)));
+      animations.add(
+        Tween<Offset>(begin: Offset(0, -1), end: Offset(0, .9)).animate(
+          CurvedAnimation(
+              parent: controllers[i], curve: Curves.fastLinearToSlowEaseIn),
+        ),
+      );
+      animations2.add(
+        Tween<Offset>(begin: Offset(0, -.2), end: Offset(0, 2)).animate(
+          CurvedAnimation(
+              parent: controllers[i], curve: Curves.fastLinearToSlowEaseIn),
+        ),
+      );
+    }
+  }
+
+  void onSave() async {
+    _formKey.currentState!.save();
+    if (name!.isEmpty || email!.isEmpty || message!.isEmpty) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            'Please fill all the fields',
+            textAlign: TextAlign.center,
+          ),
+          dismissDirection: DismissDirection.endToStart,
+          backgroundColor: Colors.red));
+      return;
+    }
+    if (!email!.contains('@')) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Provide a valid email',
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.red,
+        dismissDirection: DismissDirection.endToStart,
+      ));
+      return;
+    }
+    setState(() {
+      isSaving = true;
+    });
+    print(name);
+    print(email);
+    print(message);
+    await Messages.publish(name!, email!, message!);
+
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        'I got your message,i\'ll respond back as soon as possible',
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: Color(0xffe31b6d),
+      dismissDirection: DismissDirection.endToStart,
+    ));
+    setState(() {
+      isSaving = false;
+    });
+    print('submitted successfully');
+    name = '';
+    email = '';
+    message = '';
+    _formKey.currentState!.reset();
+  }
+
+  Widget buildanimatedSocial({String? image, int? index, String? url}) {
+    return InkWell(
+      onTap: () {
+        launchURL(url);
+      },
+      onHover: (t) {
+        if (t) {
+          setState(() {
+            intialpostion = 1.0;
+            opacity = 0;
+            socialHovered = true;
+            hoveredindex = index;
+            controllers[index!].forward();
+
+            // .then((value) => controllers[index].reverse());
+          });
+        } else {
+          setState(() {
+            socialHovered = false;
+            hoveredindex = null;
+            controllers[index!].reset();
+          });
+        }
+      },
+      child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          padding: EdgeInsets.only(left: 17, right: 17),
+          color: (socialHovered && hoveredindex == index)
+              ? Color(0xff05c2c9)
+              : Color(0xff262f38),
+          width: (socialHovered && hoveredindex == index) ? 53 : 55,
+          height: (socialHovered && hoveredindex == index) ? 53 : 55,
+          child:
+              //  SlideTransition(
+              //     position: animations2[index!],
+              //     child:
+              Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SlideTransition(
+                position: animations[index!],
+                child: Opacity(
+                  // duration: Duration(milliseconds: 100),
+                  opacity: (socialHovered && hoveredindex == index) ? 1 : 0
+                  // 1
+                  ,
+                  child: Image.asset(
+                    image!,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SlideTransition(
+                position: animations2[index],
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 100),
+                  opacity: (socialHovered && hoveredindex == index) ? 0 : 1
+                  // 1
+                  ,
+                  child: Image.asset(
+                    image,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+            // )
+          )),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for (var i = 0; i < 4; i++) {
+      controllers[i].dispose();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +244,9 @@ class _ContactScreenState extends State<ContactScreen> {
                               width: 500,
                               color: Color(0xff1e242c),
                               child: TextFormField(
+                                onSaved: (val) {
+                                  name = val;
+                                },
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -93,6 +268,9 @@ class _ContactScreenState extends State<ContactScreen> {
                               width: 500,
                               color: Color(0xff1e242c),
                               child: TextFormField(
+                                onSaved: (val) {
+                                  email = val;
+                                },
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -113,6 +291,9 @@ class _ContactScreenState extends State<ContactScreen> {
                               height: 150,
                               width: 500,
                               child: TextFormField(
+                                onSaved: (val) {
+                                  message = val;
+                                },
                                 // maxLength: 250,
                                 maxLines: 10,
                                 style: TextStyle(color: Colors.white),
@@ -155,7 +336,7 @@ class _ContactScreenState extends State<ContactScreen> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 20),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: isSaving ? null : onSave,
                                 child: Text(
                                   'SUBMIT',
                                   style: TextStyle(
@@ -175,10 +356,76 @@ class _ContactScreenState extends State<ContactScreen> {
           Flexible(
               flex: 3,
               child: Container(
-                child: Row(
+                height: double.infinity,
+                child: Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    Container(
-                      child: null,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          // mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            buildanimatedSocial(
+                                image: 'assets/11.png',
+                                index: 0,
+                                url: 'https://github.com/bazl-E'),
+                            SizedBox(width: 30),
+                            buildanimatedSocial(
+                                image: 'assets/12.png',
+                                index: 1,
+                                url:
+                                    'https://www.linkedin.com/mwlite/in/muhammed-basil-0a2b691b2'),
+                            SizedBox(width: 30),
+                            buildanimatedSocial(
+                                image: 'assets/13.png',
+                                index: 2,
+                                url:
+                                    'https://www.facebook.com/profile.php?id=100005176755893'),
+                            SizedBox(width: 30),
+                            buildanimatedSocial(
+                                image: 'assets/14.png',
+                                index: 3,
+                                url: 'https://twitter.com/MhdBasil_E'),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Muhammed Basil E',
+                              style: GoogleFonts.raleway(
+                                  color: Color(0xff515a66), fontSize: 14),
+                            ),
+                            SizedBox(width: 3),
+                            Text(
+                              '©2021',
+                              style: GoogleFonts.raleway(
+                                  color: Colors.pink, fontSize: 14),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Positioned(
+                      top: -30,
+                      left: (MediaQuery.of(context).size.width / 2) - 25,
+                      child: InkWell(
+                        onTap: widget.gotoHome,
+                        child: Container(
+                          color: Colors.pink,
+                          width: 50,
+                          height: 55,
+                          child: RotatedBox(
+                            quarterTurns: 3,
+                            child: Icon(
+                              Icons.double_arrow,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     )
                   ],
                 ),

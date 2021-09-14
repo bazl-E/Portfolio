@@ -1,6 +1,7 @@
 // import 'package:basil_personal_web/sections/ex.dart';
 // import 'package:basil_personal_web/sections/sliverappbar.dart';
 import 'package:basil_personal_web/helper/body_controll.dart';
+import 'package:basil_personal_web/sections/welcome_page.dart';
 import 'package:flutter/material.dart';
 // import 'package:responsive_framework/responsive_wrapper.dart';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
       ),
       // routes: {
-      //   '/': (ctx) => WelcomePage(),
+      // '/': (ctx) => WelcomePage(),
+      // WelcomePage.routeName: (ctx) => WelcomePage(),
       // },
       home: BodyController(),
       // builder: (context, widget) => ResponsiveWrapper.builder(WelcomePage(),

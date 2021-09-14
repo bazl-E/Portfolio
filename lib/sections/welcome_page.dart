@@ -7,6 +7,7 @@ import 'package:video_player/video_player.dart';
 // import 'package:video_player/video_player.dart';
 
 class WelcomePage extends StatefulWidget {
+  static const routeName = '/welcome';
   WelcomePage({Key? key, this.scrollTo}) : super(key: key);
   final Future Function(int i)? scrollTo;
   @override
