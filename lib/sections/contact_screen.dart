@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:basil_personal_web/helper/firebaseconnect.dart';
 import 'package:basil_personal_web/sections/welcome_page.dart';
+import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +26,11 @@ class _ContactScreenState extends State<ContactScreen>
   bool isHovered = false;
   bool socialHovered = false;
   double intialpostion = 0;
+  Color hovercolor = Colors.pink;
+
+  double width = 0;
+  double height = 0;
+
   bool isSaving = false;
   double opacity = 1;
   int? hoveredindex;
@@ -33,6 +40,12 @@ class _ContactScreenState extends State<ContactScreen>
   List<AnimationController> controllers = [];
   List<Animation<Offset>> animations = [];
   List<Animation<Offset>> animations2 = [];
+  AnimationController? leftanimaController;
+  AnimationController? rightanimaController;
+  AnimationController? rightanimaController2;
+  Animation<Offset>? leftanimae;
+  Animation<Offset>? rightanimae;
+  Animation<Offset>? right2animae;
 
   void launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
@@ -40,7 +53,7 @@ class _ContactScreenState extends State<ContactScreen>
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 5; i++) {
       controllers.add(AnimationController(
           vsync: this, duration: Duration(milliseconds: 1000)));
       animations.add(
@@ -56,6 +69,24 @@ class _ContactScreenState extends State<ContactScreen>
         ),
       );
     }
+    leftanimaController =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
+    leftanimae = Tween<Offset>(begin: Offset(-30, 0), end: Offset(0, 0))
+        .animate(CurvedAnimation(
+            parent: leftanimaController!,
+            curve: Curves.fastLinearToSlowEaseIn));
+    rightanimae = Tween<Offset>(begin: Offset(40, 0), end: Offset(0, 0))
+        .animate(CurvedAnimation(
+            parent: leftanimaController!,
+            curve: Curves.fastLinearToSlowEaseIn));
+
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      leftanimaController!.forward();
+      setState(() {
+        height = 350;
+        width = 500;
+      });
+    });
   }
 
   void onSave() async {
@@ -184,7 +215,7 @@ class _ContactScreenState extends State<ContactScreen>
   @override
   void dispose() {
     super.dispose();
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 5; i++) {
       controllers[i].dispose();
     }
   }
@@ -208,144 +239,160 @@ class _ContactScreenState extends State<ContactScreen>
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 50, bottom: 10),
-                      child: Text(
-                        'CONTACT',
-                        style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 44,
-                            color: Colors.white),
+                    SlideTransition(
+                      position: leftanimae!,
+                      child: Container(
+                        padding: EdgeInsets.only(top: 50, bottom: 10),
+                        child: Text(
+                          'CONTACT',
+                          style: GoogleFonts.raleway(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 44,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
-                    Container(
-                      width: 70,
-                      height: 4,
-                      color: Colors.white,
+                    SlideTransition(
+                      position: rightanimae!,
+                      child: Container(
+                        width: 70,
+                        height: 4,
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(height: 50),
-                    Text('Have a question or want to work together?',
-                        style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Color(0xff07b0b7))),
+                    SlideTransition(
+                      position: rightanimae!,
+                      child: Text('Have a question or want to work together?',
+                          style: GoogleFonts.raleway(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xff07b0b7))),
+                    ),
                     SizedBox(height: 50),
-                    Container(
-                      width: 500,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.all(10),
-                              margin: EdgeInsets.all(5),
-                              height: 40,
-                              width: 500,
-                              color: Color(0xff1e242c),
-                              child: TextFormField(
-                                onSaved: (val) {
-                                  name = val;
-                                },
-                                style: TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  // contentPadding: EdgeInsets.only(bottom: 10),
-                                  hintText: "Name",
-                                  hintStyle:
-                                      TextStyle(color: Color(0xff6b6b6c)),
-                                ),
-                              )),
-                          Container(
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.all(10),
-                              margin: EdgeInsets.all(5),
-                              height: 40,
-                              width: 500,
-                              color: Color(0xff1e242c),
-                              child: TextFormField(
-                                onSaved: (val) {
-                                  email = val;
-                                },
-                                style: TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  // contentPadding: EdgeInsets.only(bottom: 10),
-                                  hintText: "Enter email",
-                                  hintStyle:
-                                      TextStyle(color: Color(0xff6b6b6c)),
-                                ),
-                              )),
-                          Container(
-                              padding: EdgeInsets.all(10),
-                              margin: EdgeInsets.all(5),
-                              color: Color(0xff1e242c),
-                              height: 150,
-                              width: 500,
-                              child: TextFormField(
-                                onSaved: (val) {
-                                  message = val;
-                                },
-                                // maxLength: 250,
-                                maxLines: 10,
-                                style: TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  // contentPadding: EdgeInsets.all(7),
-                                  hintText: "Your Message",
-                                  hintStyle:
-                                      TextStyle(color: Color(0xff6b6b6c)),
-                                ),
-                              )),
-                          InkWell(
-                            onTap: () {},
-                            onHover: (t) {
-                              if (t) {
-                                setState(() {
-                                  isHovered = true;
-                                });
-                              } else {
-                                setState(() {
-                                  isHovered = false;
-                                });
-                              }
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  color: isHovered
-                                      ? Color(0xff04c2c9)
-                                      : Colors.transparent,
-                                  border: Border.all(
+                    AnimatedContainer(
+                      // color: Colors.amber,
+                      duration: Duration(seconds: 2),
+                      curve: Curves.bounceInOut,
+                      width: width,
+                      height: height,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.all(10),
+                                margin: EdgeInsets.all(5),
+                                height: 40,
+                                width: 500,
+                                color: Color(0xff1e242c),
+                                child: TextFormField(
+                                  onSaved: (val) {
+                                    name = val;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                    // contentPadding: EdgeInsets.only(bottom: 10),
+                                    hintText: "Name",
+                                    hintStyle:
+                                        TextStyle(color: Color(0xff6b6b6c)),
+                                  ),
+                                )),
+                            Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.all(10),
+                                margin: EdgeInsets.all(5),
+                                height: 40,
+                                width: 500,
+                                color: Color(0xff1e242c),
+                                child: TextFormField(
+                                  onSaved: (val) {
+                                    email = val;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                    // contentPadding: EdgeInsets.only(bottom: 10),
+                                    hintText: "Enter email",
+                                    hintStyle:
+                                        TextStyle(color: Color(0xff6b6b6c)),
+                                  ),
+                                )),
+                            Container(
+                                padding: EdgeInsets.all(10),
+                                margin: EdgeInsets.all(5),
+                                color: Color(0xff1e242c),
+                                height: 150,
+                                width: 500,
+                                child: TextFormField(
+                                  onSaved: (val) {
+                                    message = val;
+                                  },
+                                  // maxLength: 250,
+                                  maxLines: 10,
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                    // contentPadding: EdgeInsets.all(7),
+                                    hintText: "Your Message",
+                                    hintStyle:
+                                        TextStyle(color: Color(0xff6b6b6c)),
+                                  ),
+                                )),
+                            InkWell(
+                              onTap: () {},
+                              onHover: (t) {
+                                if (t) {
+                                  setState(() {
+                                    isHovered = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    isHovered = false;
+                                  });
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
                                     color: isHovered
                                         ? Color(0xff04c2c9)
-                                        : Colors.white,
-                                  )),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 20),
-                              child: TextButton(
-                                onPressed: isSaving ? null : onSave,
-                                child: Text(
-                                  'SUBMIT',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                        : Colors.transparent,
+                                    border: Border.all(
+                                      color: isHovered
+                                          ? Color(0xff04c2c9)
+                                          : Colors.white,
+                                    )),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 20),
+                                child: TextButton(
+                                  onPressed: isSaving ? null : onSave,
+                                  child: Text(
+                                    'SUBMIT',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -388,6 +435,11 @@ class _ContactScreenState extends State<ContactScreen>
                                 image: 'assets/14.png',
                                 index: 3,
                                 url: 'https://twitter.com/MhdBasil_E'),
+                            SizedBox(width: 30),
+                            buildanimatedSocial(
+                                image: 'assets/15.png',
+                                index: 4,
+                                url: 'https://linktree-cb3f3.firebaseapp.com/'),
                           ],
                         ),
                         Row(
@@ -412,9 +464,21 @@ class _ContactScreenState extends State<ContactScreen>
                       top: -30,
                       left: (MediaQuery.of(context).size.width / 2) - 25,
                       child: InkWell(
+                        onHover: (t) {
+                          if (t) {
+                            setState(() {
+                              hovercolor = Colors.pinkAccent;
+                            });
+                          } else {
+                            setState(() {
+                              hovercolor = Colors.pink;
+                            });
+                          }
+                        },
                         onTap: widget.gotoHome,
-                        child: Container(
-                          color: Colors.pink,
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 350),
+                          color: hovercolor,
                           width: 50,
                           height: 55,
                           child: RotatedBox(
@@ -426,7 +490,7 @@ class _ContactScreenState extends State<ContactScreen>
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 color: Color(0xff1b242f),

@@ -153,8 +153,8 @@ class _WelcomePageState extends State<WelcomePage>
                               vpadding = 17;
 
                               isPlaying = true;
-                              color = Colors.lightBlue[600];
-                              bordercolor = Colors.lightBlue[600];
+                              color = Color(0xff04c2c9);
+                              bordercolor = Color(0xff04c2c9);
                               _animationController!.forward();
                             },
                           );
