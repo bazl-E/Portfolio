@@ -1,12 +1,14 @@
 // import 'package:basil_personal_web/sections/ex.dart';
 // import 'package:basil_personal_web/sections/sliverappbar.dart';
 import 'package:basil_personal_web/helper/body_controll.dart';
-import 'package:basil_personal_web/sections/welcome_page.dart';
+// import 'package:basil_personal_web/sections/welcome_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_strategy/url_strategy.dart';
 // import 'package:responsive_framework/responsive_wrapper.dart';
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 void main() {
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorObservers: [routeObserver],
+      // navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
       title: 'Findbasilprofilo',
       theme: ThemeData(
