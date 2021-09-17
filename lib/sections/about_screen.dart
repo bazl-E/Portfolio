@@ -1,14 +1,15 @@
-// import 'package:basil_personal_web/helper/my_clip.dart';
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
-// import 'package:polygon_clipper/polygon_clipper.dart';
+import 'package:basil_personal_web/widgets/about_screen/custom_tile.dart';
+import 'package:basil_personal_web/widgets/about_screen/percenteage_tile.dart';
+import 'package:basil_personal_web/widgets/about_screen/profile_section.dart';
 
 class AboutScreen extends StatefulWidget {
   AboutScreen({Key? key, this.height, this.scroll}) : super(key: key);
+
   final double? height;
   final Future Function(int index)? scroll;
 
@@ -18,10 +19,11 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen>
     with TickerProviderStateMixin {
+  var width = 0;
+
   AnimationController? _controller;
   AnimationController? _controller2;
   AnimationController? _controller3;
-
   AnimationController? _controller4;
 
   Animation<Offset>? _slideAnimation;
@@ -29,10 +31,8 @@ class _AboutScreenState extends State<AboutScreen>
   Animation<Offset>? _slideAnimation3;
   Animation<num>? _opacityAnimation;
   Animation<num>? _transformAnimation;
-  double width = 0;
-  bool init = true;
 
-  double getWidth(double percent) {
+  double getWidth(double percent, BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     final widt = min((w * .9), 600).toDouble();
     return width * (widt - 165) * (percent / 100);
@@ -69,18 +69,14 @@ class _AboutScreenState extends State<AboutScreen>
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      print("WidgetsBinding");
-      _controller!.forward();
-      _controller2!.forward();
-      _controller3!.forward();
-      _controller4!.forward();
-    });
-    _controller!.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
+      _controller!.forward().whenComplete(() {
         setState(() {
           width = 1;
         });
-      }
+      });
+      _controller2!.forward().whenComplete(() {});
+      _controller3!.forward();
+      _controller4!.forward();
     });
   }
 
@@ -94,152 +90,11 @@ class _AboutScreenState extends State<AboutScreen>
     super.dispose();
   }
 
-  Widget buildPersentTile({String? title, double? persent}) {
-    final w = MediaQuery.of(context).size.width;
-    final widt = min((w * .9), 600).toDouble();
-
-    return Container(
-      margin: EdgeInsets.only(top: 6, bottom: 6, left: 6),
-      width: widt,
-      color: Color(0xffeeeeee),
-      height: 31,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                height: 31,
-                width: 150,
-                color: Color(0xff05c2c9),
-                child: Center(
-                  child: Text(title!,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.raleway(
-                          fontSize: 14,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-              AnimatedContainer(
-                duration: Duration(seconds: 1),
-                width: getWidth(persent!),
-                height: 31,
-                color: Color(0xff01a1a7),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('${persent.toString()}%',
-                style: GoogleFonts.raleway(
-                  fontSize: 14,
-                  color: Color(0xff8d8d8d),
-                )),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget buildCustomTile({IconData? icon, String? title, String? descrption}) {
-    return Container(
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              // AnimatedContainer(
-              //   duration: Duration(seconds: 3),
-              //   alignment: Alignment.center,
-              // transform: Matrix4.identity()
-              //   ..setEntry(3, 2, 0.001)
-              //   ..rotateY(pi * _transformAnimation!.value.toDouble()),
-              // child:
-              // Transform(
-              //   transform: Matrix4.identity()
-              //     ..setEntry(3, 2, 0.001)
-              //     ..rotateY(pi * _transformAnimation!.value.toDouble()),
-              //   child:
-              AnimatedContainer(
-                transformAlignment: Alignment.center,
-                duration: Duration(seconds: 1),
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateY(pi * _transformAnimation!.value.toDouble()),
-                child: Image.asset(
-                  'assets/hexa.png',
-                  width: 120,
-                  height: 120,
-                  color: Color(0xff05c2c9),
-                ),
-              ),
-              // ),
-              // ),
-              Positioned(
-                height: 115,
-                width: 123,
-                child: AnimatedContainer(
-                  transformAlignment: Alignment.center,
-                  duration: Duration(seconds: 1),
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001)
-                    ..rotateY(pi * _transformAnimation!.value.toDouble()),
-                  child: Icon(
-                    icon!,
-                    size: 60,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Container(
-              child: AnimatedOpacity(
-                opacity: _opacityAnimation!.value.toDouble(),
-                duration: Duration(seconds: 2),
-                child: Text(
-                  title!,
-                  style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                      color: Color(0xff666361)),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Container(
-              width: 250,
-              child: AnimatedOpacity(
-                duration: Duration(seconds: 2),
-                opacity: _opacityAnimation!.value.toDouble(),
-                child: Text(
-                  descrption!,
-                  style: GoogleFonts.raleway(
-                      fontSize: 16, color: Color(0xff616161)),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    // _controller!.forward();
-    // _controller2!.forward();
-    // _controller3!.forward();
-    // _controller4!.forward();
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: Container(
-        // height: min(widget.height!, double.infinity),
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -268,36 +123,43 @@ class _AboutScreenState extends State<AboutScreen>
             ),
             SizedBox(height: 80),
             Container(
-              // width: min(1200, MediaQuery.of(context).size.width),
               child: Wrap(
                 alignment: WrapAlignment.spaceAround,
                 spacing: 40,
                 runSpacing: 40,
                 crossAxisAlignment: WrapCrossAlignment.start,
                 children: [
-                  buildCustomTile(
+                  CustomTile(
                     icon: Icons.speed,
                     title: 'Fast',
                     descrption:
                         'Fast load times and lag free interaction, my highest priority.',
+                    opacityAnimation: _opacityAnimation,
+                    transformAnimation: _transformAnimation,
                   ),
-                  buildCustomTile(
+                  CustomTile(
                     icon: Icons.lightbulb_outline,
                     title: 'Intuitive',
                     descrption:
                         'Strong preference for easy to use, intuitive UX/UI.',
+                    opacityAnimation: _opacityAnimation,
+                    transformAnimation: _transformAnimation,
                   ),
-                  buildCustomTile(
+                  CustomTile(
                     icon: Icons.devices_outlined,
                     title: 'Responsive',
                     descrption:
                         'My layouts will work on any device, big or small.',
+                    opacityAnimation: _opacityAnimation,
+                    transformAnimation: _transformAnimation,
                   ),
-                  buildCustomTile(
+                  CustomTile(
                     icon: Icons.dynamic_form,
                     title: 'Dynamic',
                     descrption:
                         'Web/Apps don\'t have to be static, I love making them come to life.',
+                    opacityAnimation: _opacityAnimation,
+                    transformAnimation: _transformAnimation,
                   ),
                 ],
               ),
@@ -309,75 +171,48 @@ class _AboutScreenState extends State<AboutScreen>
                 padding: const EdgeInsets.all(20.0),
                 child: Wrap(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          'assets/prof.png',
-                          height: 300,
-                          width: 300,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2),
-                          child: Container(
-                            child: Text(
-                              'Who\'s this guy?',
-                              style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                  color: Color(0xff666361)),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 500,
-                                child: Text(
-                                  "I'm a freelancing Developer from Kerala,Inida.I have serious passion for UI effects, animations and creating intuitive, dynamic user experiences.",
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 16, color: Color(0xff616161)),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  widget.scroll!(4);
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(bottom: 20),
-                                  child: Text(
-                                    'Let\'s make something special.',
-                                    style: GoogleFonts.raleway(
-                                        fontSize: 16, color: Color(0xff039bda)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    ProfileSection(widget: widget),
                     SizedBox(width: 36),
                     SlideTransition(
                       position: _slideAnimation3!,
                       child: Column(
                         children: [
-                          buildPersentTile(title: 'Flutter', persent: 90),
-                          buildPersentTile(title: 'Dart', persent: 90),
-                          buildPersentTile(title: 'FireBase', persent: 80),
-                          buildPersentTile(title: 'HTTP and REST', persent: 80),
-                          buildPersentTile(
-                              title: 'Git and GitHub', persent: 50),
-                          buildPersentTile(
-                              title: 'NoSQL databases', persent: 75),
-                          buildPersentTile(title: 'Animation', persent: 70),
-                          buildPersentTile(title: 'UI Design', persent: 50),
-                          buildPersentTile(title: 'Photoshop', persent: 55),
-                          buildPersentTile(title: 'Sketch', persent: 50),
+                          PercentageTile(
+                              title: 'Flutter',
+                              percent: 90,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'Dart', percent: 90, getWidth: getWidth),
+                          PercentageTile(
+                              title: 'FireBase',
+                              percent: 80,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'HTTP and REST',
+                              percent: 80,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'Git and GitHub',
+                              percent: 75,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'NoSQL databases',
+                              percent: 65,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'Animation',
+                              percent: 70,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'UI Design',
+                              percent: 50,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'Photoshop',
+                              percent: 55,
+                              getWidth: getWidth),
+                          PercentageTile(
+                              title: 'Sketch', percent: 50, getWidth: getWidth),
                         ],
                       ),
                     )

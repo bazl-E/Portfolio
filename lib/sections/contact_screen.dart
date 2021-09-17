@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:basil_personal_web/helper/firebaseconnect.dart';
-import 'package:basil_personal_web/sections/welcome_page.dart';
+
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -218,6 +218,9 @@ class _ContactScreenState extends State<ContactScreen>
     for (var i = 0; i < 5; i++) {
       controllers[i].dispose();
     }
+    leftanimaController!.dispose();
+    rightanimaController!.dispose();
+    rightanimaController2!.dispose();
   }
 
   @override
@@ -439,7 +442,7 @@ class _ContactScreenState extends State<ContactScreen>
                             buildanimatedSocial(
                                 image: 'assets/15.png',
                                 index: 4,
-                                url: 'https://linktree-cb3f3.firebaseapp.com/'),
+                                url: 'https://linktree-basil.web.app/'),
                           ],
                         ),
                         Row(
