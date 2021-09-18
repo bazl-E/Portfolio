@@ -2,6 +2,8 @@
 // import 'package:basil_personal_web/sections/sliverappbar.dart';
 import 'package:basil_personal_web/helper/body_controll.dart';
 import 'package:basil_personal_web/providers/blog_screen_manage.dart';
+import 'package:basil_personal_web/providers/body_controll_manage.dart';
+import 'package:basil_personal_web/providers/contact_screen_manager.dart';
 import 'package:basil_personal_web/providers/project_screen_manage.dart';
 
 import 'package:basil_personal_web/providers/welcome_screen_manage.dart';
@@ -30,6 +32,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<BlogscreenManager>(
           create: (_) => BlogscreenManager(),
+        ),
+        ChangeNotifierProvider<ContactscreenManager>(
+          create: (_) => ContactscreenManager(),
+        ),
+        ChangeNotifierProvider<BodyControllManager>(
+          create: (_) => BodyControllManager(),
         ),
       ],
       child: MaterialApp(
