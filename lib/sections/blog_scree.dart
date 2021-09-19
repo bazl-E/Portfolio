@@ -1,8 +1,11 @@
+// import 'package:basil_personal_web/providers/blog_screen_manage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:basil_personal_web/widgets/blog%20screen/blog_tile.dart';
+// import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({Key? key, this.height}) : super(key: key);
@@ -20,12 +23,16 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
   List<AnimationController> controllers = [];
   List<Animation<double>> animations = [];
 
+  void launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
+
   @override
   void initState() {
     super.initState();
     for (var i = 0; i < 4; i++) {
       controllers.add(AnimationController(
-          vsync: this, duration: Duration(milliseconds: 100)));
+          vsync: this, duration: Duration(seconds: 1 + (i + 1))));
       animations.add(Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
               parent: controllers[i], curve: Curves.fastLinearToSlowEaseIn)));
@@ -63,6 +70,12 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // controller!.forward();
+    // controller2!.forward();
+
+    // for (var i = 0; i < 4; i++) {
+    //   controllers[i].forward();
+    // }
     return Container(
       height: widget.height!,
       width: MediaQuery.of(context).size.width,
@@ -100,6 +113,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
               runSpacing: 25,
               children: [
                 BlogTile(
+                  controllers: controllers,
                   animations: animations,
                   date: 'APRIL 29, 2021',
                   title: 'Breaking Your Coder\'s Block',
@@ -111,6 +125,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                   index: 0,
                 ),
                 BlogTile(
+                  controllers: controllers,
                   animations: animations,
                   date: 'March 19, 2020',
                   title: '!Awake: This is Your Brain on Caffeine',
@@ -122,6 +137,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                   index: 1,
                 ),
                 BlogTile(
+                  controllers: controllers,
                   animations: animations,
                   date: 'March 04, 2020',
                   title: 'Getting a Handle on Handlebars',
@@ -133,6 +149,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                   index: 2,
                 ),
                 BlogTile(
+                  controllers: controllers,
                   animations: animations,
                   date: 'FEBRUARY 23, 2021',
                   title: '5 Extensions for Your Chrome Toolbelt',

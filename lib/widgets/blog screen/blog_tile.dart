@@ -14,6 +14,7 @@ class BlogTile extends StatelessWidget {
     required this.url,
     required this.index,
     required this.animations,
+    required this.controllers,
   }) : super(key: key);
   final String? image;
   final String? title;
@@ -21,7 +22,8 @@ class BlogTile extends StatelessWidget {
   final String? discrption;
   final String? url;
   final int? index;
-  final List<Animation<double>> animations;
+  final List<Animation<double>>? animations;
+  final List<AnimationController>? controllers;
 
   void launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
@@ -44,9 +46,10 @@ class BlogTile extends StatelessWidget {
           falmanage.sethoveredIndex(null);
         }
       },
-      child: AnimatedOpacity(
-        opacity: animations[index!].value,
-        duration: Duration(seconds: 1 + (index! + 1)),
+      child: FadeTransition(
+        opacity: animations![index!],
+
+        // duration: Duration(seconds: 1 + (index! + 1)),
         child: Container(
           child: AnimatedOpacity(
             opacity: manage.hoveredIndex == null

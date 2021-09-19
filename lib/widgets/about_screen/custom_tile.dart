@@ -7,7 +7,7 @@ class CustomTile extends StatelessWidget {
   const CustomTile({
     Key? key,
     required Animation<num>? transformAnimation,
-    required Animation<num>? opacityAnimation,
+    required Animation<double>? opacityAnimation,
     required this.title,
     required this.descrption,
     required this.icon,
@@ -16,7 +16,7 @@ class CustomTile extends StatelessWidget {
         super(key: key);
 
   final Animation<num>? _transformAnimation;
-  final Animation<num>? _opacityAnimation;
+  final Animation<double>? _opacityAnimation;
   final String? title;
   final String? descrption;
   final IconData? icon;
@@ -62,9 +62,10 @@ class CustomTile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 2),
             child: Container(
-              child: AnimatedOpacity(
-                opacity: _opacityAnimation!.value.toDouble(),
-                duration: Duration(seconds: 2),
+              child: FadeTransition(
+                opacity: _opacityAnimation!,
+                // .value.toDouble(),
+                // duration: Duration(seconds: 2),
                 child: Text(
                   title!,
                   style: GoogleFonts.raleway(
@@ -79,9 +80,10 @@ class CustomTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 2),
             child: Container(
               width: 250,
-              child: AnimatedOpacity(
-                duration: Duration(seconds: 2),
-                opacity: _opacityAnimation!.value.toDouble(),
+              child: FadeTransition(
+                // duration: Duration(seconds: 2),
+                opacity: _opacityAnimation!,
+                // .value.toDouble(),
                 child: Text(
                   descrption!,
                   style: GoogleFonts.raleway(
