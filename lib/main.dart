@@ -1,6 +1,7 @@
 // import 'package:basil_personal_web/sections/ex.dart';
 // import 'package:basil_personal_web/sections/sliverappbar.dart';
 import 'package:basil_personal_web/helper/body_controll.dart';
+import 'package:basil_personal_web/providers/about_screen_manager.dart';
 import 'package:basil_personal_web/providers/blog_screen_manage.dart';
 import 'package:basil_personal_web/providers/body_controll_manage.dart';
 import 'package:basil_personal_web/providers/contact_screen_manager.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<BodyControllManager>(
           create: (_) => BodyControllManager(),
+        ),
+        ChangeNotifierProvider<AboutscreenManager>(
+          create: (_) => AboutscreenManager(),
         ),
       ],
       child: MaterialApp(

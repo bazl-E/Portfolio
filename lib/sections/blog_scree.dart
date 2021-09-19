@@ -1,11 +1,14 @@
 // import 'package:basil_personal_web/providers/blog_screen_manage.dart';
+import 'package:basil_personal_web/providers/blog_screen_manage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:basil_personal_web/widgets/blog%20screen/blog_tile.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({Key? key, this.height}) : super(key: key);
@@ -16,6 +19,8 @@ class BlogScreen extends StatefulWidget {
 }
 
 class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
+  // bool isFrist = true;
+
   AnimationController? controller;
   AnimationController? controller2;
   Animation<Offset>? animae;
@@ -48,14 +53,9 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
         CurvedAnimation(
             parent: controller2!, curve: Curves.fastLinearToSlowEaseIn));
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      controller!.forward();
-      controller2!.forward();
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
 
-      for (var i = 0; i < 4; i++) {
-        controllers[i].forward();
-      }
-    });
+    // });
   }
 
   @override
@@ -76,94 +76,118 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
     // for (var i = 0; i < 4; i++) {
     //   controllers[i].forward();
     // }
-    return Container(
-      height: widget.height!,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SlideTransition(
-            position: animae!,
-            child: Container(
-              padding: EdgeInsets.only(top: 50, bottom: 10),
-              child: Text(
-                'BLOG',
-                style: GoogleFonts.raleway(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 44,
-                    color: Color(0xff444649)),
+    final manage = Provider.of<BlogscreenManager>(context);
+    final falManage = Provider.of<BlogscreenManager>(context, listen: false);
+    if (!manage.isFrist) {
+      controller!.forward();
+      controller2!.forward();
+
+      for (var i = 0; i < 4; i++) {
+        controllers[i].forward();
+      }
+    }
+    return VisibilityDetector(
+      key: ValueKey('BlogScreenKey'),
+      onVisibilityChanged: (vi) {
+        if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          for (var i = 0; i < 4; i++) {
+            controllers[i].forward();
+          }
+          controller!.forward();
+          controller2!.forward().whenComplete(
+                () => falManage.setisFrist(false),
+              );
+        }
+      },
+      child: Container(
+        height: widget.height!,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SlideTransition(
+              position: animae!,
+              child: Container(
+                padding: EdgeInsets.only(top: 50, bottom: 10),
+                child: Text(
+                  'BLOG',
+                  style: GoogleFonts.raleway(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 44,
+                      color: Color(0xff444649)),
+                ),
               ),
             ),
-          ),
-          SlideTransition(
-            position: animae2!,
-            child: Container(
-              width: 70,
-              height: 4,
-              color: Color(0xff45474a),
+            SlideTransition(
+              position: animae2!,
+              child: Container(
+                width: 70,
+                height: 4,
+                color: Color(0xff45474a),
+              ),
             ),
-          ),
-          SizedBox(height: 150),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 25,
-              runSpacing: 25,
-              children: [
-                BlogTile(
-                  controllers: controllers,
-                  animations: animations,
-                  date: 'APRIL 29, 2021',
-                  title: 'Breaking Your Coder\'s Block',
-                  discrption:
-                      'At one time or another, as a developer, we\'ve all found ourselves hopelessly stuck on a coding issue...',
-                  image: 'blog-1.jpg',
-                  url:
-                      'http://blog.eyecuelab.com/2016/04/29/breaking-your-coders-block/',
-                  index: 0,
-                ),
-                BlogTile(
-                  controllers: controllers,
-                  animations: animations,
-                  date: 'March 19, 2020',
-                  title: '!Awake: This is Your Brain on Caffeine',
-                  discrption:
-                      'If there\'s one thing I can truly claim to be an expert on,it\'s staying awake. For five years I struggled to stay employed...',
-                  image: 'blog-2.jpg',
-                  url:
-                      'http://blog.eyecuelab.com/2015/03/19/this-is-your-brain-on-caffeine/',
-                  index: 1,
-                ),
-                BlogTile(
-                  controllers: controllers,
-                  animations: animations,
-                  date: 'March 04, 2020',
-                  title: 'Getting a Handle on Handlebars',
-                  discrption:
-                      'Here at EyeCue Lab we render most of our data-laden HTML pages in Handlebar templates...',
-                  image: 'blog-3.jpg',
-                  url:
-                      'http://blog.eyecuelab.com/2015/03/04/getting-a-handle-on-handlebars/',
-                  index: 2,
-                ),
-                BlogTile(
-                  controllers: controllers,
-                  animations: animations,
-                  date: 'FEBRUARY 23, 2021',
-                  title: '5 Extensions for Your Chrome Toolbelt',
-                  discrption:
-                      'If you\'re not using Google Chrome as a front-end web developer, you\'re missing out. Not only is Chrome the...',
-                  image: 'blog-4.jpg',
-                  url:
-                      'http://blog.eyecuelab.com/2015/02/23/essential_extensions/',
-                  index: 3,
-                ),
-              ],
-            ),
-          )
-        ],
+            SizedBox(height: 150),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 25,
+                runSpacing: 25,
+                children: [
+                  BlogTile(
+                    controllers: controllers,
+                    animations: animations,
+                    date: 'APRIL 29, 2021',
+                    title: 'Breaking Your Coder\'s Block',
+                    discrption:
+                        'At one time or another, as a developer, we\'ve all found ourselves hopelessly stuck on a coding issue...',
+                    image: 'blog-1.jpg',
+                    url:
+                        'http://blog.eyecuelab.com/2016/04/29/breaking-your-coders-block/',
+                    index: 0,
+                  ),
+                  BlogTile(
+                    controllers: controllers,
+                    animations: animations,
+                    date: 'March 19, 2020',
+                    title: '!Awake: This is Your Brain on Caffeine',
+                    discrption:
+                        'If there\'s one thing I can truly claim to be an expert on,it\'s staying awake. For five years I struggled to stay employed...',
+                    image: 'blog-2.jpg',
+                    url:
+                        'http://blog.eyecuelab.com/2015/03/19/this-is-your-brain-on-caffeine/',
+                    index: 1,
+                  ),
+                  BlogTile(
+                    controllers: controllers,
+                    animations: animations,
+                    date: 'March 04, 2020',
+                    title: 'Getting a Handle on Handlebars',
+                    discrption:
+                        'Here at EyeCue Lab we render most of our data-laden HTML pages in Handlebar templates...',
+                    image: 'blog-3.jpg',
+                    url:
+                        'http://blog.eyecuelab.com/2015/03/04/getting-a-handle-on-handlebars/',
+                    index: 2,
+                  ),
+                  BlogTile(
+                    controllers: controllers,
+                    animations: animations,
+                    date: 'FEBRUARY 23, 2021',
+                    title: '5 Extensions for Your Chrome Toolbelt',
+                    discrption:
+                        'If you\'re not using Google Chrome as a front-end web developer, you\'re missing out. Not only is Chrome the...',
+                    image: 'blog-4.jpg',
+                    url:
+                        'http://blog.eyecuelab.com/2015/02/23/essential_extensions/',
+                    index: 3,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

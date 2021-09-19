@@ -28,17 +28,20 @@ class CustomTile extends StatelessWidget {
         children: [
           Stack(
             children: [
-              AnimatedContainer(
-                transformAlignment: Alignment.center,
-                duration: Duration(seconds: 1),
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateY(pi * _transformAnimation!.value.toDouble()),
-                child: Image.asset(
-                  'assets/hexa.png',
-                  width: 120,
-                  height: 120,
-                  color: Color(0xff05c2c9),
+              FadeTransition(
+                opacity: _opacityAnimation!,
+                child: AnimatedContainer(
+                  transformAlignment: Alignment.center,
+                  duration: Duration(seconds: 1),
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001)
+                    ..rotateY(pi * _transformAnimation!.value.toDouble()),
+                  child: Image.asset(
+                    'assets/hexa.png',
+                    width: 120,
+                    height: 120,
+                    color: Color(0xff05c2c9),
+                  ),
                 ),
               ),
               Positioned(

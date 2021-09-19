@@ -6,6 +6,7 @@ class ProjectcreenManager with ChangeNotifier {
   int? _hoveredIndex;
   bool _buttonHovered = false;
   var _listLenght = 9;
+  bool _isFrist = true;
 
   int? _titleButtonindex = 0;
   // int? _selectedButton;
@@ -17,6 +18,10 @@ class ProjectcreenManager with ChangeNotifier {
 
   bool get buttonHovered {
     return _buttonHovered;
+  }
+
+  bool get isFrist {
+    return _isFrist;
   }
 
   int get listLenght {
@@ -53,6 +58,11 @@ class ProjectcreenManager with ChangeNotifier {
 
   void setButtonHovered(bool hover) {
     _buttonHovered = hover;
+    notifyListeners();
+  }
+
+  void setisFrist(bool sts) {
+    _isFrist = sts;
     notifyListeners();
   }
 }

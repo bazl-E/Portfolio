@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:basil_personal_web/providers/about_screen_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:basil_personal_web/widgets/about_screen/custom_tile.dart';
 import 'package:basil_personal_web/widgets/about_screen/percenteage_tile.dart';
 import 'package:basil_personal_web/widgets/about_screen/profile_section.dart';
+import 'package:provider/provider.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class AboutScreen extends StatefulWidget {
   AboutScreen({Key? key, this.height, this.scroll}) : super(key: key);
@@ -20,6 +23,7 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen>
     with TickerProviderStateMixin {
   var width = 0;
+  // bool isFrist = true;
 
   AnimationController? _controller;
   AnimationController? _controller2;
@@ -42,7 +46,7 @@ class _AboutScreenState extends State<AboutScreen>
   void initState() {
     super.initState();
     _controller3 =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _opacityAnimation =
         Tween<double>(begin: 0.0, end: 1).animate(CurvedAnimation(
       parent: _controller3!,
@@ -60,7 +64,7 @@ class _AboutScreenState extends State<AboutScreen>
         .animate(
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
     _controller2 =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _slideAnimation2 = Tween<Offset>(begin: Offset(-10.5, 0), end: Offset(0, 0))
         .animate(CurvedAnimation(
             parent: _controller2!, curve: Curves.fastOutSlowIn));
@@ -69,19 +73,9 @@ class _AboutScreenState extends State<AboutScreen>
         .animate(
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      // setState(() {
-      //   width = 1;
-      // });
-      _controller!.forward().whenComplete(() {
-        setState(() {
-          width = 1;
-        });
-      });
-      _controller2!.forward().whenComplete(() {});
-      _controller3!.forward();
-      _controller4!.forward();
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((_) {
+
+    // });
   }
 
   @override
@@ -96,140 +90,171 @@ class _AboutScreenState extends State<AboutScreen>
 
   @override
   Widget build(BuildContext context) {
+    final manage = Provider.of<AboutscreenManager>(context);
+    final falManage = Provider.of<AboutscreenManager>(context, listen: false);
     // _controller!.forward();
     // _controller2!.forward();
     // _controller3!.forward();
     // _controller4!.forward();
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 45, bottom: 10),
-              child: SlideTransition(
-                position: _slideAnimation!,
-                child: Text(
-                  'ABOUT',
-                  style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 44,
-                      color: Color(0xff444649)),
+    if (!manage.isFrist) {
+      _controller!.forward().whenComplete(() {
+        setState(() {
+          width = 1;
+        });
+      });
+      _controller2!.forward();
+      _controller3!.forward();
+      _controller4!.forward();
+    }
+    return VisibilityDetector(
+      key: ValueKey('AboutScreenKey'),
+      onVisibilityChanged: (vi) {
+        if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          _controller!.forward().whenComplete(() {
+            setState(() {
+              width = 1;
+            });
+          });
+          _controller2!.forward();
+          _controller3!.forward();
+          _controller4!.forward().whenComplete(
+                () => falManage.setisFrist(false),
+              );
+        }
+      },
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 45, bottom: 10),
+                child: SlideTransition(
+                  position: _slideAnimation!,
+                  child: Text(
+                    'ABOUT',
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 44,
+                        color: Color(0xff444649)),
+                  ),
                 ),
               ),
-            ),
-            SlideTransition(
-              position: _slideAnimation2!,
-              child: Container(
-                width: 70,
-                height: 4,
-                color: Color(0xff45474a),
+              SlideTransition(
+                position: _slideAnimation2!,
+                child: Container(
+                  width: 70,
+                  height: 4,
+                  color: Color(0xff45474a),
+                ),
               ),
-            ),
-            SizedBox(height: 80),
-            Container(
-              child: Wrap(
-                alignment: WrapAlignment.spaceAround,
-                spacing: 40,
-                runSpacing: 40,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: [
-                  CustomTile(
-                    icon: Icons.speed,
-                    title: 'Fast',
-                    descrption:
-                        'Fast load times and lag free interaction, my highest priority.',
-                    opacityAnimation: _opacityAnimation,
-                    transformAnimation: _transformAnimation,
-                  ),
-                  CustomTile(
-                    icon: Icons.lightbulb_outline,
-                    title: 'Intuitive',
-                    descrption:
-                        'Strong preference for easy to use, intuitive UX/UI.',
-                    opacityAnimation: _opacityAnimation,
-                    transformAnimation: _transformAnimation,
-                  ),
-                  CustomTile(
-                    icon: Icons.devices_outlined,
-                    title: 'Responsive',
-                    descrption:
-                        'My layouts will work on any device, big or small.',
-                    opacityAnimation: _opacityAnimation,
-                    transformAnimation: _transformAnimation,
-                  ),
-                  CustomTile(
-                    icon: Icons.dynamic_form,
-                    title: 'Dynamic',
-                    descrption:
-                        'Web/Apps don\'t have to be static, I love making them come to life.',
-                    opacityAnimation: _opacityAnimation,
-                    transformAnimation: _transformAnimation,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 40),
-            SlideTransition(
-              position: _slideAnimation!,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+              SizedBox(height: 80),
+              Container(
                 child: Wrap(
+                  alignment: WrapAlignment.spaceAround,
+                  spacing: 40,
+                  runSpacing: 40,
+                  crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
-                    ProfileSection(widget: widget),
-                    SizedBox(width: 36),
-                    SlideTransition(
-                      position: _slideAnimation3!,
-                      child: Column(
-                        children: [
-                          PercentageTile(
-                              title: 'Flutter',
-                              percent: 90,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'Dart', percent: 90, getWidth: getWidth),
-                          PercentageTile(
-                              title: 'FireBase',
-                              percent: 80,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'HTTP and REST',
-                              percent: 80,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'Git and GitHub',
-                              percent: 75,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'NoSQL databases',
-                              percent: 65,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'Animation',
-                              percent: 70,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'UI Design',
-                              percent: 50,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'Photoshop',
-                              percent: 55,
-                              getWidth: getWidth),
-                          PercentageTile(
-                              title: 'Sketch', percent: 50, getWidth: getWidth),
-                        ],
-                      ),
-                    )
+                    CustomTile(
+                      icon: Icons.speed,
+                      title: 'Fast',
+                      descrption:
+                          'Fast load times and lag free interaction, my highest priority.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                    CustomTile(
+                      icon: Icons.lightbulb_outline,
+                      title: 'Intuitive',
+                      descrption:
+                          'Strong preference for easy to use, intuitive UX/UI.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                    CustomTile(
+                      icon: Icons.devices_outlined,
+                      title: 'Responsive',
+                      descrption:
+                          'My layouts will work on any device, big or small.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                    CustomTile(
+                      icon: Icons.dynamic_form,
+                      title: 'Dynamic',
+                      descrption:
+                          'Web/Apps don\'t have to be static, I love making them come to life.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
                   ],
                 ),
               ),
-            ),
-            SizedBox(height: 100),
-          ],
+              SizedBox(height: 40),
+              SlideTransition(
+                position: _slideAnimation!,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Wrap(
+                    children: [
+                      ProfileSection(widget: widget),
+                      SizedBox(width: 36),
+                      SlideTransition(
+                        position: _slideAnimation3!,
+                        child: Column(
+                          children: [
+                            PercentageTile(
+                                title: 'Flutter',
+                                percent: 90,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'Dart', percent: 90, getWidth: getWidth),
+                            PercentageTile(
+                                title: 'FireBase',
+                                percent: 80,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'HTTP and REST',
+                                percent: 80,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'Git and GitHub',
+                                percent: 75,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'NoSQL databases',
+                                percent: 65,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'Animation',
+                                percent: 70,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'UI Design',
+                                percent: 50,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'Photoshop',
+                                percent: 55,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                title: 'Sketch',
+                                percent: 50,
+                                getWidth: getWidth),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 100),
+            ],
+          ),
         ),
       ),
     );

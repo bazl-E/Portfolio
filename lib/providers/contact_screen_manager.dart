@@ -8,6 +8,15 @@ class ContactscreenManager with ChangeNotifier {
   bool _isHomeButtonHovered = false;
 
   int? _socialHoveredindex;
+  bool _isFrist = true;
+  bool get isFrist {
+    return _isFrist;
+  }
+
+  void setisFrist(bool sts) {
+    _isFrist = sts;
+    notifyListeners();
+  }
 
   bool get isSubmitHovered {
     return _isSubmitHovered;

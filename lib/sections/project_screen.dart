@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:basil_personal_web/widgets/project%20screen/project_tile.dart';
 import 'package:basil_personal_web/widgets/project%20screen/title_section.dart';
 import 'package:basil_personal_web/providers/project_screen_manage.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class ProjectScreen extends StatefulWidget {
   ProjectScreen({Key? key, this.height}) : super(key: key);
@@ -19,6 +20,8 @@ class ProjectScreen extends StatefulWidget {
 
 class _ProjectScreenState extends State<ProjectScreen>
     with TickerProviderStateMixin {
+  // bool isFrist = true;
+
   AnimationController? _controller;
   AnimationController? _controller2;
 
@@ -78,11 +81,11 @@ class _ProjectScreenState extends State<ProjectScreen>
     return Size(0, 0);
   }
 
-  void playAnimations() {
-    for (var n = 0; n < 9; n++) {
-      slideAnimationControllers[n].forward();
-    }
-  }
+  // void playAnimations() {
+  //   for (var n = 0; n < 9; n++) {
+  //     slideAnimationControllers[n].forward();
+  //   }
+  // }
 
   @override
   void initState() {
@@ -119,10 +122,9 @@ class _ProjectScreenState extends State<ProjectScreen>
         .animate(CurvedAnimation(
             parent: _controller2!, curve: Curves.fastOutSlowIn));
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      _controller!.forward();
-      _controller2!.forward();
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+
+    // });
   }
 
   @override
@@ -138,89 +140,110 @@ class _ProjectScreenState extends State<ProjectScreen>
 
   @override
   Widget build(BuildContext context) {
-    playAnimations();
+    // playAnimations();
     final manage = Provider.of<ProjectcreenManager>(context);
     final falManage = Provider.of<ProjectcreenManager>(context, listen: false);
+    if (!manage.isFrist) {
+      for (var i = 0; i < 9; i++) {
+        slideAnimationControllers[i].forward();
+      }
+      _controller!.forward();
+      _controller2!.forward();
+    }
 
-    return Container(
-      color: Color(0xfff5f5f5),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 50, bottom: 10),
-            child: SlideTransition(
-              position: _slideAnimation!,
-              child: Text(
-                'PROJECTS',
-                style: GoogleFonts.raleway(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 44,
-                    color: Color(0xff444649)),
+    return VisibilityDetector(
+      key: ValueKey('ProjectScreenKey'),
+      onVisibilityChanged: (vi) {
+        if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          for (var i = 0; i < 9; i++) {
+            slideAnimationControllers[i].forward();
+          }
+          _controller!.forward();
+          _controller2!.forward().whenComplete(
+                () => falManage.setisFrist(false),
+              );
+        }
+      },
+      child: Container(
+        color: Color(0xfff5f5f5),
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 50, bottom: 10),
+              child: SlideTransition(
+                position: _slideAnimation!,
+                child: Text(
+                  'PROJECTS',
+                  style: GoogleFonts.raleway(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 44,
+                      color: Color(0xff444649)),
+                ),
               ),
             ),
-          ),
-          SlideTransition(
-            position: _slideAnimation2!,
-            child: Container(
-              width: 70,
-              height: 4,
-              color: Color(0xff45474a),
-            ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          TitleSection(manage: manage, titles: titles),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 600),
-              width: 1170,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  for (var i = 0; i < 9; i++)
-                    InkWell(
-                      onTap: () {},
-                      onHover: (t) {
-                        if (t) {
-                          falManage.setIsHovered(true);
-                          falManage.sethoveredIndex(i);
-                          controllers[i].forward();
-                        } else {
-                          controllers[i].reverse();
-                          falManage.setIsHovered(false);
-                          falManage.sethoveredIndex(null);
-                        }
-                      },
-                      child: SlideTransition(
-                          position: slideAnimations[i],
-                          child: AnimatedContainer(
-                              duration: Duration(milliseconds: 500),
-                              width: sizeGetter(i).width,
-                              height: sizeGetter(i).height,
-                              curve: Curves.fastOutSlowIn,
-                              child: ProjectTile(
-                                i: i,
-                                images: images,
-                                subTiltles: subTiltles,
-                                topAnimations: topAnimations,
-                                bottomAnimations: bottomAnimations,
-                              ))),
-                    ),
-                  // ),
-                  // ),
-                ],
+            SlideTransition(
+              position: _slideAnimation2!,
+              child: Container(
+                width: 70,
+                height: 4,
+                color: Color(0xff45474a),
               ),
             ),
-          ),
-          SizedBox(
-            height: 60,
-          )
-        ],
+            SizedBox(
+              height: 40,
+            ),
+            TitleSection(manage: manage, titles: titles),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 600),
+                width: 1170,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    for (var i = 0; i < 9; i++)
+                      InkWell(
+                        onTap: () {},
+                        onHover: (t) {
+                          if (t) {
+                            falManage.setIsHovered(true);
+                            falManage.sethoveredIndex(i);
+                            controllers[i].forward();
+                          } else {
+                            controllers[i].reverse();
+                            falManage.setIsHovered(false);
+                            falManage.sethoveredIndex(null);
+                          }
+                        },
+                        child: SlideTransition(
+                            position: slideAnimations[i],
+                            child: AnimatedContainer(
+                                duration: Duration(milliseconds: 500),
+                                width: sizeGetter(i).width,
+                                height: sizeGetter(i).height,
+                                curve: Curves.fastOutSlowIn,
+                                child: ProjectTile(
+                                  i: i,
+                                  images: images,
+                                  subTiltles: subTiltles,
+                                  topAnimations: topAnimations,
+                                  bottomAnimations: bottomAnimations,
+                                ))),
+                      ),
+                    // ),
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            )
+          ],
+        ),
       ),
     );
   }
