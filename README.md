@@ -66,8 +66,8 @@ We have a total of five screens.
 
 State management
 
-- As it is a simple app we don't have any state management yet other than the set state.
-- Also this is still in the development stage so maybe in feature, we may have to use a provider.
+- we used provider for extreamly reduce unwanted rebuilding,
+
 
 Animation
  
