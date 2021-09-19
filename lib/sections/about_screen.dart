@@ -29,7 +29,7 @@ class _AboutScreenState extends State<AboutScreen>
   Animation<Offset>? _slideAnimation;
   Animation<Offset>? _slideAnimation2;
   Animation<Offset>? _slideAnimation3;
-  Animation<num>? _opacityAnimation;
+  Animation<double>? _opacityAnimation;
   Animation<num>? _transformAnimation;
 
   double getWidth(double percent, BuildContext context) {
@@ -42,8 +42,9 @@ class _AboutScreenState extends State<AboutScreen>
   void initState() {
     super.initState();
     _controller3 =
-        AnimationController(vsync: this, duration: Duration(microseconds: 1));
-    _opacityAnimation = Tween(begin: 0.0, end: 1).animate(CurvedAnimation(
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _opacityAnimation =
+        Tween<double>(begin: 0.0, end: 1).animate(CurvedAnimation(
       parent: _controller3!,
       curve: Curves.easeInOut,
     ));
@@ -69,6 +70,9 @@ class _AboutScreenState extends State<AboutScreen>
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
+      // setState(() {
+      //   width = 1;
+      // });
       _controller!.forward().whenComplete(() {
         setState(() {
           width = 1;
@@ -92,6 +96,10 @@ class _AboutScreenState extends State<AboutScreen>
 
   @override
   Widget build(BuildContext context) {
+    // _controller!.forward();
+    // _controller2!.forward();
+    // _controller3!.forward();
+    // _controller4!.forward();
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: Container(
