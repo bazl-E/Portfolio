@@ -152,7 +152,7 @@ class _ProjectScreenState extends State<ProjectScreen>
     }
 
     return VisibilityDetector(
-      key: ValueKey('ProjectScreenKey'),
+      key: const ValueKey('ProjectScreenKey'),
       onVisibilityChanged: (vi) {
         if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
           for (var i = 0; i < 9; i++) {
@@ -165,18 +165,22 @@ class _ProjectScreenState extends State<ProjectScreen>
         }
       },
       child: Container(
+        key: ValueKey('aaah'),
         color: Color(0xfff5f5f5),
         width: MediaQuery.of(context).size.width,
         child: Column(
+          key: ValueKey('aaai'),
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              key: ValueKey('aaaj'),
               padding: EdgeInsets.only(top: 50, bottom: 10),
               child: SlideTransition(
                 position: _slideAnimation!,
                 child: Text(
                   'PROJECTS',
+                  key: ValueKey('aaak'),
                   style: GoogleFonts.raleway(
                       fontWeight: FontWeight.w700,
                       fontSize: 44,
@@ -185,27 +189,38 @@ class _ProjectScreenState extends State<ProjectScreen>
               ),
             ),
             SlideTransition(
+              key: ValueKey('aaal'),
               position: _slideAnimation2!,
               child: Container(
+                key: ValueKey('aaam'),
                 width: 70,
                 height: 4,
                 color: Color(0xff45474a),
               ),
             ),
             SizedBox(
+              key: ValueKey('aaan'),
               height: 40,
             ),
-            TitleSection(manage: manage, titles: titles),
+            TitleSection(
+              manage: manage,
+              titles: titles,
+              key: ValueKey('aaao'),
+            ),
             Padding(
+              key: ValueKey('aaap'),
               padding: const EdgeInsets.all(20.0),
               child: AnimatedContainer(
+                key: ValueKey('aaaq'),
                 duration: Duration(milliseconds: 600),
                 width: 1170,
                 child: Wrap(
+                  key: ValueKey('aaar'),
                   alignment: WrapAlignment.center,
                   children: [
                     for (var i = 0; i < 9; i++)
                       InkWell(
+                        key: ValueKey('aaas$i'),
                         onTap: () {},
                         onHover: (t) {
                           if (t) {
@@ -219,13 +234,16 @@ class _ProjectScreenState extends State<ProjectScreen>
                           }
                         },
                         child: SlideTransition(
+                            key: ValueKey('aaat'),
                             position: slideAnimations[i],
                             child: AnimatedContainer(
+                                key: ValueKey('aaau'),
                                 duration: Duration(milliseconds: 500),
                                 width: sizeGetter(i).width,
                                 height: sizeGetter(i).height,
                                 curve: Curves.fastOutSlowIn,
                                 child: ProjectTile(
+                                  key: ValueKey('aaav'),
                                   i: i,
                                   images: images,
                                   subTiltles: subTiltles,
@@ -240,6 +258,7 @@ class _ProjectScreenState extends State<ProjectScreen>
               ),
             ),
             SizedBox(
+              key: ValueKey('aaaw'),
               height: 60,
             )
           ],

@@ -21,21 +21,27 @@ class PercentageTile extends StatelessWidget {
     final totalWidth = min((w * .9), 600).toDouble();
 
     return Container(
+      key: ValueKey('aaaaaj'),
       margin: EdgeInsets.only(top: 6, bottom: 6, left: 6),
       width: totalWidth,
       color: Color(0xffeeeeee),
       height: 31,
       child: Row(
+        key: ValueKey('aaaaak'),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
+            key: ValueKey('aaaaal'),
             children: [
               Container(
+                key: ValueKey('aaaaam'),
                 height: 31,
                 width: 150,
                 color: Color(0xff05c2c9),
                 child: Center(
+                  key: ValueKey('aaaaan'),
                   child: Text(title!,
+                      key: ValueKey('aaaaao'),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.raleway(
                           fontSize: 14,
@@ -44,6 +50,7 @@ class PercentageTile extends StatelessWidget {
                 ),
               ),
               AnimatedContainer(
+                key: ValueKey('aaaaap'),
                 duration: Duration(seconds: 1),
                 width: getWidth!(percent!, context),
                 height: 31,
@@ -52,8 +59,10 @@ class PercentageTile extends StatelessWidget {
             ],
           ),
           Padding(
+            key: ValueKey('aaaaaq'),
             padding: const EdgeInsets.all(8.0),
             child: Text('${percent.toString()}%',
+                key: ValueKey('aaaaar'),
                 style: GoogleFonts.raleway(
                   fontSize: 14,
                   color: Color(0xff8d8d8d),

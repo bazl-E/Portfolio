@@ -100,18 +100,23 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
         }
       },
       child: Container(
+        key: ValueKey('ar'),
         height: widget.height!,
         width: MediaQuery.of(context).size.width,
         child: Column(
+          key: ValueKey('as'),
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SlideTransition(
+              key: ValueKey('at'),
               position: animae!,
               child: Container(
+                key: ValueKey('au'),
                 padding: EdgeInsets.only(top: 50, bottom: 10),
                 child: Text(
                   'BLOG',
+                  key: ValueKey('av'),
                   style: GoogleFonts.raleway(
                       fontWeight: FontWeight.w700,
                       fontSize: 44,
@@ -120,22 +125,30 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
               ),
             ),
             SlideTransition(
+              key: ValueKey('aw'),
               position: animae2!,
               child: Container(
+                key: ValueKey('ax'),
                 width: 70,
                 height: 4,
                 color: Color(0xff45474a),
               ),
             ),
-            SizedBox(height: 150),
+            SizedBox(
+              height: 150,
+              key: ValueKey('ay'),
+            ),
             FittedBox(
+              key: ValueKey('az'),
               fit: BoxFit.scaleDown,
               child: Wrap(
+                key: ValueKey('aaa'),
                 alignment: WrapAlignment.center,
                 spacing: 25,
                 runSpacing: 25,
                 children: [
                   BlogTile(
+                    key: ValueKey('aab'),
                     controllers: controllers,
                     animations: animations,
                     date: 'APRIL 29, 2021',
@@ -148,6 +161,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     index: 0,
                   ),
                   BlogTile(
+                    key: ValueKey('aac'),
                     controllers: controllers,
                     animations: animations,
                     date: 'March 19, 2020',
@@ -160,6 +174,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     index: 1,
                   ),
                   BlogTile(
+                    key: ValueKey('aad'),
                     controllers: controllers,
                     animations: animations,
                     date: 'March 04, 2020',
@@ -172,6 +187,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     index: 2,
                   ),
                   BlogTile(
+                    key: ValueKey('aae'),
                     controllers: controllers,
                     animations: animations,
                     date: 'FEBRUARY 23, 2021',

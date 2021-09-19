@@ -34,6 +34,7 @@ class BlogTile extends StatelessWidget {
     final manage = Provider.of<BlogscreenManager>(context);
     final falmanage = Provider.of<BlogscreenManager>(context, listen: false);
     return InkWell(
+      key: ValueKey('aaaaaad'),
       onTap: () {
         launchURL(url);
       },
@@ -47,11 +48,14 @@ class BlogTile extends StatelessWidget {
         }
       },
       child: FadeTransition(
+        key: ValueKey('aaaaaae'),
         opacity: animations![index!],
 
         // duration: Duration(seconds: 1 + (index! + 1)),
         child: Container(
+          key: ValueKey('aaaaaaf'),
           child: AnimatedOpacity(
+            key: ValueKey('aaaaaag'),
             opacity: manage.hoveredIndex == null
                 ? 1
                 : manage.isHovered && manage.hoveredIndex == index
@@ -59,24 +63,33 @@ class BlogTile extends StatelessWidget {
                     : .4,
             duration: Duration(milliseconds: 450),
             child: Container(
+              key: ValueKey('aaaaaah'),
               width: 280,
               padding: EdgeInsets.all(10),
               child: Column(
+                key: ValueKey('aaaaaai'),
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
+                    key: ValueKey('aaaaaaj'),
                     height: 200,
                     width: 270,
                     child: Image.asset(
                       image!,
+                      key: ValueKey('aaaaaak'),
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 10,
+                    key: ValueKey('aaaaaal'),
+                  ),
                   AnimatedDefaultTextStyle(
+                      key: ValueKey('aaaaaam'),
                       child: Text(
                         title!,
+                        key: ValueKey('aaaaaan'),
                       ),
                       style: GoogleFonts.raleway(
                         fontWeight: FontWeight.bold,
@@ -86,14 +99,22 @@ class BlogTile extends StatelessWidget {
                             : Color(0xff626262),
                       ),
                       duration: Duration(milliseconds: 450)),
-                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 10,
+                    key: ValueKey('aaaaaao'),
+                  ),
                   Text(
                     date!,
+                    key: ValueKey('aaaaaap'),
                     style: GoogleFonts.raleway(
                         fontSize: 12, color: Color(0xffa1a1a1)),
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(
+                    height: 12,
+                    key: ValueKey('aaaaaaq'),
+                  ),
                   Container(
+                    key: ValueKey('aaaaaar'),
                     width: 70,
                     height: 2,
                     decoration: BoxDecoration(
@@ -101,9 +122,13 @@ class BlogTile extends StatelessWidget {
                       color: Color(0xff05c2c9),
                     ),
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(
+                    height: 12,
+                    key: ValueKey('aaaaaas'),
+                  ),
                   Text(
                     discrption!,
+                    key: ValueKey('aaaaaat'),
                     style: GoogleFonts.raleway(
                       fontSize: 15,
                       color: Color(0xff7a7a7a),

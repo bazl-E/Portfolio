@@ -68,35 +68,48 @@ class _WelcomePageState extends State<WelcomePage>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      key: ValueKey('aaax'),
       body: Stack(
+        key: ValueKey('aaay'),
         children: [
           SizedBox.expand(
+            key: ValueKey('aaaz'),
             child: FittedBox(
+              key: ValueKey('aaaaa'),
               fit: BoxFit.cover,
               child: SizedBox(
+                key: ValueKey('aaaab'),
                 width: _videoCOntroller!.value.size.width,
                 height: _videoCOntroller!.value.size.height,
-                child: VideoPlayer(_videoCOntroller!),
+                child: VideoPlayer(
+                  _videoCOntroller!,
+                ),
               ),
             ),
           ),
           Container(
+            key: ValueKey('aaaac'),
             height: size.height,
             width: size.width,
             color: Colors.transparent.withOpacity(.7),
           ),
           Positioned(
+            key: ValueKey('aaaad'),
             height: size.height,
             width: size.width,
             child: Container(
+              key: ValueKey('aaaae'),
               margin: EdgeInsets.all(30),
               child: FittedBox(
+                key: ValueKey('aaaaf'),
                 fit: BoxFit.scaleDown,
                 child: Column(
+                  key: ValueKey('aaaag'),
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RichText(
+                        key: ValueKey('aaaah'),
                         textAlign: TextAlign.center,
                         text: TextSpan(children: [
                           TextSpan(
@@ -111,6 +124,7 @@ class _WelcomePageState extends State<WelcomePage>
                           )
                         ])),
                     RichText(
+                      key: ValueKey('aaaai'),
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         text: 'I\'m a full-stack flutter developer',
@@ -118,10 +132,15 @@ class _WelcomePageState extends State<WelcomePage>
                             fontSize: 45, color: Colors.white),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 20,
+                      key: ValueKey('aaaaj'),
+                    ),
                     Material(
+                      key: ValueKey('aaaak'),
                       color: Colors.transparent,
                       child: InkWell(
+                        key: ValueKey('aaaal'),
                         onTap: () async {
                           widget.scrollTo!(1);
                         },
@@ -135,6 +154,7 @@ class _WelcomePageState extends State<WelcomePage>
                           }
                         },
                         child: AnimatedContainer(
+                            key: ValueKey('aaaam'),
                             duration: Duration(milliseconds: 300),
                             padding: EdgeInsets.symmetric(
                                 horizontal: isPlaying ? 22 : 15,
@@ -151,16 +171,22 @@ class _WelcomePageState extends State<WelcomePage>
                               ),
                             ),
                             child: Row(
+                              key: ValueKey('aaaan'),
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   'View my work',
+                                  key: ValueKey('aaaao'),
                                   style: GoogleFonts.ubuntu(
                                       fontSize: 20, color: Colors.white),
                                 ),
-                                SizedBox(width: 10),
+                                SizedBox(
+                                  width: 10,
+                                  key: ValueKey('aaaap'),
+                                ),
                                 AnimatedIcon(
+                                  key: ValueKey('aaaaq'),
                                   icon: AnimatedIcons.view_list,
                                   progress: _animationController!,
                                   color: Colors.white,
@@ -174,7 +200,9 @@ class _WelcomePageState extends State<WelcomePage>
               ),
             ),
           ),
-          DevelopmentStatements()
+          DevelopmentStatements(
+            key: ValueKey('aaaar'),
+          )
         ],
       ),
     );

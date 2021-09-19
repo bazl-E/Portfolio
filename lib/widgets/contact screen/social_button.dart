@@ -36,6 +36,7 @@ class SocialButton extends StatelessWidget {
     final falmanage = Provider.of<ContactscreenManager>(context, listen: false);
 
     return InkWell(
+      key: ValueKey('aaaaaaaai'),
       onTap: () {
         launchURL(url);
       },
@@ -51,31 +52,38 @@ class SocialButton extends StatelessWidget {
         }
       },
       child: AnimatedContainer(
+          key: ValueKey('aaaaaaaaj'),
           duration: Duration(milliseconds: 300),
           padding: EdgeInsets.only(left: 17, right: 17),
           color: isReady(context) ? Color(0xff05c2c9) : Color(0xff262f38),
           width: isReady(context) ? 53 : 55,
           height: isReady(context) ? 53 : 55,
           child: Column(
+            key: ValueKey('aaaaaaaak'),
             mainAxisSize: MainAxisSize.min,
             children: [
               SlideTransition(
+                key: ValueKey('aaaaaaaal'),
                 position: animations![index!],
                 child: Opacity(
+                  key: ValueKey('aaaaaaaam'),
                   opacity: isReady(context) ? 1 : 0,
                   child: Image.asset(
                     image!,
+                    key: ValueKey('aaaaaaaan'),
                     color: Colors.white,
                   ),
                 ),
               ),
               SlideTransition(
+                key: ValueKey('aaaaaaaao'),
                 position: animations2![index!],
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 100),
                   opacity: isReady(context) ? 0 : 1,
                   child: Image.asset(
                     image!,
+                    key: ValueKey('aaaaaaaap'),
                     color: Colors.white,
                   ),
                 ),

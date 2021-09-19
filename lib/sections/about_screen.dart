@@ -123,19 +123,25 @@ class _AboutScreenState extends State<AboutScreen>
         }
       },
       child: FittedBox(
+        key: ValueKey('k'),
         fit: BoxFit.scaleDown,
         child: Container(
+          key: ValueKey('l'),
           width: MediaQuery.of(context).size.width,
           child: Column(
+            key: ValueKey('m'),
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                key: ValueKey('n'),
                 padding: EdgeInsets.only(top: 45, bottom: 10),
                 child: SlideTransition(
+                  key: ValueKey('o'),
                   position: _slideAnimation!,
                   child: Text(
                     'ABOUT',
+                    key: ValueKey('p'),
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: 44,
@@ -144,8 +150,10 @@ class _AboutScreenState extends State<AboutScreen>
                 ),
               ),
               SlideTransition(
+                key: ValueKey('q'),
                 position: _slideAnimation2!,
                 child: Container(
+                  key: ValueKey('r'),
                   width: 70,
                   height: 4,
                   color: Color(0xff45474a),
@@ -153,13 +161,16 @@ class _AboutScreenState extends State<AboutScreen>
               ),
               SizedBox(height: 80),
               Container(
+                key: ValueKey('s'),
                 child: Wrap(
+                  key: ValueKey('t'),
                   alignment: WrapAlignment.spaceAround,
                   spacing: 40,
                   runSpacing: 40,
                   crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
                     CustomTile(
+                      key: ValueKey('u'),
                       icon: Icons.speed,
                       title: 'Fast',
                       descrption:
@@ -168,6 +179,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
+                      key: ValueKey('v'),
                       icon: Icons.lightbulb_outline,
                       title: 'Intuitive',
                       descrption:
@@ -176,6 +188,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
+                      key: ValueKey('w'),
                       icon: Icons.devices_outlined,
                       title: 'Responsive',
                       descrption:
@@ -184,6 +197,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
+                      key: ValueKey('x'),
                       icon: Icons.dynamic_form,
                       title: 'Dynamic',
                       descrption:
@@ -194,54 +208,80 @@ class _AboutScreenState extends State<AboutScreen>
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(
+                height: 40,
+                key: ValueKey('y'),
+              ),
               SlideTransition(
+                key: ValueKey('z'),
                 position: _slideAnimation!,
                 child: Padding(
+                  key: ValueKey('aa'),
                   padding: const EdgeInsets.all(20.0),
                   child: Wrap(
+                    key: ValueKey('ab'),
                     children: [
-                      ProfileSection(widget: widget),
-                      SizedBox(width: 36),
+                      ProfileSection(
+                        widget: widget,
+                        key: ValueKey('ac'),
+                      ),
+                      SizedBox(
+                        width: 36,
+                        key: ValueKey('ad'),
+                      ),
                       SlideTransition(
+                        key: ValueKey('ae'),
                         position: _slideAnimation3!,
                         child: Column(
+                          key: ValueKey('af'),
                           children: [
                             PercentageTile(
+                                key: ValueKey('ag'),
                                 title: 'Flutter',
                                 percent: 90,
                                 getWidth: getWidth),
                             PercentageTile(
-                                title: 'Dart', percent: 90, getWidth: getWidth),
+                                key: ValueKey('ah'),
+                                title: 'Dart',
+                                percent: 90,
+                                getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('ai'),
                                 title: 'FireBase',
                                 percent: 80,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('aj'),
                                 title: 'HTTP and REST',
                                 percent: 80,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('ak'),
                                 title: 'Git and GitHub',
                                 percent: 75,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('al'),
                                 title: 'NoSQL databases',
                                 percent: 65,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('am'),
                                 title: 'Animation',
                                 percent: 70,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('an'),
                                 title: 'UI Design',
                                 percent: 50,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('ao'),
                                 title: 'Photoshop',
                                 percent: 55,
                                 getWidth: getWidth),
                             PercentageTile(
+                                key: ValueKey('ap'),
                                 title: 'Sketch',
                                 percent: 50,
                                 getWidth: getWidth),
@@ -252,7 +292,10 @@ class _AboutScreenState extends State<AboutScreen>
                   ),
                 ),
               ),
-              SizedBox(height: 100),
+              SizedBox(
+                height: 100,
+                key: ValueKey('aq'),
+              ),
             ],
           ),
         ),

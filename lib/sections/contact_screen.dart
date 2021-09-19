@@ -169,28 +169,36 @@ class _ContactScreenState extends State<ContactScreen>
         }
       },
       child: Container(
+        key: ValueKey('aaf'),
         color: Color(0xff252934),
         child: Container(
+          key: ValueKey('aag'),
           height: widget.height,
           child: Flex(direction: Axis.vertical, children: [
             Flexible(
+              key: ValueKey('aah'),
               flex: 10,
               child: Container(
+                key: ValueKey('aai'),
                 color: Color(0xff252934),
                 height: min(widget.height!, double.infinity),
                 width: MediaQuery.of(context).size.width,
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    key: ValueKey('aaj'),
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SlideTransition(
+                        key: ValueKey('aak'),
                         position: leftanimae!,
                         child: Container(
+                          key: ValueKey('aal'),
                           padding: EdgeInsets.only(top: 50, bottom: 10),
                           child: Text(
                             'CONTACT',
+                            key: ValueKey('aam'),
                             style: GoogleFonts.raleway(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 44,
@@ -199,36 +207,50 @@ class _ContactScreenState extends State<ContactScreen>
                         ),
                       ),
                       SlideTransition(
+                        key: ValueKey('aan'),
                         position: rightanimae!,
                         child: Container(
+                          key: ValueKey('aao'),
                           width: 70,
                           height: 4,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(
+                        height: 50,
+                        key: ValueKey('aap'),
+                      ),
                       SlideTransition(
+                        key: ValueKey('aaq'),
                         position: rightanimae!,
                         child: Text('Have a question or want to work together?',
+                            key: ValueKey('aar'),
                             style: GoogleFonts.raleway(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                                 color: Color(0xff07b0b7))),
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(
+                        height: 50,
+                        key: ValueKey('aas'),
+                      ),
                       AnimatedContainer(
+                        key: ValueKey('aat'),
                         // color: Colors.amber,
                         duration: Duration(seconds: 2),
                         curve: Curves.bounceInOut,
                         width: width,
                         height: height,
                         child: FittedBox(
+                          key: ValueKey('aau'),
                           fit: BoxFit.scaleDown,
                           child: Column(
+                            key: ValueKey('aav'),
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
+                                  key: ValueKey('aaw'),
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.all(5),
@@ -236,6 +258,7 @@ class _ContactScreenState extends State<ContactScreen>
                                   width: 500,
                                   color: Color(0xff1e242c),
                                   child: TextFormField(
+                                    key: ValueKey('aax'),
                                     onSaved: (val) {
                                       name = val;
                                     },
@@ -253,6 +276,7 @@ class _ContactScreenState extends State<ContactScreen>
                                     ),
                                   )),
                               Container(
+                                  key: ValueKey('aay'),
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.all(5),
@@ -260,6 +284,7 @@ class _ContactScreenState extends State<ContactScreen>
                                   width: 500,
                                   color: Color(0xff1e242c),
                                   child: TextFormField(
+                                    key: ValueKey('aaz'),
                                     onSaved: (val) {
                                       email = val;
                                     },
@@ -277,12 +302,14 @@ class _ContactScreenState extends State<ContactScreen>
                                     ),
                                   )),
                               Container(
+                                  key: ValueKey('aaaa'),
                                   padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.all(5),
                                   color: Color(0xff1e242c),
                                   height: 150,
                                   width: 500,
                                   child: TextFormField(
+                                    key: ValueKey('aaab'),
                                     onSaved: (val) {
                                       message = val;
                                     },
@@ -302,6 +329,7 @@ class _ContactScreenState extends State<ContactScreen>
                                     ),
                                   )),
                               InkWell(
+                                key: ValueKey('aaac'),
                                 onTap: () {},
                                 onHover: (t) {
                                   if (t) {
@@ -311,6 +339,7 @@ class _ContactScreenState extends State<ContactScreen>
                                   }
                                 },
                                 child: Container(
+                                  key: ValueKey('aaad'),
                                   margin: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                       color: manage.isSubmitHovered
@@ -324,10 +353,12 @@ class _ContactScreenState extends State<ContactScreen>
                                   padding: EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 20),
                                   child: TextButton(
+                                    key: ValueKey('aaae'),
                                     onPressed:
                                         manage.isFormSaving ? null : onSave,
                                     child: Text(
                                       'SUBMIT',
+                                      key: ValueKey('aaaf'),
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 16),
                                     ),
@@ -344,6 +375,7 @@ class _ContactScreenState extends State<ContactScreen>
               ),
             ),
             SocialButtonRow(
+              key: ValueKey('aaag'),
               animations2: animations2,
               animations: animations,
               controllers: controllers,

@@ -24,27 +24,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      key: ValueKey('aaaaaaaaaaaq'),
       providers: [
         ChangeNotifierProvider<WelcomescreenManager>(
+          key: ValueKey('aaaaaaaaaaar'),
           create: (_) => WelcomescreenManager(),
         ),
         ChangeNotifierProvider<ProjectcreenManager>(
+          key: ValueKey('aaaaaaaaaaas'),
           create: (_) => ProjectcreenManager(),
         ),
         ChangeNotifierProvider<BlogscreenManager>(
+          key: ValueKey('aaaaaaaaaaat'),
           create: (_) => BlogscreenManager(),
         ),
         ChangeNotifierProvider<ContactscreenManager>(
+          key: ValueKey('aaaaaaaaaaau'),
           create: (_) => ContactscreenManager(),
         ),
         ChangeNotifierProvider<BodyControllManager>(
+          key: ValueKey('aaaaaaaaaaav'),
           create: (_) => BodyControllManager(),
         ),
         ChangeNotifierProvider<AboutscreenManager>(
+          key: ValueKey('aaaaaaaaaaaw'),
           create: (_) => AboutscreenManager(),
         ),
       ],
       child: MaterialApp(
+        key: ValueKey('aaaaaaaaaaax'),
         // navigatorObservers: [routeObserver],
         debugShowCheckedModeBanner: false,
         title: 'Findbasilprofilo',

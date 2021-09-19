@@ -34,19 +34,26 @@ class ProjectTitle extends StatelessWidget {
     final manage = Provider.of<ProjectcreenManager>(context, listen: false);
 
     return InkWell(
+      key: ValueKey('aaaaaaaaaaq'),
       onTap: () {
         manage.settitleButtonindex(i);
         manage.setListLength(length(i));
       },
       child: Container(
+        key: ValueKey('aaaaaaaaaar'),
         margin: EdgeInsets.symmetric(
           horizontal: 5,
         ),
         width: 200,
         height: 33,
         child: Center(
+            key: ValueKey('aaaaaaaaaas'),
             child: AnimatedDefaultTextStyle(
-                child: Text(title),
+                key: ValueKey('aaaaaaaaaat'),
+                child: Text(
+                  title,
+                  key: ValueKey('aaaaaaaaaau'),
+                ),
                 style: GoogleFonts.raleway(
                     fontSize: 18, color: color, fontWeight: FontWeight.w600),
                 duration: Duration(milliseconds: 600))),
