@@ -24,7 +24,7 @@ class WrapScrollTag extends StatelessWidget {
         onVisibilityChanged: (visibilityInfo) {
           var visiblePercentage = visibilityInfo.visibleFraction * 100;
 
-          if (visiblePercentage > 30) {
+          if (visiblePercentage > 20) {
             falamanage.setselectedButton(index);
           } else {}
         },

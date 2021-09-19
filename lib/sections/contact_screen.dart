@@ -43,8 +43,8 @@ class _ContactScreenState extends State<ContactScreen>
   List<AnimationController> controllers = [];
 
   AnimationController? leftanimaController;
-  AnimationController? rightanimaController;
-  AnimationController? rightanimaController2;
+  // AnimationController? rightanimaController;
+  // AnimationController? rightanimaController2;
 
   void onSave() async {
     final falmanage = Provider.of<ContactscreenManager>(context, listen: false);
@@ -142,8 +142,8 @@ class _ContactScreenState extends State<ContactScreen>
       controllers[i].dispose();
     }
     leftanimaController!.dispose();
-    rightanimaController!.dispose();
-    rightanimaController2!.dispose();
+    // rightanimaController!.dispose();
+    // rightanimaController2!.dispose();
     super.dispose();
   }
 

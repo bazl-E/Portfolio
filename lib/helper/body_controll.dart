@@ -78,6 +78,7 @@ class _BodyControllerState extends State<BodyController>
     final size = MediaQuery.of(context).size.height;
     return Scaffold(
       body: CustomScrollView(
+        shrinkWrap: true,
         controller: _autoScrollController,
         slivers: <Widget>[
           BuildSliverAppBAr(
