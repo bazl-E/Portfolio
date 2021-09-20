@@ -92,7 +92,7 @@ class _ProjectScreenState extends State<ProjectScreen>
     super.initState();
     for (var i = 0; i < 9; i++) {
       controllers.add(AnimationController(
-          vsync: this, duration: Duration(milliseconds: 500)));
+          vsync: this, duration: Duration(milliseconds: 250)));
       topAnimations.add(Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0))
           .animate(CurvedAnimation(
               parent: controllers[i], curve: Curves.fastOutSlowIn)));

@@ -8,9 +8,11 @@ import 'package:basil_personal_web/providers/contact_screen_manager.dart';
 import 'package:basil_personal_web/providers/project_screen_manage.dart';
 
 import 'package:basil_personal_web/providers/welcome_screen_manage.dart';
+import 'package:flutter/cupertino.dart';
 // import 'package:basil_personal_web/sections/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:url_strategy/url_strategy.dart';
 // import 'package:responsive_framework/responsive_wrapper.dart';
 
@@ -52,30 +54,43 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        key: ValueKey('aaaaaaaaaaax'),
-        // navigatorObservers: [routeObserver],
-        debugShowCheckedModeBanner: false,
-        title: 'Findbasilprofilo',
-        theme: ThemeData(
-          primarySwatch: Colors.amber,
-        ),
-        // routes: {
-        // '/': (ctx) => WelcomePage(),
-        // WelcomePage.routeName: (ctx) => WelcomePage(),
-        // },
-        home: BodyController(),
-        // builder: (context, widget) => ResponsiveWrapper.builder(WelcomePage(),
-        //     maxWidth: 2000,
-        //     minWidth: 480,
-        //     defaultScale: true,
-        //     breakpoints: [
-        //       ResponsiveBreakpoint.resize(480, name: MOBILE),
-        //       ResponsiveBreakpoint.autoScale(800, name: TABLET),
-        //       ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-        //     ],
-        //     background: Container(color: Color(0xFFF5F5F5))),
-        // initialRoute: "/",
-      ),
+          key: ValueKey('aaaaaaaaaaax'),
+          // navigatorObservers: [routeObserver],
+          debugShowCheckedModeBanner: false,
+          title: 'Findbasilprofilo',
+          theme: ThemeData(
+            primarySwatch: Colors.amber,
+          ),
+          // routes: {
+          // '/': (ctx) => WelcomePage(),
+          // WelcomePage.routeName: (ctx) => WelcomePage(),
+          // },
+          home: SplashScreenView(
+            navigateRoute: BodyController(),
+            duration: 3000,
+            imageSize: 130,
+            imageSrc: "assets/bazi.png",
+            text: "Packing....",
+            textType: TextType.TyperAnimatedText,
+            textStyle: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+            ),
+            backgroundColor: Colors.white,
+          )
+
+          // builder: (context, widget) => ResponsiveWrapper.builder(WelcomePage(),
+          //     maxWidth: 2000,
+          //     minWidth: 480,
+          //     defaultScale: true,
+          //     breakpoints: [
+          //       ResponsiveBreakpoint.resize(480, name: MOBILE),
+          //       ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          //       ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+          //     ],
+          //     background: Container(color: Color(0xFFF5F5F5))),
+          // initialRoute: "/",
+          ),
     );
   }
 }
