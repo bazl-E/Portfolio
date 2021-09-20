@@ -37,12 +37,13 @@ dependencies:
   url_strategy: ^0.2.0
   provider: ^6.0.0
   splash_screen_view: ^3.0.0
+  fluttertoast: ^8.0.8
 
 
 splash_screen_view:  
   color: "#ffffff"
   web: true
-
+  image: assets/bazi.png
  
 
 dev_dependencies:

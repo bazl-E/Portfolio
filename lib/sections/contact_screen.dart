@@ -2,14 +2,15 @@ import 'dart:math';
 
 import 'package:basil_personal_web/helper/firebaseconnect.dart';
 import 'package:basil_personal_web/providers/contact_screen_manager.dart';
-import 'package:basil_personal_web/widgets/contact%20screen/home_button.dart';
-import 'package:basil_personal_web/widgets/contact%20screen/social_button.dart';
+// import 'package:basil_personal_web/widgets/contact%20screen/home_button.dart';
+// import 'package:basil_personal_web/widgets/contact%20screen/social_button.dart';
 import 'package:basil_personal_web/widgets/contact%20screen/social_button_row.dart';
 
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -46,30 +47,27 @@ class _ContactScreenState extends State<ContactScreen>
 
   AnimationController? leftanimaController;
 
+  void showToast(String message) => Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM_LEFT,
+      timeInSecForIosWeb: 2,
+      backgroundColor: Colors.pink,
+      textColor: Colors.white,
+      webPosition: "left",
+      webShowClose: true,
+      webBgColor: "linear-gradient(to right, #04C2C9, #5C7B9A)",
+      fontSize: 16.0);
+
   void onSave() async {
     final falmanage = Provider.of<ContactscreenManager>(context, listen: false);
     _formKey.currentState!.save();
     if (name!.isEmpty || email!.isEmpty || message!.isEmpty) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            'Please fill all the fields',
-            textAlign: TextAlign.center,
-          ),
-          dismissDirection: DismissDirection.endToStart,
-          backgroundColor: Colors.red));
+      showToast('Please fill all the fields');
       return;
     }
     if (!email!.contains('@')) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'Provide a valid email',
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: Colors.red,
-        dismissDirection: DismissDirection.endToStart,
-      ));
+      showToast('Provide a valid email');
       return;
     }
     falmanage.setisFormSaving(true);
@@ -79,15 +77,7 @@ class _ContactScreenState extends State<ContactScreen>
     print(message);
     await Messages.publish(name!, email!, message!);
 
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        'I got your message,i\'ll respond back as soon as possible',
-        textAlign: TextAlign.center,
-      ),
-      backgroundColor: Color(0xffe31b6d),
-      dismissDirection: DismissDirection.endToStart,
-    ));
+    showToast('I got your message,I\'ll respond back as soon as possible');
     falmanage.setisFormSaving(false);
 
     print('submitted successfully');
