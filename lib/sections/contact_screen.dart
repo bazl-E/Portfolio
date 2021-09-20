@@ -45,8 +45,6 @@ class _ContactScreenState extends State<ContactScreen>
   List<AnimationController> controllers = [];
 
   AnimationController? leftanimaController;
-  // AnimationController? rightanimaController;
-  // AnimationController? rightanimaController2;
 
   void onSave() async {
     final falmanage = Provider.of<ContactscreenManager>(context, listen: false);
