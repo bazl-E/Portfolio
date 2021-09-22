@@ -3,6 +3,7 @@ import 'package:basil_personal_web/sections/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import 'custom_titles.dart';
 
@@ -17,6 +18,7 @@ class BuildSliverAppBAr extends StatelessWidget {
   final Future Function(int i)? scrollToIndex;
   final List<String>? titles;
   final Function goToHome;
+
   // final List<String> titles;
 
   final GlobalKey dataKey;
@@ -26,6 +28,7 @@ class BuildSliverAppBAr extends StatelessWidget {
     final size = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final manage = Provider.of<BodyControllManager>(context);
+    // final falmanage = Provider.of<BodyControllManager>(context, listen: false);
     return SliverAppBar(
       key: ValueKey('aaaaaau'),
       systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -57,7 +60,9 @@ class BuildSliverAppBAr extends StatelessWidget {
             color: Color(0xFF1B242F),
             child: Column(
               key: ValueKey('aaaaaaz'),
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: width < 600
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 FittedBox(
@@ -74,6 +79,21 @@ class BuildSliverAppBAr extends StatelessWidget {
                             key: ValueKey('aaaaaaad'),
                             width: width * .15,
                           ),
+                        // if (width < 600)
+                        //   Container(
+                        //     margin: EdgeInsets.symmetric(horizontal: 20),
+                        //     height: 53,
+                        //     child: IconButton(
+                        //         onPressed: () {
+                        //           falmanage.setisisTaped();
+                        //         },
+                        //         icon: Icon(
+                        //           Icons.menu,
+                        //           color: Colors.white,
+                        //           size: 40,
+                        //         )),
+                        //   ),
+                        // if (width > 600)
                         for (var i = 0; i < titles!.length; i++)
                           CustomTitles(
                             key: ValueKey('aaaaaaae$i'),
@@ -91,7 +111,13 @@ class BuildSliverAppBAr extends StatelessWidget {
                   width: double.infinity,
                   height: 3,
                   color: Color(0xff04c2c9),
-                )
+                ),
+                // if (width < 600)
+                //   AnimatedContainer(
+                //       color: Color(0xff333333),
+                //       height: manage.isTaped ? 150 : 0,
+                //       width: width,
+                //       duration: Duration(milliseconds: 300))
               ],
             ),
           ),

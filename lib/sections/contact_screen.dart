@@ -151,7 +151,7 @@ class _ContactScreenState extends State<ContactScreen>
     }
 
     return ResponsiveBuilder(builder: (ctx, sizeInfo) {
-      final Size contactSize = Size(26.04.w, 18.22.h);
+      // final Size contactSize = Size(26.04.w, 18.22.h);
 
       final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
       final double subTitleSize = sizeInfo.isMobile ? 12 : 16;
@@ -160,7 +160,7 @@ class _ContactScreenState extends State<ContactScreen>
       return VisibilityDetector(
         key: ValueKey('ContactScreenKey'),
         onVisibilityChanged: (vi) {
-          if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          if (vi.visibleFraction * 100 > 40 && manage.isFrist) {
             leftanimaController!.forward();
             setState(() {
               height = 350;
@@ -234,7 +234,7 @@ class _ContactScreenState extends State<ContactScreen>
                               'Have a question or want to work together?',
                               key: ValueKey('aar'),
                               style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: subTitleSize,
                                   color: Color(0xff07b0b7))),
                         ),

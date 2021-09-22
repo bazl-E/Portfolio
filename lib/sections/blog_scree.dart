@@ -84,28 +84,28 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
     // }
     final manage = Provider.of<BlogscreenManager>(context);
     final falManage = Provider.of<BlogscreenManager>(context, listen: false);
-    // if (!manage.isFrist) {
-    controller!.forward();
-    controller2!.forward();
+    if (!manage.isFrist) {
+      controller!.forward();
+      controller2!.forward();
 
-    for (var i = 0; i < 4; i++) {
-      controllers[i].forward();
-      // }
+      for (var i = 0; i < 4; i++) {
+        controllers[i].forward();
+      }
     }
     return ResponsiveBuilder(builder: (ctx, sizeInfo) {
       final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
       return VisibilityDetector(
         key: ValueKey('BlogScreenKey'),
         onVisibilityChanged: (vi) {
-          // if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
-          //   for (var i = 0; i < 4; i++) {
-          //     controllers[i].forward();
-          //   }
-          //   controller!.forward();
-          //   controller2!.forward().whenComplete(
-          //         () => falManage.setisFrist(false),
-          //       );
-          // }
+          if (vi.visibleFraction * 100 > 40 && manage.isFrist) {
+            for (var i = 0; i < 4; i++) {
+              controllers[i].forward();
+            }
+            controller!.forward();
+            controller2!.forward().whenComplete(
+                  () => falManage.setisFrist(false),
+                );
+          }
         },
         child: ConstrainedBox(
           constraints: BoxConstraints(

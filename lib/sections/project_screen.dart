@@ -164,7 +164,7 @@ class _ProjectScreenState extends State<ProjectScreen>
     return VisibilityDetector(
       key: const ValueKey('ProjectScreenKey'),
       onVisibilityChanged: (vi) {
-        if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+        if (vi.visibleFraction * 100 > 30 && manage.isFrist) {
           for (var i = 0; i < 9; i++) {
             slideAnimationControllers[i].forward();
           }
