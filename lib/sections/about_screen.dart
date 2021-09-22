@@ -113,7 +113,7 @@ class _AboutScreenState extends State<AboutScreen>
       return VisibilityDetector(
         key: ValueKey('AboutScreenKey'),
         onVisibilityChanged: (vi) {
-          if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          if (vi.visibleFraction * 100 > 40 && manage.isFrist) {
             _controller!.forward().whenComplete(() {
               setState(() {
                 width = 1;

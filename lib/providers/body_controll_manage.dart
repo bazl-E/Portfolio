@@ -5,9 +5,14 @@ class BodyControllManager with ChangeNotifier {
   bool _isExpaned = true;
   int? _selectedButton;
   int? _currentButton;
+  bool _isTaped = false;
 
   bool get isExpaned {
     return _isExpaned;
+  }
+
+  bool get isTaped {
+    return _isTaped;
   }
 
   int? get selectedButton {
@@ -20,6 +25,11 @@ class BodyControllManager with ChangeNotifier {
 
   void setisisExpaned(bool state) {
     _isExpaned = state;
+    notifyListeners();
+  }
+
+  void setisisTaped() {
+    _isTaped = !_isTaped;
     notifyListeners();
   }
 
