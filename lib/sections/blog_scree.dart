@@ -1,10 +1,14 @@
 // import 'package:basil_personal_web/providers/blog_screen_manage.dart';
+// import 'package:basil_personal_web/providers/blog_screen_manage.dart';
 import 'package:basil_personal_web/providers/blog_screen_manage.dart';
+import 'package:basil_personal_web/widgets/blog%20screen/blog_tile.dart';
+// import 'package:findbasilprofilo/providers/blog_screen_manage.dart';
+// import 'package:findbasilprofilo/widgets/blog%20screen/blog_tile.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:basil_personal_web/widgets/blog%20screen/blog_tile.dart';
+// import 'package:basil_personal_web/widgets/blog%20screen/blog_tile.dart';
 import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -99,10 +103,16 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
               );
         }
       },
-      child: Container(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: double.infinity,
+          maxWidth: double.infinity,
+          minHeight: widget.height!,
+          minWidth: double.infinity,
+        ),
         key: ValueKey('ar'),
-        height: widget.height!,
-        width: MediaQuery.of(context).size.width,
+        // height: widget.height!,
+        // width: MediaQuery.of(context).size.width,
         child: Column(
           key: ValueKey('as'),
           mainAxisAlignment: MainAxisAlignment.start,
@@ -135,12 +145,15 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(
-              height: 150,
+              height: 80,
               key: ValueKey('ay'),
             ),
-            FittedBox(
-              key: ValueKey('az'),
-              fit: BoxFit.scaleDown,
+            // FittedBox(
+            //   key: ValueKey('az'),
+            //   fit: BoxFit.scaleDown,
+            //   child:
+            Padding(
+              padding: const EdgeInsets.all(70),
               child: Wrap(
                 key: ValueKey('aaa'),
                 alignment: WrapAlignment.center,
@@ -155,7 +168,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     title: 'Breaking Your Coder\'s Block',
                     discrption:
                         'At one time or another, as a developer, we\'ve all found ourselves hopelessly stuck on a coding issue...',
-                    image: 'blog-1.jpg',
+                    image: 'assets/blog-1.jpg',
                     url:
                         'http://blog.eyecuelab.com/2016/04/29/breaking-your-coders-block/',
                     index: 0,
@@ -168,7 +181,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     title: '!Awake: This is Your Brain on Caffeine',
                     discrption:
                         'If there\'s one thing I can truly claim to be an expert on,it\'s staying awake. For five years I struggled to stay employed...',
-                    image: 'blog-2.jpg',
+                    image: 'assets/blog-2.jpg',
                     url:
                         'http://blog.eyecuelab.com/2015/03/19/this-is-your-brain-on-caffeine/',
                     index: 1,
@@ -181,7 +194,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     title: 'Getting a Handle on Handlebars',
                     discrption:
                         'Here at EyeCue Lab we render most of our data-laden HTML pages in Handlebar templates...',
-                    image: 'blog-3.jpg',
+                    image: 'assets/blog-3.jpg',
                     url:
                         'http://blog.eyecuelab.com/2015/03/04/getting-a-handle-on-handlebars/',
                     index: 2,
@@ -194,14 +207,15 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                     title: '5 Extensions for Your Chrome Toolbelt',
                     discrption:
                         'If you\'re not using Google Chrome as a front-end web developer, you\'re missing out. Not only is Chrome the...',
-                    image: 'blog-4.jpg',
+                    image: 'assets/blog-4.jpg',
                     url:
                         'http://blog.eyecuelab.com/2015/02/23/essential_extensions/',
                     index: 3,
                   ),
                 ],
               ),
-            )
+            ),
+            // )
           ],
         ),
       ),
