@@ -77,20 +77,24 @@ class _BodyControllerState extends State<BodyController>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.height;
     return Scaffold(
+      key: ValueKey('a'),
       body: CustomScrollView(
         shrinkWrap: true,
         controller: _autoScrollController,
         slivers: <Widget>[
           BuildSliverAppBAr(
+            key: ValueKey('b'),
             goToHome: goToHome,
             scrollToIndex: _scrollToIndex,
             titles: titles,
             dataKey: dataKey,
           ),
           SliverList(
+            key: ValueKey('c'),
             delegate: SliverChildListDelegate(
               [
                 WrapScrollTag(
+                    key: ValueKey('d'),
                     autoScrollController: _autoScrollController,
                     index: 1,
                     child: AboutScreen(
@@ -98,21 +102,27 @@ class _BodyControllerState extends State<BodyController>
                       scroll: _scrollToIndex,
                     )),
                 WrapScrollTag(
+                    key: ValueKey('e'),
                     autoScrollController: _autoScrollController,
                     index: 2,
                     child: ProjectScreen(
+                      key: ValueKey('f'),
                       height: size - kToolbarHeight,
                     )),
                 WrapScrollTag(
+                    key: ValueKey('g'),
                     autoScrollController: _autoScrollController,
                     index: 3,
                     child: BlogScreen(
+                      key: ValueKey('h'),
                       height: size - kToolbarHeight,
                     )),
                 WrapScrollTag(
+                  key: ValueKey('i'),
                   autoScrollController: _autoScrollController,
                   index: 4,
                   child: ContactScreen(
+                    key: ValueKey('j'),
                     height: size - kToolbarHeight,
                     gotoHome: goToHome,
                   ),

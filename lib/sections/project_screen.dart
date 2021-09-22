@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:basil_personal_web/widgets/project%20screen/project_tile.dart';
 import 'package:basil_personal_web/widgets/project%20screen/title_section.dart';
 import 'package:basil_personal_web/providers/project_screen_manage.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:sizer/sizer.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class ProjectScreen extends StatefulWidget {
   ProjectScreen({Key? key, this.height}) : super(key: key);
@@ -19,6 +22,8 @@ class ProjectScreen extends StatefulWidget {
 
 class _ProjectScreenState extends State<ProjectScreen>
     with TickerProviderStateMixin {
+  // bool isFrist = true;
+
   AnimationController? _controller;
   AnimationController? _controller2;
 
@@ -64,32 +69,40 @@ class _ProjectScreenState extends State<ProjectScreen>
     'The Mall': 'React.js / Node',
   };
 
-  Size sizeGetter(int i) {
+  Size sizeGetter(int i, Size size) {
     final listLenght = Provider.of<ProjectcreenManager>(context).listLenght;
     if (listLenght == 9) {
-      return Size(390, 300);
+      return size
+          //  Size(390, 300)
+          ;
     } else if ((listLenght == 2 && i == 4) || (listLenght == 2 && i == 7)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     } else if (listLenght == 3 && (i == 0 || i == 1 || i == 2)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     } else if (listLenght == 4 && (i == 3 || i == 5 || i == 6 || i == 8)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     }
     return Size(0, 0);
   }
 
-  void playAnimations() {
-    for (var n = 0; n < 9; n++) {
-      slideAnimationControllers[n].forward();
-    }
-  }
+  // void playAnimations() {
+  //   for (var n = 0; n < 9; n++) {
+  //     slideAnimationControllers[n].forward();
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
     for (var i = 0; i < 9; i++) {
       controllers.add(AnimationController(
-          vsync: this, duration: Duration(milliseconds: 500)));
+          vsync: this, duration: Duration(milliseconds: 250)));
       topAnimations.add(Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0))
           .animate(CurvedAnimation(
               parent: controllers[i], curve: Curves.fastOutSlowIn)));
@@ -119,10 +132,9 @@ class _ProjectScreenState extends State<ProjectScreen>
         .animate(CurvedAnimation(
             parent: _controller2!, curve: Curves.fastOutSlowIn));
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      _controller!.forward();
-      _controller2!.forward();
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+
+    // });
   }
 
   @override
@@ -138,90 +150,139 @@ class _ProjectScreenState extends State<ProjectScreen>
 
   @override
   Widget build(BuildContext context) {
-    playAnimations();
+    // playAnimations();
     final manage = Provider.of<ProjectcreenManager>(context);
     final falManage = Provider.of<ProjectcreenManager>(context, listen: false);
+    if (!manage.isFrist) {
+      for (var i = 0; i < 9; i++) {
+        slideAnimationControllers[i].forward();
+      }
+      _controller!.forward();
+      _controller2!.forward();
+    }
 
-    return Container(
-      color: Color(0xfff5f5f5),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 50, bottom: 10),
-            child: SlideTransition(
-              position: _slideAnimation!,
-              child: Text(
-                'PROJECTS',
-                style: GoogleFonts.raleway(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 44,
-                    color: Color(0xff444649)),
+    return VisibilityDetector(
+      key: const ValueKey('ProjectScreenKey'),
+      onVisibilityChanged: (vi) {
+        if (vi.visibleFraction * 100 > 70 && manage.isFrist) {
+          for (var i = 0; i < 9; i++) {
+            slideAnimationControllers[i].forward();
+          }
+          _controller!.forward();
+          _controller2!.forward().whenComplete(
+                () => falManage.setisFrist(false),
+              );
+        }
+      },
+      child: ResponsiveBuilder(builder: (ctx, sizeInfo) {
+        final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
+        final Size projecttileSize =
+            Size(sizeInfo.isMobile ? 243 : 390, sizeInfo.isMobile ? 243 : 300);
+        return Container(
+          key: ValueKey('aaah'),
+          color: Color(0xfff5f5f5),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            key: ValueKey('aaai'),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                key: ValueKey('aaaj'),
+                padding: EdgeInsets.only(top: 50, bottom: 10),
+                child: SlideTransition(
+                  position: _slideAnimation!,
+                  child: Text(
+                    'PROJECTS',
+                    key: ValueKey('aaak'),
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
+                        fontSize: titleSize,
+                        color: Color(0xff444649)),
+                  ),
+                ),
               ),
-            ),
-          ),
-          SlideTransition(
-            position: _slideAnimation2!,
-            child: Container(
-              width: 70,
-              height: 4,
-              color: Color(0xff45474a),
-            ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          TitleSection(manage: manage, titles: titles),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 600),
-              width: 1170,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  for (var i = 0; i < 9; i++)
-                    InkWell(
-                      onTap: () {},
-                      onHover: (t) {
-                        if (t) {
-                          falManage.setIsHovered(true);
-                          falManage.sethoveredIndex(i);
-                          controllers[i].forward();
-                        } else {
-                          controllers[i].reverse();
-                          falManage.setIsHovered(false);
-                          falManage.sethoveredIndex(null);
-                        }
-                      },
-                      child: SlideTransition(
-                          position: slideAnimations[i],
-                          child: AnimatedContainer(
-                              duration: Duration(milliseconds: 500),
-                              width: sizeGetter(i).width,
-                              height: sizeGetter(i).height,
-                              curve: Curves.fastOutSlowIn,
-                              child: ProjectTile(
-                                i: i,
-                                images: images,
-                                subTiltles: subTiltles,
-                                topAnimations: topAnimations,
-                                bottomAnimations: bottomAnimations,
-                              ))),
-                    ),
-                  // ),
-                  // ),
-                ],
+              SlideTransition(
+                key: ValueKey('aaal'),
+                position: _slideAnimation2!,
+                child: Container(
+                  key: ValueKey('aaam'),
+                  width: 70,
+                  height: 4,
+                  color: Color(0xff45474a),
+                ),
               ),
-            ),
+              SizedBox(
+                key: ValueKey('aaan'),
+                height: 3.97.h,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: TitleSection(
+                  manage: manage,
+                  titles: titles,
+                  key: ValueKey('aaao'),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                key: ValueKey('aaap'),
+                padding: const EdgeInsets.all(20.0),
+                child: AnimatedContainer(
+                  key: ValueKey('aaaq'),
+                  duration: Duration(milliseconds: 600),
+                  width: 80.9.w,
+                  child: Wrap(
+                    key: ValueKey('aaar'),
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (var i = 0; i < 9; i++)
+                        InkWell(
+                          key: ValueKey('aaas$i'),
+                          onTap: () {},
+                          onHover: (t) {
+                            if (t) {
+                              falManage.setIsHovered(true);
+                              falManage.sethoveredIndex(i);
+                              controllers[i].forward();
+                            } else {
+                              controllers[i].reverse();
+                              falManage.setIsHovered(false);
+                              falManage.sethoveredIndex(null);
+                            }
+                          },
+                          child: SlideTransition(
+                              key: ValueKey('aaat'),
+                              position: slideAnimations[i],
+                              child: AnimatedContainer(
+                                  key: ValueKey('aaau'),
+                                  duration: Duration(milliseconds: 500),
+                                  width: sizeGetter(i, projecttileSize).width,
+                                  height: sizeGetter(i, projecttileSize).height,
+                                  curve: Curves.fastOutSlowIn,
+                                  child: ProjectTile(
+                                    key: ValueKey('aaav'),
+                                    i: i,
+                                    images: images,
+                                    subTiltles: subTiltles,
+                                    topAnimations: topAnimations,
+                                    bottomAnimations: bottomAnimations,
+                                  ))),
+                        ),
+                      // ),
+                      // ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                key: ValueKey('aaaw'),
+                height: 5.95.h,
+              )
+            ],
           ),
-          SizedBox(
-            height: 60,
-          )
-        ],
-      ),
+        );
+      }),
     );
   }
 }

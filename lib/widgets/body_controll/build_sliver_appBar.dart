@@ -27,6 +27,7 @@ class BuildSliverAppBAr extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final manage = Provider.of<BodyControllManager>(context);
     return SliverAppBar(
+      key: ValueKey('aaaaaau'),
       systemOverlayStyle: SystemUiOverlayStyle.light,
       pinned: true,
       expandedHeight: size,
@@ -34,36 +35,48 @@ class BuildSliverAppBAr extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.parallax,
         background: Container(
-          child: WelcomePage(scrollTo: scrollToIndex),
+          child: WelcomePage(
+            scrollTo: scrollToIndex,
+            key: ValueKey('aaaaaav'),
+          ),
           key: dataKey,
         ),
       ),
       bottom: PreferredSize(
+        key: ValueKey('aaaaaaw'),
         preferredSize: Size.fromHeight(0),
         child: AnimatedOpacity(
+          key: ValueKey('aaaaaax'),
           duration: Duration(milliseconds: 500),
           opacity: manage.isExpaned ? 0.0 : 1,
           child: Container(
+            key: ValueKey('aaaaaay'),
             alignment: Alignment.topRight,
             padding: EdgeInsets.all(0),
             margin: EdgeInsets.all(0),
             color: Color(0xFF1B242F),
             child: Column(
+              key: ValueKey('aaaaaaz'),
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 FittedBox(
+                  key: ValueKey('aaaaaaaa'),
                   child: Container(
+                    key: ValueKey('aaaaaaab'),
                     alignment: Alignment.centerLeft,
                     child: Row(
+                      key: ValueKey('aaaaaaac'),
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (width > 1300)
                           SizedBox(
+                            key: ValueKey('aaaaaaad'),
                             width: width * .15,
                           ),
                         for (var i = 0; i < titles!.length; i++)
                           CustomTitles(
+                            key: ValueKey('aaaaaaae$i'),
                             i: i,
                             scrollToIndex: scrollToIndex,
                             goToHome: goToHome,
@@ -74,6 +87,7 @@ class BuildSliverAppBAr extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  key: ValueKey('aaaaaaaf'),
                   width: double.infinity,
                   height: 3,
                   color: Color(0xff04c2c9),

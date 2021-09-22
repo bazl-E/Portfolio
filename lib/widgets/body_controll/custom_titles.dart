@@ -22,6 +22,7 @@ class CustomTitles extends StatelessWidget {
     final falamanage = Provider.of<BodyControllManager>(context, listen: false);
     final manage = Provider.of<BodyControllManager>(context);
     return InkWell(
+      key: ValueKey('aaaaaaag'),
       onTap: () async {
         print(i);
         if (i == 0) {
@@ -40,12 +41,17 @@ class CustomTitles extends StatelessWidget {
         }
       },
       child: Container(
+          key: ValueKey('aaaaaaah'),
           margin: EdgeInsets.symmetric(horizontal: 20),
           // width: 100,
           height: 53,
           child: Center(
+            key: ValueKey('aaaaaaai'),
             child: AnimatedDefaultTextStyle(
-                child: Text(titles[i]),
+                child: Text(
+                  titles[i],
+                  key: ValueKey('aaaaaaaj'),
+                ),
                 style: GoogleFonts.raleway(
                     color:
                         manage.selectedButton == i || manage.currentButton == i

@@ -26,85 +26,121 @@ class SocialButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-        flex: 3,
-        child: Container(
-          height: double.infinity,
-          child: Stack(
-            clipBehavior: Clip.none,
+    return
+        // Flexible(
+        //     key: ValueKey('aaaaaaap'),
+        //     flex: 3,
+        //     child:
+        Container(
+      key: ValueKey('aaaaaaaq'),
+      // height: double.infinity,
+      child: Stack(
+        key: ValueKey('aaaaaaar'),
+        clipBehavior: Clip.none,
+        children: [
+          Column(
+            key: ValueKey('aaaaaaas'),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Row(
+                key: ValueKey('aaaaaaat'),
+                // mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    // mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialButton(
-                          animations2: animations2,
-                          animations: animations,
-                          controllers: controllers,
-                          image: 'assets/11.png',
-                          index: 0,
-                          url: 'https://github.com/bazl-E'),
-                      SizedBox(width: 30),
-                      SocialButton(
-                          animations2: animations2,
-                          animations: animations,
-                          controllers: controllers,
-                          image: 'assets/12.png',
-                          index: 1,
-                          url:
-                              'https://www.linkedin.com/mwlite/in/muhammed-basil-0a2b691b2'),
-                      SizedBox(width: 30),
-                      SocialButton(
-                          animations2: animations2,
-                          animations: animations,
-                          controllers: controllers,
-                          image: 'assets/13.png',
-                          index: 2,
-                          url:
-                              'https://www.facebook.com/profile.php?id=100005176755893'),
-                      SizedBox(width: 30),
-                      SocialButton(
-                          animations2: animations2,
-                          animations: animations,
-                          controllers: controllers,
-                          image: 'assets/14.png',
-                          index: 3,
-                          url: 'https://twitter.com/MhdBasil_E'),
-                      SizedBox(width: 30),
-                      SocialButton(
-                          animations2: animations2,
-                          animations: animations,
-                          controllers: controllers,
-                          image: 'assets/15.png',
-                          index: 4,
-                          url: 'https://linktree-basil.web.app/'),
-                    ],
+                  SocialButton(
+                      key: ValueKey('aaaaaaau'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      image: 'assets/11.png',
+                      index: 0,
+                      url: 'https://github.com/bazl-E'),
+                  SizedBox(
+                    width: 30,
+                    key: ValueKey('aaaaaaav'),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Muhammed Basil E',
-                        style: GoogleFonts.raleway(
-                            color: Color(0xff515a66), fontSize: 14),
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        '©2021',
-                        style: GoogleFonts.raleway(
-                            color: Colors.pink, fontSize: 14),
-                      ),
-                    ],
-                  )
+                  SocialButton(
+                      key: ValueKey('aaaaaaaw'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      image: 'assets/12.png',
+                      index: 1,
+                      url:
+                          'https://www.linkedin.com/mwlite/in/muhammed-basil-0a2b691b2'),
+                  SizedBox(
+                    width: 30,
+                    key: ValueKey('aaaaaaax'),
+                  ),
+                  SocialButton(
+                      key: ValueKey('aaaaaaay'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      image: 'assets/13.png',
+                      index: 2,
+                      url:
+                          'https://www.facebook.com/profile.php?id=100005176755893'),
+                  SizedBox(
+                    width: 30,
+                    key: ValueKey('aaaaaaaz'),
+                  ),
+                  SocialButton(
+                      key: ValueKey('aaaaaaaaa'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      image: 'assets/14.png',
+                      index: 3,
+                      url: 'https://twitter.com/MhdBasil_E'),
+                  SizedBox(
+                    width: 30,
+                    key: ValueKey('aaaaaaaab'),
+                  ),
+                  SocialButton(
+                      key: ValueKey('aaaaaaaac'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      image: 'assets/15.png',
+                      index: 4,
+                      url: 'https://linktree-basil.web.app/'),
                 ],
               ),
-              HomeButton(falmanage: falmanage, widget: widget, manage: manage),
+              Row(
+                key: ValueKey('aaaaaaaad'),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Muhammed Basil E',
+                    key: ValueKey('aaaaaaaae'),
+                    style: GoogleFonts.raleway(
+                        color: Color(0xff515a66), fontSize: 14),
+                  ),
+                  SizedBox(
+                    width: 3,
+                    key: ValueKey('aaaaaaaaf'),
+                  ),
+                  Text(
+                    '©2021',
+                    key: ValueKey('aaaaaaaag'),
+                    style:
+                        GoogleFonts.raleway(color: Colors.pink, fontSize: 14),
+                  ),
+                ],
+              )
             ],
           ),
-          color: Color(0xff1b242f),
-        ));
+          HomeButton(
+            falmanage: falmanage,
+            widget: widget,
+            manage: manage,
+            key: ValueKey('aaaaaaaah'),
+          ),
+        ],
+      ),
+      color: Color(0xff1b242f),
+      // )
+    );
   }
 }
