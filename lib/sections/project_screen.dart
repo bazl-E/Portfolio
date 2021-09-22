@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:basil_personal_web/widgets/project%20screen/project_tile.dart';
 import 'package:basil_personal_web/widgets/project%20screen/title_section.dart';
 import 'package:basil_personal_web/providers/project_screen_manage.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ProjectScreen extends StatefulWidget {
@@ -67,16 +69,24 @@ class _ProjectScreenState extends State<ProjectScreen>
     'The Mall': 'React.js / Node',
   };
 
-  Size sizeGetter(int i) {
+  Size sizeGetter(int i, Size size) {
     final listLenght = Provider.of<ProjectcreenManager>(context).listLenght;
     if (listLenght == 9) {
-      return Size(390, 300);
+      return size
+          //  Size(390, 300)
+          ;
     } else if ((listLenght == 2 && i == 4) || (listLenght == 2 && i == 7)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     } else if (listLenght == 3 && (i == 0 || i == 1 || i == 2)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     } else if (listLenght == 4 && (i == 3 || i == 5 || i == 6 || i == 8)) {
-      return Size(390, 300);
+      return size
+          // Size(390, 300)
+          ;
     }
     return Size(0, 0);
   }
@@ -164,106 +174,115 @@ class _ProjectScreenState extends State<ProjectScreen>
               );
         }
       },
-      child: Container(
-        key: ValueKey('aaah'),
-        color: Color(0xfff5f5f5),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          key: ValueKey('aaai'),
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              key: ValueKey('aaaj'),
-              padding: EdgeInsets.only(top: 50, bottom: 10),
-              child: SlideTransition(
-                position: _slideAnimation!,
-                child: Text(
-                  'PROJECTS',
-                  key: ValueKey('aaak'),
-                  style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 44,
-                      color: Color(0xff444649)),
+      child: ResponsiveBuilder(builder: (ctx, sizeInfo) {
+        final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
+        final Size projecttileSize =
+            Size(sizeInfo.isMobile ? 243 : 390, sizeInfo.isMobile ? 243 : 300);
+        return Container(
+          key: ValueKey('aaah'),
+          color: Color(0xfff5f5f5),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            key: ValueKey('aaai'),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                key: ValueKey('aaaj'),
+                padding: EdgeInsets.only(top: 50, bottom: 10),
+                child: SlideTransition(
+                  position: _slideAnimation!,
+                  child: Text(
+                    'PROJECTS',
+                    key: ValueKey('aaak'),
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
+                        fontSize: titleSize,
+                        color: Color(0xff444649)),
+                  ),
                 ),
               ),
-            ),
-            SlideTransition(
-              key: ValueKey('aaal'),
-              position: _slideAnimation2!,
-              child: Container(
-                key: ValueKey('aaam'),
-                width: 70,
-                height: 4,
-                color: Color(0xff45474a),
-              ),
-            ),
-            SizedBox(
-              key: ValueKey('aaan'),
-              height: 40,
-            ),
-            TitleSection(
-              manage: manage,
-              titles: titles,
-              key: ValueKey('aaao'),
-            ),
-            Padding(
-              key: ValueKey('aaap'),
-              padding: const EdgeInsets.all(20.0),
-              child: AnimatedContainer(
-                key: ValueKey('aaaq'),
-                duration: Duration(milliseconds: 600),
-                width: 1170,
-                child: Wrap(
-                  key: ValueKey('aaar'),
-                  alignment: WrapAlignment.center,
-                  children: [
-                    for (var i = 0; i < 9; i++)
-                      InkWell(
-                        key: ValueKey('aaas$i'),
-                        onTap: () {},
-                        onHover: (t) {
-                          if (t) {
-                            falManage.setIsHovered(true);
-                            falManage.sethoveredIndex(i);
-                            controllers[i].forward();
-                          } else {
-                            controllers[i].reverse();
-                            falManage.setIsHovered(false);
-                            falManage.sethoveredIndex(null);
-                          }
-                        },
-                        child: SlideTransition(
-                            key: ValueKey('aaat'),
-                            position: slideAnimations[i],
-                            child: AnimatedContainer(
-                                key: ValueKey('aaau'),
-                                duration: Duration(milliseconds: 500),
-                                width: sizeGetter(i).width,
-                                height: sizeGetter(i).height,
-                                curve: Curves.fastOutSlowIn,
-                                child: ProjectTile(
-                                  key: ValueKey('aaav'),
-                                  i: i,
-                                  images: images,
-                                  subTiltles: subTiltles,
-                                  topAnimations: topAnimations,
-                                  bottomAnimations: bottomAnimations,
-                                ))),
-                      ),
-                    // ),
-                    // ),
-                  ],
+              SlideTransition(
+                key: ValueKey('aaal'),
+                position: _slideAnimation2!,
+                child: Container(
+                  key: ValueKey('aaam'),
+                  width: 70,
+                  height: 4,
+                  color: Color(0xff45474a),
                 ),
               ),
-            ),
-            SizedBox(
-              key: ValueKey('aaaw'),
-              height: 60,
-            )
-          ],
-        ),
-      ),
+              SizedBox(
+                key: ValueKey('aaan'),
+                height: 3.97.h,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: TitleSection(
+                  manage: manage,
+                  titles: titles,
+                  key: ValueKey('aaao'),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                key: ValueKey('aaap'),
+                padding: const EdgeInsets.all(20.0),
+                child: AnimatedContainer(
+                  key: ValueKey('aaaq'),
+                  duration: Duration(milliseconds: 600),
+                  width: 80.9.w,
+                  child: Wrap(
+                    key: ValueKey('aaar'),
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (var i = 0; i < 9; i++)
+                        InkWell(
+                          key: ValueKey('aaas$i'),
+                          onTap: () {},
+                          onHover: (t) {
+                            if (t) {
+                              falManage.setIsHovered(true);
+                              falManage.sethoveredIndex(i);
+                              controllers[i].forward();
+                            } else {
+                              controllers[i].reverse();
+                              falManage.setIsHovered(false);
+                              falManage.sethoveredIndex(null);
+                            }
+                          },
+                          child: SlideTransition(
+                              key: ValueKey('aaat'),
+                              position: slideAnimations[i],
+                              child: AnimatedContainer(
+                                  key: ValueKey('aaau'),
+                                  duration: Duration(milliseconds: 500),
+                                  width: sizeGetter(i, projecttileSize).width,
+                                  height: sizeGetter(i, projecttileSize).height,
+                                  curve: Curves.fastOutSlowIn,
+                                  child: ProjectTile(
+                                    key: ValueKey('aaav'),
+                                    i: i,
+                                    images: images,
+                                    subTiltles: subTiltles,
+                                    topAnimations: topAnimations,
+                                    bottomAnimations: bottomAnimations,
+                                  ))),
+                        ),
+                      // ),
+                      // ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                key: ValueKey('aaaw'),
+                height: 5.95.h,
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

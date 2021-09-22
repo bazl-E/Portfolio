@@ -38,6 +38,8 @@ dependencies:
   provider: ^6.0.0
   splash_screen_view: ^3.0.0
   fluttertoast: ^8.0.8
+  sizer: ^2.0.15
+  responsive_builder: ^0.4.1
 
 
 splash_screen_view:  
