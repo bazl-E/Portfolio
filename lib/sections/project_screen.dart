@@ -164,7 +164,7 @@ class _ProjectScreenState extends State<ProjectScreen>
     return VisibilityDetector(
       key: const ValueKey('ProjectScreenKey'),
       onVisibilityChanged: (vi) {
-        if (vi.visibleFraction * 100 > 30 && manage.isFrist) {
+        if (vi.visibleFraction * 100 > 20 && manage.isFrist) {
           for (var i = 0; i < 9; i++) {
             slideAnimationControllers[i].forward();
           }
@@ -176,8 +176,9 @@ class _ProjectScreenState extends State<ProjectScreen>
       },
       child: ResponsiveBuilder(builder: (ctx, sizeInfo) {
         final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
-        final Size projecttileSize =
-            Size(sizeInfo.isMobile ? 243 : 390, sizeInfo.isMobile ? 243 : 300);
+        final Size projecttileSize = Size(
+            sizeInfo.isMobile ? sizeInfo.screenSize.width : 390,
+            sizeInfo.isMobile ? 243 : 300);
         return Container(
           key: ValueKey('aaah'),
           color: Color(0xfff5f5f5),
@@ -239,7 +240,13 @@ class _ProjectScreenState extends State<ProjectScreen>
                       for (var i = 0; i < 9; i++)
                         InkWell(
                           key: ValueKey('aaas$i'),
-                          onTap: () {},
+                          onTap: () {
+                            if (sizeInfo.isMobile) {
+                              falManage.setIsHovered(true);
+                              falManage.sethoveredIndex(i);
+                              controllers[i].forward();
+                            }
+                          },
                           onHover: (t) {
                             if (t) {
                               falManage.setIsHovered(true);

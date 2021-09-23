@@ -111,7 +111,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
           constraints: BoxConstraints(
             maxHeight: double.infinity,
             maxWidth: double.infinity,
-            minHeight: widget.height!,
+            minHeight: sizeInfo.screenSize.height - kToolbarHeight,
             minWidth: double.infinity,
           ),
           key: ValueKey('ar'),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:sizer/sizer.dart';
 
 import 'custom_titles.dart';
 
@@ -14,11 +15,14 @@ class BuildSliverAppBAr extends StatelessWidget {
     required this.titles,
     required this.dataKey,
     required this.goToHome,
+    required this.cntxt,
+    // required this.openDrwr,
   }) : super(key: key);
   final Future Function(int i)? scrollToIndex;
   final List<String>? titles;
   final Function goToHome;
-
+  final BuildContext cntxt;
+  // final VoidCallback openDrwr;
   // final List<String> titles;
 
   final GlobalKey dataKey;
@@ -28,7 +32,7 @@ class BuildSliverAppBAr extends StatelessWidget {
     final size = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final manage = Provider.of<BodyControllManager>(context);
-    // final falmanage = Provider.of<BodyControllManager>(context, listen: false);
+    final falmanage = Provider.of<BodyControllManager>(context, listen: false);
     return SliverAppBar(
       key: ValueKey('aaaaaau'),
       systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -68,6 +72,7 @@ class BuildSliverAppBAr extends StatelessWidget {
                 FittedBox(
                   key: ValueKey('aaaaaaaa'),
                   child: Container(
+                    // height: 75,
                     key: ValueKey('aaaaaaab'),
                     alignment: Alignment.centerLeft,
                     child: Row(
@@ -79,29 +84,30 @@ class BuildSliverAppBAr extends StatelessWidget {
                             key: ValueKey('aaaaaaad'),
                             width: width * .15,
                           ),
-                        // if (width < 600)
-                        //   Container(
-                        //     margin: EdgeInsets.symmetric(horizontal: 20),
-                        //     height: 53,
-                        //     child: IconButton(
-                        //         onPressed: () {
-                        //           falmanage.setisisTaped();
-                        //         },
-                        //         icon: Icon(
-                        //           Icons.menu,
-                        //           color: Colors.white,
-                        //           size: 40,
-                        //         )),
-                        //   ),
-                        // if (width > 600)
-                        for (var i = 0; i < titles!.length; i++)
-                          CustomTitles(
-                            key: ValueKey('aaaaaaae$i'),
-                            i: i,
-                            scrollToIndex: scrollToIndex,
-                            goToHome: goToHome,
-                            titles: titles!,
-                          )
+                        if (width < 600)
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            height: 53,
+                            child: IconButton(
+                                onPressed: () {
+                                  falmanage.setisisTaped();
+                                  // Scaffold.of(cntxt).openEndDrawer();
+                                },
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                  size: 40,
+                                )),
+                          ),
+                        if (width > 600)
+                          for (var i = 0; i < titles!.length; i++)
+                            CustomTitles(
+                              key: ValueKey('aaaaaaae$i'),
+                              i: i,
+                              scrollToIndex: scrollToIndex,
+                              goToHome: goToHome,
+                              titles: titles!,
+                            )
                       ],
                     ),
                   ),
@@ -112,12 +118,12 @@ class BuildSliverAppBAr extends StatelessWidget {
                   height: 3,
                   color: Color(0xff04c2c9),
                 ),
-                // if (width < 600)
-                //   AnimatedContainer(
-                //       color: Color(0xff333333),
-                //       height: manage.isTaped ? 150 : 0,
-                //       width: width,
-                //       duration: Duration(milliseconds: 300))
+                if (width < 600)
+                  AnimatedContainer(
+                      color: Color(0xff333333),
+                      height: manage.isTaped ? 150 : 0,
+                      width: width,
+                      duration: Duration(milliseconds: 300))
               ],
             ),
           ),

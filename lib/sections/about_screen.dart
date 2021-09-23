@@ -100,9 +100,11 @@ class _AboutScreenState extends State<AboutScreen>
     // _controller4!.forward();
     if (!manage.isFrist) {
       _controller!.forward().whenComplete(() {
-        setState(() {
-          width = 1;
-        });
+        if (mounted) {
+          setState(() {
+            width = 1;
+          });
+        }
       });
       _controller2!.forward();
       _controller3!.forward();
@@ -126,183 +128,179 @@ class _AboutScreenState extends State<AboutScreen>
                 );
           }
         },
-        child: FittedBox(
-          key: ValueKey('k'),
-          fit: BoxFit.scaleDown,
-          child: Container(
-            key: ValueKey('l'),
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              key: ValueKey('m'),
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  key: ValueKey('n'),
-                  padding: EdgeInsets.only(top: 4.46.h, bottom: 0.99.h),
-                  child: SlideTransition(
-                    key: ValueKey('o'),
-                    position: _slideAnimation!,
-                    child: Text(
-                      'ABOUT',
-                      key: ValueKey('p'),
-                      style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.w700,
-                          fontSize: titleSize,
-                          color: Color(0xff444649)),
+        child: Container(
+          key: ValueKey('l'),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            key: ValueKey('m'),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                key: ValueKey('n'),
+                padding: EdgeInsets.only(top: 4.46.h, bottom: 0.99.h),
+                child: SlideTransition(
+                  key: ValueKey('o'),
+                  position: _slideAnimation!,
+                  child: Text(
+                    'ABOUT',
+                    key: ValueKey('p'),
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
+                        fontSize: titleSize,
+                        color: Color(0xff444649)),
+                  ),
+                ),
+              ),
+              SlideTransition(
+                key: ValueKey('q'),
+                position: _slideAnimation2!,
+                child: Container(
+                  key: ValueKey('r'),
+                  width: 71,
+                  height: 0.39.h,
+                  color: Color(0xff45474a),
+                ),
+              ),
+              SizedBox(height: 6.h),
+              Container(
+                key: ValueKey('s'),
+                child: Wrap(
+                  key: ValueKey('t'),
+                  alignment: WrapAlignment.spaceAround,
+                  spacing: 3.97.h,
+                  runSpacing: 3.97.h,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    CustomTile(
+                      key: ValueKey('u'),
+                      icon: Icons.speed,
+                      title: 'Fast',
+                      descrption:
+                          'Fast load times and lag free interaction, my highest priority.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
                     ),
-                  ),
+                    CustomTile(
+                      key: ValueKey('v'),
+                      icon: Icons.lightbulb_outline,
+                      title: 'Intuitive',
+                      descrption:
+                          'Strong preference for easy to use, intuitive UX/UI.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                    CustomTile(
+                      key: ValueKey('w'),
+                      icon: Icons.devices_outlined,
+                      title: 'Responsive',
+                      descrption:
+                          'My layouts will work on any device, big or small.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                    CustomTile(
+                      key: ValueKey('x'),
+                      icon: Icons.dynamic_form,
+                      title: 'Dynamic',
+                      descrption:
+                          'Web/Apps don\'t have to be static, I love making them come to life.',
+                      opacityAnimation: _opacityAnimation,
+                      transformAnimation: _transformAnimation,
+                    ),
+                  ],
                 ),
-                SlideTransition(
-                  key: ValueKey('q'),
-                  position: _slideAnimation2!,
-                  child: Container(
-                    key: ValueKey('r'),
-                    width: 71,
-                    height: 0.39.h,
-                    color: Color(0xff45474a),
-                  ),
-                ),
-                SizedBox(height: 6.h),
-                Container(
-                  key: ValueKey('s'),
+              ),
+              SizedBox(
+                height: 3.97.h,
+                key: ValueKey('y'),
+              ),
+              SlideTransition(
+                key: ValueKey('z'),
+                position: _slideAnimation!,
+                child: Padding(
+                  key: ValueKey('aa'),
+                  padding: const EdgeInsets.all(20.0),
                   child: Wrap(
-                    key: ValueKey('t'),
-                    alignment: WrapAlignment.spaceAround,
-                    spacing: 3.97.h,
-                    runSpacing: 3.97.h,
-                    crossAxisAlignment: WrapCrossAlignment.start,
+                    alignment: WrapAlignment.center,
+                    key: ValueKey('ab'),
                     children: [
-                      CustomTile(
-                        key: ValueKey('u'),
-                        icon: Icons.speed,
-                        title: 'Fast',
-                        descrption:
-                            'Fast load times and lag free interaction, my highest priority.',
-                        opacityAnimation: _opacityAnimation,
-                        transformAnimation: _transformAnimation,
+                      ProfileSection(
+                        widget: widget,
+                        key: ValueKey('ac'),
                       ),
-                      CustomTile(
-                        key: ValueKey('v'),
-                        icon: Icons.lightbulb_outline,
-                        title: 'Intuitive',
-                        descrption:
-                            'Strong preference for easy to use, intuitive UX/UI.',
-                        opacityAnimation: _opacityAnimation,
-                        transformAnimation: _transformAnimation,
+                      SizedBox(
+                        width: 1.875.w,
+                        key: ValueKey('ad'),
                       ),
-                      CustomTile(
-                        key: ValueKey('w'),
-                        icon: Icons.devices_outlined,
-                        title: 'Responsive',
-                        descrption:
-                            'My layouts will work on any device, big or small.',
-                        opacityAnimation: _opacityAnimation,
-                        transformAnimation: _transformAnimation,
-                      ),
-                      CustomTile(
-                        key: ValueKey('x'),
-                        icon: Icons.dynamic_form,
-                        title: 'Dynamic',
-                        descrption:
-                            'Web/Apps don\'t have to be static, I love making them come to life.',
-                        opacityAnimation: _opacityAnimation,
-                        transformAnimation: _transformAnimation,
-                      ),
+                      SlideTransition(
+                        key: ValueKey('ae'),
+                        position: _slideAnimation3!,
+                        child: Column(
+                          key: ValueKey('af'),
+                          children: [
+                            PercentageTile(
+                                key: ValueKey('ag'),
+                                title: 'Flutter',
+                                percent: 90,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('ah'),
+                                title: 'Dart',
+                                percent: 90,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('ai'),
+                                title: 'FireBase',
+                                percent: 80,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('aj'),
+                                title: 'HTTP and REST',
+                                percent: 80,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('ak'),
+                                title: 'Git and GitHub',
+                                percent: 75,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('al'),
+                                title: 'NoSQL databases',
+                                percent: 65,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('am'),
+                                title: 'Animation',
+                                percent: 70,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('an'),
+                                title: 'UI Design',
+                                percent: 50,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('ao'),
+                                title: 'Photoshop',
+                                percent: 55,
+                                getWidth: getWidth),
+                            PercentageTile(
+                                key: ValueKey('ap'),
+                                title: 'Sketch',
+                                percent: 50,
+                                getWidth: getWidth),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 3.97.h,
-                  key: ValueKey('y'),
-                ),
-                SlideTransition(
-                  key: ValueKey('z'),
-                  position: _slideAnimation!,
-                  child: Padding(
-                    key: ValueKey('aa'),
-                    padding: const EdgeInsets.all(20.0),
-                    child: Wrap(
-                      alignment: WrapAlignment.center,
-                      key: ValueKey('ab'),
-                      children: [
-                        ProfileSection(
-                          widget: widget,
-                          key: ValueKey('ac'),
-                        ),
-                        SizedBox(
-                          width: 1.875.w,
-                          key: ValueKey('ad'),
-                        ),
-                        SlideTransition(
-                          key: ValueKey('ae'),
-                          position: _slideAnimation3!,
-                          child: Column(
-                            key: ValueKey('af'),
-                            children: [
-                              PercentageTile(
-                                  key: ValueKey('ag'),
-                                  title: 'Flutter',
-                                  percent: 90,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('ah'),
-                                  title: 'Dart',
-                                  percent: 90,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('ai'),
-                                  title: 'FireBase',
-                                  percent: 80,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('aj'),
-                                  title: 'HTTP and REST',
-                                  percent: 80,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('ak'),
-                                  title: 'Git and GitHub',
-                                  percent: 75,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('al'),
-                                  title: 'NoSQL databases',
-                                  percent: 65,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('am'),
-                                  title: 'Animation',
-                                  percent: 70,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('an'),
-                                  title: 'UI Design',
-                                  percent: 50,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('ao'),
-                                  title: 'Photoshop',
-                                  percent: 55,
-                                  getWidth: getWidth),
-                              PercentageTile(
-                                  key: ValueKey('ap'),
-                                  title: 'Sketch',
-                                  percent: 50,
-                                  getWidth: getWidth),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5.w,
-                  key: ValueKey('aq'),
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 5.w,
+                key: ValueKey('aq'),
+              ),
+            ],
           ),
         ),
       );

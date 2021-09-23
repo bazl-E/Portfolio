@@ -22,6 +22,7 @@ class _BodyControllerState extends State<BodyController>
   final scrollDirection = Axis.vertical;
 
   final dataKey = new GlobalKey();
+  final scfKey = GlobalKey<ScaffoldState>();
 
   final List<String> titles = [
     'HOME',
@@ -73,21 +74,29 @@ class _BodyControllerState extends State<BodyController>
         duration: Duration(milliseconds: 500));
   }
 
+  // void showDrawer() {
+  //   Scaffold.of(context).openEndDrawer();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.height;
     return Scaffold(
-      key: ValueKey('a'),
+      key: scfKey,
+      // endDrawer: Drawer(),
+      // key: ValueKey('a'),
       body: CustomScrollView(
         shrinkWrap: true,
         controller: _autoScrollController,
         slivers: <Widget>[
           BuildSliverAppBAr(
+            // drawerKey: scfKey,
             key: ValueKey('b'),
             goToHome: goToHome,
             scrollToIndex: _scrollToIndex,
             titles: titles,
             dataKey: dataKey,
+            cntxt: context,
           ),
           SliverList(
             key: ValueKey('c'),
