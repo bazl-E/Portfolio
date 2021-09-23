@@ -153,7 +153,7 @@ class _ContactScreenState extends State<ContactScreen>
     return ResponsiveBuilder(builder: (ctx, sizeInfo) {
       // final Size contactSize = Size(26.04.w, 18.22.h);
 
-      final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
+      final double titleSize = sizeInfo.isMobile ? 30 : 40;
       final double subTitleSize = sizeInfo.isMobile ? 12 : 16;
       final double contactcontainerWidth = min(500, sizeInfo.screenSize.width);
 
@@ -169,234 +169,242 @@ class _ContactScreenState extends State<ContactScreen>
             falmanage.setisFrist(false);
           }
         },
-        child: Container(
-          key: ValueKey('aaf'),
-          color: Color(0xff252934),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: sizeInfo.screenSize.height - kToolbarHeight,
+            maxHeight: double.infinity,
+          ),
           child: Container(
-            key: ValueKey('aag'),
-            // height: widget.height,
-            child:
-                //  Flex(direction: Axis.vertical, children: [
-                //   Flexible(
-                //     key: ValueKey('aah'),
-                //     flex: 10,
-                //     child:
-                Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  key: ValueKey('aai'),
-                  color: Color(0xff252934),
-                  height: 720,
-                  // height: min(widget.height!, double.infinity),
-                  width: MediaQuery.of(context).size.width,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      key: ValueKey('aaj'),
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SlideTransition(
-                          key: ValueKey('aak'),
-                          position: leftanimae!,
-                          child: Container(
-                            key: ValueKey('aal'),
-                            padding: EdgeInsets.only(top: 50, bottom: 10),
-                            child: Text(
-                              'CONTACT',
-                              key: ValueKey('aam'),
-                              style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: titleSize,
-                                  color: Colors.white),
+            key: ValueKey('aaf'),
+            color: Color(0xff1b242f),
+            child: Container(
+              key: ValueKey('aag'),
+              // height: widget.height,
+              child:
+                  //  Flex(direction: Axis.vertical, children: [
+                  //   Flexible(
+                  //     key: ValueKey('aah'),
+                  //     flex: 10,
+                  //     child:
+                  Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    key: ValueKey('aai'),
+                    color: Color(0xff252934),
+                    height: 720,
+                    // height: min(widget.height!, double.infinity),
+                    width: MediaQuery.of(context).size.width,
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        key: ValueKey('aaj'),
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SlideTransition(
+                            key: ValueKey('aak'),
+                            position: leftanimae!,
+                            child: Container(
+                              key: ValueKey('aal'),
+                              padding: EdgeInsets.only(top: 50, bottom: 10),
+                              child: Text(
+                                'CONTACT',
+                                key: ValueKey('aam'),
+                                style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: titleSize,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
-                        ),
-                        SlideTransition(
-                          key: ValueKey('aan'),
-                          position: rightanimae!,
-                          child: Container(
-                            key: ValueKey('aao'),
-                            width: 70,
-                            height: 4,
-                            color: Colors.white,
+                          SlideTransition(
+                            key: ValueKey('aan'),
+                            position: rightanimae!,
+                            child: Container(
+                              key: ValueKey('aao'),
+                              width: 70,
+                              height: 4,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          key: ValueKey('aap'),
-                        ),
-                        SlideTransition(
-                          key: ValueKey('aaq'),
-                          position: rightanimae!,
-                          child: Text(
-                              'Have a question or want to work together?',
-                              key: ValueKey('aar'),
-                              style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: subTitleSize,
-                                  color: Color(0xff07b0b7))),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          key: ValueKey('aas'),
-                        ),
-                        AnimatedContainer(
-                          key: ValueKey('aat'),
-                          // color: Colors.amber,
-                          duration: Duration(seconds: 2),
-                          curve: Curves.bounceInOut,
-                          margin: EdgeInsets.symmetric(horizontal: 30),
-                          width: width,
-                          height: height,
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Column(
-                              key: ValueKey('aav'),
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                    key: ValueKey('aaw'),
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.all(5),
-                                    height: 40,
-                                    width: contactcontainerWidth,
-                                    color: Color(0xff1e242c),
-                                    child: TextFormField(
-                                      key: ValueKey('aax'),
-                                      onSaved: (val) {
-                                        name = val;
-                                      },
-                                      style: TextStyle(color: Colors.white),
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        // contentPadding: EdgeInsets.only(bottom: 10),
-                                        hintText: "Name",
-                                        hintStyle:
-                                            TextStyle(color: Color(0xff6b6b6c)),
-                                      ),
-                                    )),
-                                Container(
-                                    key: ValueKey('aay'),
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.all(5),
-                                    height: 40,
-                                    width: contactcontainerWidth,
-                                    color: Color(0xff1e242c),
-                                    child: TextFormField(
-                                      key: ValueKey('aaz'),
-                                      onSaved: (val) {
-                                        email = val;
-                                      },
-                                      style: TextStyle(color: Colors.white),
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        // contentPadding: EdgeInsets.only(bottom: 10),
-                                        hintText: "Enter email",
-                                        hintStyle:
-                                            TextStyle(color: Color(0xff6b6b6c)),
-                                      ),
-                                    )),
-                                Container(
-                                    key: ValueKey('aaaa'),
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.all(5),
-                                    color: Color(0xff1e242c),
-                                    height: 150,
-                                    width: contactcontainerWidth,
-                                    child: TextFormField(
-                                      key: ValueKey('aaab'),
-                                      onSaved: (val) {
-                                        message = val;
-                                      },
-                                      // maxLength: 250,
-                                      maxLines: 10,
-                                      style: TextStyle(color: Colors.white),
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        // contentPadding: EdgeInsets.all(7),
-                                        hintText: "Your Message",
-                                        hintStyle:
-                                            TextStyle(color: Color(0xff6b6b6c)),
-                                      ),
-                                    )),
-                                InkWell(
-                                  key: ValueKey('aaac'),
-                                  onTap: () {},
-                                  onHover: (t) {
-                                    if (t) {
-                                      falmanage.setisSubmitHovered(true);
-                                    } else {
-                                      falmanage.setisSubmitHovered(false);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: ValueKey('aaad'),
-                                    margin: EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                        color: manage.isSubmitHovered
-                                            ? Color(0xff04c2c9)
-                                            : Colors.transparent,
-                                        border: Border.all(
+                          SizedBox(
+                            height: 50,
+                            key: ValueKey('aap'),
+                          ),
+                          SlideTransition(
+                            key: ValueKey('aaq'),
+                            position: rightanimae!,
+                            child: Text(
+                                'Have a question or want to work together?',
+                                key: ValueKey('aar'),
+                                style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: subTitleSize,
+                                    color: Color(0xff07b0b7))),
+                          ),
+                          SizedBox(
+                            height: 50,
+                            key: ValueKey('aas'),
+                          ),
+                          AnimatedContainer(
+                            key: ValueKey('aat'),
+                            // color: Colors.amber,
+                            duration: Duration(seconds: 2),
+                            curve: Curves.bounceInOut,
+                            margin: EdgeInsets.symmetric(horizontal: 15),
+                            width: width,
+                            height: height,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Column(
+                                key: ValueKey('aav'),
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                      key: ValueKey('aaw'),
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.all(10),
+                                      margin: EdgeInsets.all(5),
+                                      height: 40,
+                                      width: contactcontainerWidth,
+                                      color: Color(0xff1e242c),
+                                      child: TextFormField(
+                                        key: ValueKey('aax'),
+                                        onSaved: (val) {
+                                          name = val;
+                                        },
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          // contentPadding: EdgeInsets.only(bottom: 10),
+                                          hintText: "Name",
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6b6b6c)),
+                                        ),
+                                      )),
+                                  Container(
+                                      key: ValueKey('aay'),
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.all(10),
+                                      margin: EdgeInsets.all(5),
+                                      height: 40,
+                                      width: contactcontainerWidth,
+                                      color: Color(0xff1e242c),
+                                      child: TextFormField(
+                                        key: ValueKey('aaz'),
+                                        onSaved: (val) {
+                                          email = val;
+                                        },
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          // contentPadding: EdgeInsets.only(bottom: 10),
+                                          hintText: "Enter email",
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6b6b6c)),
+                                        ),
+                                      )),
+                                  Container(
+                                      key: ValueKey('aaaa'),
+                                      padding: EdgeInsets.all(10),
+                                      margin: EdgeInsets.all(5),
+                                      color: Color(0xff1e242c),
+                                      height: 150,
+                                      width: contactcontainerWidth,
+                                      child: TextFormField(
+                                        key: ValueKey('aaab'),
+                                        onSaved: (val) {
+                                          message = val;
+                                        },
+                                        // maxLength: 250,
+                                        maxLines: 10,
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          // contentPadding: EdgeInsets.all(7),
+                                          hintText: "Your Message",
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6b6b6c)),
+                                        ),
+                                      )),
+                                  InkWell(
+                                    key: ValueKey('aaac'),
+                                    onTap: () {},
+                                    onHover: (t) {
+                                      if (t) {
+                                        falmanage.setisSubmitHovered(true);
+                                      } else {
+                                        falmanage.setisSubmitHovered(false);
+                                      }
+                                    },
+                                    child: Container(
+                                      key: ValueKey('aaad'),
+                                      margin: EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
                                           color: manage.isSubmitHovered
                                               ? Color(0xff04c2c9)
-                                              : Colors.white,
-                                        )),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 20),
-                                    child: TextButton(
-                                      key: ValueKey('aaae'),
-                                      onPressed:
-                                          manage.isFormSaving ? null : onSave,
-                                      child: Text(
-                                        'SUBMIT',
-                                        key: ValueKey('aaaf'),
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 16),
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                            color: manage.isSubmitHovered
+                                                ? Color(0xff04c2c9)
+                                                : Colors.white,
+                                          )),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: sizeInfo.isMobile ? 0 : 5,
+                                          horizontal: 20),
+                                      child: TextButton(
+                                        key: ValueKey('aaae'),
+                                        onPressed:
+                                            manage.isFormSaving ? null : onSave,
+                                        child: Text(
+                                          'SUBMIT',
+                                          key: ValueKey('aaaf'),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                // Expanded(
-                //   child:
-                Container(
-                  height: 230,
-                  child: SocialButtonRow(
-                    key: ValueKey('aaag'),
-                    animations2: animations2,
-                    animations: animations,
-                    controllers: controllers,
-                    falmanage: falmanage,
-                    widget: widget,
-                    manage: manage,
+                  // Expanded(
+                  //   child:
+                  Container(
+                    height: 210,
+                    child: SocialButtonRow(
+                      key: ValueKey('aaag'),
+                      animations2: animations2,
+                      animations: animations,
+                      controllers: controllers,
+                      falmanage: falmanage,
+                      widget: widget,
+                      manage: manage,
+                    ),
                   ),
-                ),
-                // ),
-              ],
+                  // ),
+                ],
+              ),
             ),
           ),
         ),

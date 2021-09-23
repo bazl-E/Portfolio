@@ -2,6 +2,7 @@ import 'package:basil_personal_web/providers/body_controll_manage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomTitles extends StatelessWidget {
   const CustomTitles({
@@ -44,7 +45,7 @@ class CustomTitles extends StatelessWidget {
           key: ValueKey('aaaaaaah'),
           margin: EdgeInsets.symmetric(horizontal: 20),
           // width: 100,
-          height: 53,
+          height: 75,
           child: Center(
             key: ValueKey('aaaaaaai'),
             child: AnimatedDefaultTextStyle(
