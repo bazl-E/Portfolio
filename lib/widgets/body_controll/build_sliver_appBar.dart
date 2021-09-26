@@ -2,6 +2,7 @@ import 'package:basil_personal_web/providers/body_controll_manage.dart';
 import 'package:basil_personal_web/sections/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:sizer/sizer.dart';
@@ -26,6 +27,40 @@ class BuildSliverAppBAr extends StatelessWidget {
   // final List<String> titles;
 
   final GlobalKey dataKey;
+  Widget buildText(String title, BuildContext context, int i) {
+    final manage = Provider.of<BodyControllManager>(context);
+    final falamanage = Provider.of<BodyControllManager>(context, listen: false);
+    return InkWell(
+      onTap: () async {
+        if (i == 0) {
+          await goToHome();
+        } else {
+          scrollToIndex!(i);
+        }
+        falamanage.setselectedButton(i);
+        falamanage.setisisTaped();
+      },
+      onHover: (t) {
+        if (t) {
+          falamanage.setcurrentButton(i);
+        }
+        if (!t) {
+          falamanage.setcurrentButton(null);
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Text(
+          title,
+          style: GoogleFonts.raleway(
+              color: manage.selectedButton == i || manage.currentButton == i
+                  ? Colors.pink
+                  : Colors.white,
+              fontSize: 16),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +86,7 @@ class BuildSliverAppBAr extends StatelessWidget {
       ),
       bottom: PreferredSize(
         key: ValueKey('aaaaaaw'),
-        preferredSize: Size.fromHeight(0),
+        preferredSize: Size(width, manage.isTaped ? 180 : 0),
         child: AnimatedOpacity(
           key: ValueKey('aaaaaax'),
           duration: Duration(milliseconds: 500),
@@ -120,9 +155,28 @@ class BuildSliverAppBAr extends StatelessWidget {
                 ),
                 if (width < 600)
                   AnimatedContainer(
+                      padding: EdgeInsets.symmetric(vertical: 15),
                       color: Color(0xff333333),
-                      height: manage.isTaped ? 150 : 0,
+                      height: manage.isTaped ? 180 : 0,
                       width: width,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            buildText('Home', context, 0),
+                            SizedBox(height: 13),
+                            buildText('About', context, 1),
+                            SizedBox(height: 13),
+                            buildText('PortFolio', context, 2),
+                            SizedBox(height: 13),
+                            buildText('Blog', context, 3),
+                            SizedBox(height: 13),
+                            buildText('Contact', context, 4),
+                          ],
+                        ),
+                      ),
                       duration: Duration(milliseconds: 300))
               ],
             ),
