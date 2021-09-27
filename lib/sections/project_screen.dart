@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
@@ -232,10 +234,9 @@ class _ProjectScreenState extends State<ProjectScreen>
               Padding(
                 key: const ValueKey('aaap'),
                 padding: const EdgeInsets.all(20.0),
-                child: AnimatedContainer(
+                child: Container(
                   key: const ValueKey('aaaq'),
-                  duration: const Duration(milliseconds: 600),
-                  width: 80.9.w,
+                  width: min(80.9.w, 1200),
                   child: Wrap(
                     key: const ValueKey('aaar'),
                     alignment: WrapAlignment.center,

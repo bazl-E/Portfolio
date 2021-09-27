@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
               text: "Packing....",
               textType: TextType.TyperAnimatedText,
               textStyle: const TextStyle(
-                fontSize: 30.0,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
               backgroundColor: Colors.white,
