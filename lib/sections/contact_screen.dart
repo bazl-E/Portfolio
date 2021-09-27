@@ -251,7 +251,7 @@ class _ContactScreenState extends State<ContactScreen>
                           AnimatedContainer(
                             key: const ValueKey('aat'),
                             // color: Colors.amber,
-                            duration: const Duration(seconds: 2),
+                            duration: const Duration(seconds: 1),
                             curve: Curves.bounceInOut,
                             margin: const EdgeInsets.symmetric(horizontal: 15),
                             width: width,

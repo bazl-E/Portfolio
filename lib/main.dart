@@ -9,7 +9,7 @@ import 'package:basil_personal_web/providers/welcome_screen_manage.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
@@ -18,7 +18,7 @@ import 'package:url_strategy/url_strategy.dart';
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 void main() {
   setPathUrlStrategy();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   runApp(MyApp(
     key: UniqueKey(),
   ));
