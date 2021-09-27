@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Statements extends StatelessWidget {
-  Statements({
+  const Statements({
     Key? key,
     required this.title,
     required this.icon,
@@ -22,25 +22,25 @@ class Statements extends StatelessWidget {
         fontSize: sizeInfo.isMobile ? 8 : 10,
       );
       return Opacity(
-        key: ValueKey('aaaaaaaaaaal'),
+        key: const ValueKey('aaaaaaaaaaal'),
         opacity: .5,
         child: Row(
-          key: ValueKey('aaaaaaaaaaam'),
+          key: const ValueKey('aaaaaaaaaaam'),
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              key: ValueKey('aaaaaaaaaaan'),
+              key: const ValueKey('aaaaaaaaaaan'),
               color: colorOfIcon,
               size: 15,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
               key: ValueKey('aaaaaaaaaaao'),
             ),
             Text(
               title,
-              key: ValueKey('aaaaaaaaaaap'),
+              key: const ValueKey('aaaaaaaaaaap'),
               style: style,
             ),
           ],

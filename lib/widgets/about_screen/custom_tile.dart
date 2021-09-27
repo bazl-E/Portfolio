@@ -32,48 +32,48 @@ class CustomTile extends StatelessWidget {
       final double descrptionSize = sizeInfo.isMobile ? 10.6 : 16;
       final double descrptionBoxSize = sizeInfo.isMobile ? 35.41.w : 250;
       return Container(
-        key: ValueKey('aaaas'),
+        key: const ValueKey('aaaas'),
         child: Column(
-          key: ValueKey('aaaat'),
+          key: const ValueKey('aaaat'),
           children: [
             Stack(
-              key: ValueKey('aaaau'),
+              key: const ValueKey('aaaau'),
               children: [
                 FadeTransition(
-                  key: ValueKey('aaaav'),
+                  key: const ValueKey('aaaav'),
                   opacity: _opacityAnimation!,
                   child: AnimatedContainer(
-                    key: ValueKey('aaaaw'),
+                    key: const ValueKey('aaaaw'),
                     transformAlignment: Alignment.center,
-                    duration: Duration(seconds: 1),
+                    duration: const Duration(seconds: 1),
                     transform: Matrix4.identity()
                       ..setEntry(3, 2, 0.001)
                       ..rotateY(pi * _transformAnimation!.value.toDouble()),
                     child: Image.asset(
                       'assets/hexa.png',
-                      key: ValueKey('aaaax'),
+                      key: const ValueKey('aaaax'),
                       width: tileSize,
                       height: tileSize,
-                      color: Color(0xff05c2c9),
+                      color: const Color(0xff05c2c9),
                     ),
                   ),
                 ),
                 Positioned(
-                  key: ValueKey('aaaay'),
+                  key: const ValueKey('aaaay'),
                   // height: 115,
                   // width: 123,
                   height: tileSize,
                   width: tileSize,
                   child: AnimatedContainer(
-                    key: ValueKey('aaaaz'),
+                    key: const ValueKey('aaaaz'),
                     transformAlignment: Alignment.center,
-                    duration: Duration(seconds: 1),
+                    duration: const Duration(seconds: 1),
                     transform: Matrix4.identity()
                       ..setEntry(3, 2, 0.001)
                       ..rotateY(pi * _transformAnimation!.value.toDouble()),
                     child: Icon(
                       icon!,
-                      key: ValueKey('aaaaaa'),
+                      key: const ValueKey('aaaaaa'),
                       size: iconSize,
                       color: Colors.white,
                     ),
@@ -82,42 +82,43 @@ class CustomTile extends StatelessWidget {
               ],
             ),
             Padding(
-              key: ValueKey('aaaaab'),
+              key: const ValueKey('aaaaab'),
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: Container(
-                key: ValueKey('aaaaac'),
+                key: const ValueKey('aaaaac'),
                 child: FadeTransition(
-                  key: ValueKey('aaaaad'),
+                  key: const ValueKey('aaaaad'),
                   opacity: _opacityAnimation!,
                   // .value.toDouble(),
                   // duration: Duration(seconds: 2),
                   child: Text(
                     title!,
-                    key: ValueKey('aaaaae'),
+                    key: const ValueKey('aaaaae'),
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.bold,
                         fontSize: titleSize,
-                        color: Color(0xff666361)),
+                        color: const Color(0xff666361)),
                   ),
                 ),
               ),
             ),
             Padding(
-              key: ValueKey('aaaaaf'),
+              key: const ValueKey('aaaaaf'),
               padding: const EdgeInsets.symmetric(vertical: 2),
-              child: Container(
-                key: ValueKey('aaaaag'),
+              child: SizedBox(
+                key: const ValueKey('aaaaag'),
                 width: descrptionBoxSize,
                 child: FadeTransition(
-                  key: ValueKey('aaaaah'),
+                  key: const ValueKey('aaaaah'),
                   // duration: Duration(seconds: 2),
                   opacity: _opacityAnimation!,
                   // .value.toDouble(),
                   child: Text(
                     descrption!,
-                    key: ValueKey('aaaaai'),
+                    key: const ValueKey('aaaaai'),
                     style: GoogleFonts.raleway(
-                        fontSize: descrptionSize, color: Color(0xff616161)),
+                        fontSize: descrptionSize,
+                        color: const Color(0xff616161)),
                     textAlign: TextAlign.center,
                   ),
                 ),

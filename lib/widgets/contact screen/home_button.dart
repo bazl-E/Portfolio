@@ -17,11 +17,11 @@ class HomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      key: ValueKey('aaaaaaak'),
+      key: const ValueKey('aaaaaaak'),
       top: -30,
       left: (MediaQuery.of(context).size.width / 2) - 25,
       child: InkWell(
-        key: ValueKey('aaaaaaal'),
+        key: const ValueKey('aaaaaaal'),
         onHover: (t) {
           if (t) {
             falmanage.setisHomeButtonHovered(true);
@@ -31,12 +31,12 @@ class HomeButton extends StatelessWidget {
         },
         onTap: widget.gotoHome,
         child: AnimatedContainer(
-          key: ValueKey('aaaaaaam'),
-          duration: Duration(milliseconds: 350),
+          key: const ValueKey('aaaaaaam'),
+          duration: const Duration(milliseconds: 350),
           color: manage.isHomeButtonHovered ? Colors.pinkAccent : Colors.pink,
           width: 50,
           height: 55,
-          child: RotatedBox(
+          child: const RotatedBox(
             key: ValueKey('aaaaaaan'),
             quarterTurns: 3,
             child: Icon(

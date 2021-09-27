@@ -28,25 +28,24 @@ class ProjectDetails extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    print(1 % 4);
     return Dialog(
-        key: ValueKey('aaaaaaaaq'),
+        key: const ValueKey('aaaaaaaaq'),
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Container(
-            key: ValueKey('aaaaaaaar'),
+            key: const ValueKey('aaaaaaaar'),
             color: Colors.amber,
             width: 700,
             height: 715,
             child: Column(
-              key: ValueKey('aaaaaaaas'),
+              key: const ValueKey('aaaaaaaas'),
               children: [
                 Container(
-                  key: ValueKey('aaaaaaaat'),
+                  key: const ValueKey('aaaaaaaat'),
                   height: 450,
                   color: Colors.teal,
                   child: Stack(
-                    key: ValueKey('aaaaaaaau'),
+                    key: const ValueKey('aaaaaaaau'),
                     children: [
                       PageView.builder(
                         controller: controller,
@@ -63,32 +62,33 @@ class ProjectDetails extends StatelessWidget {
                             ),
                       ),
                       Positioned(
-                        key: ValueKey('aaaaaaaaw'),
+                        key: const ValueKey('aaaaaaaaw'),
                         bottom: 0,
-                        child: Container(
-                          key: ValueKey('aaaaaaaax'),
+                        child: SizedBox(
+                          key: const ValueKey('aaaaaaaax'),
                           height: 55,
                           width: 700,
                           child: Row(
-                            key: ValueKey('aaaaaaaay'),
+                            key: const ValueKey('aaaaaaaay'),
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               InkWell(
-                                key: ValueKey('aaaaaaaaz'),
+                                key: const ValueKey('aaaaaaaaz'),
                                 onTap: () {
                                   controller.previousPage(
-                                      duration: Duration(milliseconds: 800),
+                                      duration:
+                                          const Duration(milliseconds: 800),
                                       curve: Curves.fastLinearToSlowEaseIn);
                                 },
                                 child: Container(
-                                  key: ValueKey('aaaaaaaaaa'),
+                                  key: const ValueKey('aaaaaaaaaa'),
                                   width: 60,
                                   height: 55,
                                   color: Colors.black
                                       .withAlpha(50)
                                       .withOpacity(.3),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.keyboard_arrow_left,
                                     key: ValueKey('aaaaaaaaab'),
                                     size: 40,
@@ -97,20 +97,21 @@ class ProjectDetails extends StatelessWidget {
                                 ),
                               ),
                               InkWell(
-                                key: ValueKey('aaaaaaaaac'),
+                                key: const ValueKey('aaaaaaaaac'),
                                 onTap: () {
                                   controller.nextPage(
-                                      duration: Duration(milliseconds: 800),
+                                      duration:
+                                          const Duration(milliseconds: 800),
                                       curve: Curves.slowMiddle);
                                 },
                                 child: Container(
-                                  key: ValueKey('aaaaaaaaad'),
+                                  key: const ValueKey('aaaaaaaaad'),
                                   width: 60,
                                   height: 55,
                                   color: Colors.black
                                       .withAlpha(50)
                                       .withOpacity(.3),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.keyboard_arrow_right,
                                     key: ValueKey('aaaaaaaaae'),
                                     size: 40,
@@ -126,84 +127,84 @@ class ProjectDetails extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  key: ValueKey('aaaaaaaaaf'),
+                  key: const ValueKey('aaaaaaaaaf'),
                   height: 3,
                   width: double.infinity,
                   color: Colors.black,
                 ),
                 Container(
-                  key: ValueKey('aaaaaaaaag'),
-                  padding:
-                      EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+                  key: const ValueKey('aaaaaaaaag'),
+                  padding: const EdgeInsets.only(
+                      top: 30, left: 20, right: 20, bottom: 20),
                   height: 262,
                   color: Colors.white,
                   child: Column(
-                    key: ValueKey('aaaaaaaaah'),
+                    key: const ValueKey('aaaaaaaaah'),
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('ChowNow Discover',
-                          key: ValueKey('aaaaaaaaai'),
+                          key: const ValueKey('aaaaaaaaai'),
                           style: GoogleFonts.raleway(
                               fontSize: 30,
-                              color: Color(0xff444444),
+                              color: const Color(0xff444444),
                               fontWeight: FontWeight.bold)),
                       Text('FOOD ORDERING PLATFORM',
-                          key: ValueKey('aaaaaaaaaj'),
+                          key: const ValueKey('aaaaaaaaaj'),
                           style: GoogleFonts.raleway(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
-                              color: Color(0xffc0c0c0))),
-                      SizedBox(
+                              color: const Color(0xffc0c0c0))),
+                      const SizedBox(
                         height: 10,
                         key: ValueKey('aaaaaaaaak'),
                       ),
-                      Divider(
+                      const Divider(
                         key: ValueKey('aaaaaaaaal'),
                         color: Color(0xffe5e5e5),
                         thickness: 2,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                         key: ValueKey('aaaaaaaaam'),
                       ),
                       Text(
                         'ChowNow Discover is a platform that lets customers discover new local restaurants and provides business owners with tools to convert first time orders into lifelong diners.',
-                        key: ValueKey('aaaaaaaaan'),
+                        key: const ValueKey('aaaaaaaaan'),
                         style: GoogleFonts.raleway(
                           fontSize: 14,
                         ),
                       ),
                       // SizedBox(height: 15),
-                      Spacer(
+                      const Spacer(
                         key: ValueKey('aaaaaaaaao'),
                       ),
                       Row(
-                        key: ValueKey('aaaaaaaaap'),
+                        key: const ValueKey('aaaaaaaaap'),
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            key: ValueKey('aaaaaaaaaq'),
+                            key: const ValueKey('aaaaaaaaaq'),
                             width: 140,
                             height: 40,
-                            color: Color(0xffe31b6d),
-                            padding: EdgeInsets.symmetric(
+                            color: const Color(0xffe31b6d),
+                            padding: const EdgeInsets.symmetric(
                               vertical: 8,
                               horizontal: 13,
                             ),
                             child: Row(
-                              key: ValueKey('aaaaaaaaar'),
+                              key: const ValueKey('aaaaaaaaar'),
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Container(
-                                    key: ValueKey('aaaaaaaaas'),
+                                SizedBox(
+                                    key: const ValueKey('aaaaaaaaas'),
                                     height: 23,
                                     width: 23,
                                     child: Image.asset('assets/11.png',
-                                        key: ValueKey('aaaaaaaaat'),
+                                        key: const ValueKey('aaaaaaaaat'),
                                         color: Colors.white)),
                                 Text(
                                   "VIEW GIT",
-                                  key: ValueKey('aaaaaaaaau'),
+                                  key: const ValueKey('aaaaaaaaau'),
                                   style: GoogleFonts.raleway(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white),
@@ -212,11 +213,11 @@ class ProjectDetails extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                              key: ValueKey('aaaaaaaaav'),
+                              key: const ValueKey('aaaaaaaaav'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.close,
                                 key: ValueKey('aaaaaaaaaw'),
                                 size: 35,

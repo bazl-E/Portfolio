@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'package:sizer/sizer.dart';
 
 import 'custom_titles.dart';
 
-class BuildSliverAppBAr extends StatelessWidget {
-  BuildSliverAppBAr({
+class BuildSliverAppBAr extends StatefulWidget {
+  const BuildSliverAppBAr({
     Key? key,
     required this.scrollToIndex,
     required this.titles,
@@ -27,18 +25,40 @@ class BuildSliverAppBAr extends StatelessWidget {
   // final List<String> titles;
 
   final GlobalKey dataKey;
-  Widget buildText(String title, BuildContext context, int i) {
+
+  @override
+  State<BuildSliverAppBAr> createState() => _BuildSliverAppBArState();
+}
+
+class _BuildSliverAppBArState extends State<BuildSliverAppBAr>
+    with TickerProviderStateMixin {
+  AnimationController? controller;
+  Animation<Size>? sizeAnimation;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 350));
+    sizeAnimation = Tween<Size>(
+            begin: const Size(double.infinity, 0),
+            end: const Size(double.infinity, 180))
+        .animate(CurvedAnimation(parent: controller!, curve: Curves.easeIn));
+  }
+
+  Widget buildText(String title, int i) {
     final manage = Provider.of<BodyControllManager>(context);
     final falamanage = Provider.of<BodyControllManager>(context, listen: false);
     return InkWell(
       onTap: () async {
-        if (i == 0) {
-          await goToHome();
-        } else {
-          scrollToIndex!(i);
-        }
         falamanage.setselectedButton(i);
         falamanage.setisisTaped();
+        if (i == 0) {
+          await widget.goToHome();
+        } else {
+          widget.scrollToIndex!(i);
+        }
+        // falamanage.setselectedButton(i);
+        // falamanage.setisisTaped();
       },
       onHover: (t) {
         if (t) {
@@ -69,7 +89,7 @@ class BuildSliverAppBAr extends StatelessWidget {
     final manage = Provider.of<BodyControllManager>(context);
     final falmanage = Provider.of<BodyControllManager>(context, listen: false);
     return SliverAppBar(
-      key: ValueKey('aaaaaau'),
+      key: const ValueKey('aaaaaau'),
       systemOverlayStyle: SystemUiOverlayStyle.light,
       pinned: true,
       expandedHeight: size,
@@ -78,85 +98,85 @@ class BuildSliverAppBAr extends StatelessWidget {
         collapseMode: CollapseMode.parallax,
         background: Container(
           child: WelcomePage(
-            scrollTo: scrollToIndex,
-            key: ValueKey('aaaaaav'),
+            scrollTo: widget.scrollToIndex,
+            key: const ValueKey('aaaaaav'),
           ),
-          key: dataKey,
+          key: widget.dataKey,
         ),
       ),
       bottom: PreferredSize(
-        key: ValueKey('aaaaaaw'),
+        key: const ValueKey('aaaaaaw'),
         preferredSize: Size(width, manage.isTaped ? 180 : 0),
         child: AnimatedOpacity(
-          key: ValueKey('aaaaaax'),
-          duration: Duration(milliseconds: 500),
+          key: const ValueKey('aaaaaax'),
+          duration: const Duration(milliseconds: 500),
           opacity: manage.isExpaned ? 0.0 : 1,
           child: Container(
-            key: ValueKey('aaaaaay'),
+            key: const ValueKey('aaaaaay'),
             alignment: Alignment.topRight,
-            padding: EdgeInsets.all(0),
-            margin: EdgeInsets.all(0),
-            color: Color(0xFF1B242F),
+            padding: const EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            color: const Color(0xFF1B242F),
             child: Column(
-              key: ValueKey('aaaaaaz'),
+              key: const ValueKey('aaaaaaz'),
               crossAxisAlignment: width < 600
                   ? CrossAxisAlignment.end
                   : CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 FittedBox(
-                  key: ValueKey('aaaaaaaa'),
+                  key: const ValueKey('aaaaaaaa'),
                   child: Container(
                     // height: 75,
-                    key: ValueKey('aaaaaaab'),
+                    key: const ValueKey('aaaaaaab'),
                     alignment: Alignment.centerLeft,
                     child: Row(
-                      key: ValueKey('aaaaaaac'),
+                      key: const ValueKey('aaaaaaac'),
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (width > 1300)
                           SizedBox(
-                            key: ValueKey('aaaaaaad'),
+                            key: const ValueKey('aaaaaaad'),
                             width: width * .15,
                           ),
                         if (width < 600)
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
                             height: 53,
                             child: IconButton(
                                 onPressed: () {
                                   falmanage.setisisTaped();
                                   // Scaffold.of(cntxt).openEndDrawer();
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.menu,
                                   color: Colors.white,
                                   size: 40,
                                 )),
                           ),
                         if (width > 600)
-                          for (var i = 0; i < titles!.length; i++)
+                          for (var i = 0; i < widget.titles!.length; i++)
                             CustomTitles(
                               key: ValueKey('aaaaaaae$i'),
                               i: i,
-                              scrollToIndex: scrollToIndex,
-                              goToHome: goToHome,
-                              titles: titles!,
+                              scrollToIndex: widget.scrollToIndex,
+                              goToHome: widget.goToHome,
+                              titles: widget.titles!,
                             )
                       ],
                     ),
                   ),
                 ),
                 Container(
-                  key: ValueKey('aaaaaaaf'),
+                  key: const ValueKey('aaaaaaaf'),
                   width: double.infinity,
                   height: 3,
-                  color: Color(0xff04c2c9),
+                  color: const Color(0xff04c2c9),
                 ),
                 if (width < 600)
                   AnimatedContainer(
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      color: Color(0xff333333),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      color: const Color(0xff333333),
                       height: manage.isTaped ? 180 : 0,
                       width: width,
                       child: SingleChildScrollView(
@@ -165,19 +185,20 @@ class BuildSliverAppBAr extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            buildText('Home', context, 0),
-                            SizedBox(height: 13),
-                            buildText('About', context, 1),
-                            SizedBox(height: 13),
-                            buildText('PortFolio', context, 2),
-                            SizedBox(height: 13),
-                            buildText('Blog', context, 3),
-                            SizedBox(height: 13),
-                            buildText('Contact', context, 4),
+                            buildText('Home', 0),
+                            const SizedBox(height: 13),
+                            buildText('About', 1),
+                            const SizedBox(height: 13),
+                            buildText('PortFolio', 2),
+                            const SizedBox(height: 13),
+                            buildText('Blog', 3),
+                            const SizedBox(height: 13),
+                            buildText('Contact', 4),
                           ],
                         ),
                       ),
-                      duration: Duration(milliseconds: 300))
+                      duration: const Duration(milliseconds: 300)),
+                // SizeTransition(sizeFactor:sizeAnimation )
               ],
             ),
           ),

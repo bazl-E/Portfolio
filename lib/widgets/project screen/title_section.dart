@@ -15,32 +15,32 @@ class TitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FittedBox(
-      key: ValueKey('aaaaaaaaaav'),
+      key: const ValueKey('aaaaaaaaaav'),
       fit: BoxFit.scaleDown,
       child:
           //  LayoutBuilder(
           //   key: ValueKey('aaaaaaaaaaw'),
           // builder: (BuildContext context, BoxConstraints constraints) =>
           Stack(
-        key: ValueKey('aaaaaaaaaax'),
+        key: const ValueKey('aaaaaaaaaax'),
         children: [
           AnimatedPositioned(
-              key: ValueKey('aaaaaaaaaay'),
+              key: const ValueKey('aaaaaaaaaay'),
               bottom: 0,
               top: 0,
               left: manage.titleButtonindex! * 212.5,
               child: AnimatedContainer(
-                key: ValueKey('aaaaaaaaaaz'),
-                duration: Duration(milliseconds: 50),
+                key: const ValueKey('aaaaaaaaaaz'),
+                duration: const Duration(milliseconds: 50),
                 width: 200,
                 height: 30,
                 color: Colors.pink,
               ),
-              duration: Duration(milliseconds: 200)),
+              duration: const Duration(milliseconds: 200)),
           Container(
-            key: ValueKey('aaaaaaaaaaaa'),
+            key: const ValueKey('aaaaaaaaaaaa'),
             child: Row(
-              key: ValueKey('aaaaaaaaaaab'),
+              key: const ValueKey('aaaaaaaaaaab'),
               mainAxisSize: MainAxisSize.min,
               children: [
                 for (var i = 0; i < 4; i++)
@@ -50,7 +50,7 @@ class TitleSection extends StatelessWidget {
                       title: titles[i],
                       color: i == manage.titleButtonindex
                           ? Colors.white
-                          : Color(0xff626262))
+                          : const Color(0xff626262))
               ],
             ),
           )

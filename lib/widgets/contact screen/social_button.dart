@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SocialButton extends StatelessWidget {
-  SocialButton({
+  const SocialButton({
     Key? key,
     required this.url,
     required this.image,
@@ -36,7 +36,7 @@ class SocialButton extends StatelessWidget {
     final falmanage = Provider.of<ContactscreenManager>(context, listen: false);
 
     return InkWell(
-      key: ValueKey('aaaaaaaai'),
+      key: const ValueKey('aaaaaaaai'),
       onTap: () {
         launchURL(url);
       },
@@ -48,42 +48,44 @@ class SocialButton extends StatelessWidget {
         } else {
           falmanage.setissocialHovered(false);
           falmanage.setsocialHoveredindex(null);
-          controllers![index!]..reset();
+          controllers![index!].reset();
         }
       },
       child: AnimatedContainer(
-          key: ValueKey('aaaaaaaaj'),
-          duration: Duration(milliseconds: 300),
-          padding: EdgeInsets.only(left: 17, right: 17),
-          color: isReady(context) ? Color(0xff05c2c9) : Color(0xff262f38),
+          key: const ValueKey('aaaaaaaaj'),
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.only(left: 17, right: 17),
+          color: isReady(context)
+              ? const Color(0xff05c2c9)
+              : const Color(0xff262f38),
           width: isReady(context) ? 53 : 55,
           height: isReady(context) ? 53 : 55,
           child: Column(
-            key: ValueKey('aaaaaaaak'),
+            key: const ValueKey('aaaaaaaak'),
             mainAxisSize: MainAxisSize.min,
             children: [
               SlideTransition(
-                key: ValueKey('aaaaaaaal'),
+                key: const ValueKey('aaaaaaaal'),
                 position: animations![index!],
                 child: Opacity(
-                  key: ValueKey('aaaaaaaam'),
+                  key: const ValueKey('aaaaaaaam'),
                   opacity: isReady(context) ? 1 : 0,
                   child: Image.asset(
                     image!,
-                    key: ValueKey('aaaaaaaan'),
+                    key: const ValueKey('aaaaaaaan'),
                     color: Colors.white,
                   ),
                 ),
               ),
               SlideTransition(
-                key: ValueKey('aaaaaaaao'),
+                key: const ValueKey('aaaaaaaao'),
                 position: animations2![index!],
                 child: AnimatedOpacity(
-                  duration: Duration(milliseconds: 100),
+                  duration: const Duration(milliseconds: 100),
                   opacity: isReady(context) ? 0 : 1,
                   child: Image.asset(
                     image!,
-                    key: ValueKey('aaaaaaaap'),
+                    key: const ValueKey('aaaaaaaap'),
                     color: Colors.white,
                   ),
                 ),

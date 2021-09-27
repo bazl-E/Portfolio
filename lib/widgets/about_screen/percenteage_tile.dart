@@ -6,7 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:sizer/sizer.dart';
 
 class PercentageTile extends StatelessWidget {
-  PercentageTile({
+  const PercentageTile({
     Key? key,
     required this.title,
     required this.percent,
@@ -34,27 +34,27 @@ class PercentageTile extends StatelessWidget {
       final double perBoxsize = sizeInfo.isMobile ? 3.h : 30;
 
       return Container(
-        key: ValueKey('aaaaaj'),
-        margin: EdgeInsets.only(top: 6, bottom: 6, left: 6),
+        key: const ValueKey('aaaaaj'),
+        margin: const EdgeInsets.only(top: 6, bottom: 6, left: 6),
         width: totalWidth,
-        color: Color(0xffeeeeee),
+        color: const Color(0xffeeeeee),
         height: perBoxsize,
         child: Row(
-          key: ValueKey('aaaaak'),
+          key: const ValueKey('aaaaak'),
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              key: ValueKey('aaaaal'),
+              key: const ValueKey('aaaaal'),
               children: [
                 Container(
-                  key: ValueKey('aaaaam'),
+                  key: const ValueKey('aaaaam'),
                   height: perBoxsize,
                   width: titleBoxsize,
-                  color: Color(0xff05c2c9),
+                  color: const Color(0xff05c2c9),
                   child: Center(
-                    key: ValueKey('aaaaan'),
+                    key: const ValueKey('aaaaan'),
                     child: Text(title!,
-                        key: ValueKey('aaaaao'),
+                        key: const ValueKey('aaaaao'),
                         textAlign: TextAlign.center,
                         style: GoogleFonts.raleway(
                             fontSize: titleSize,
@@ -63,23 +63,23 @@ class PercentageTile extends StatelessWidget {
                   ),
                 ),
                 AnimatedContainer(
-                  key: ValueKey('aaaaap'),
-                  duration: Duration(seconds: 1),
+                  key: const ValueKey('aaaaap'),
+                  duration: const Duration(seconds: 1),
                   width: getWidth!(percent!, context),
                   height: perBoxsize,
-                  color: Color(0xff01a1a7),
+                  color: const Color(0xff01a1a7),
                 ),
               ],
             ),
             if (!sizeInfo.isMobile)
               Padding(
-                key: ValueKey('aaaaaq'),
+                key: const ValueKey('aaaaaq'),
                 padding: const EdgeInsets.all(8.0),
                 child: Text('${percent.toString()}%',
-                    key: ValueKey('aaaaar'),
+                    key: const ValueKey('aaaaar'),
                     style: GoogleFonts.raleway(
                       fontSize: 12,
-                      color: Color(0xff8d8d8d),
+                      color: const Color(0xff8d8d8d),
                     )),
               )
           ],

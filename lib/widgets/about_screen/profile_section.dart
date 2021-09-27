@@ -21,59 +21,61 @@ class ProfileSection extends StatelessWidget {
       final double descrptionBoxSize = sizeInfo.isMobile ? 70.w : 500;
 
       return Column(
-        key: ValueKey('aaaaas'),
+        key: const ValueKey('aaaaas'),
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
             'assets/prof.png',
-            key: ValueKey('aaaaat'),
+            key: const ValueKey('aaaaat'),
             height: tileSize,
             width: tileSize,
           ),
           Padding(
-            key: ValueKey('aaaaau'),
+            key: const ValueKey('aaaaau'),
             padding: const EdgeInsets.symmetric(vertical: 2),
             child: Container(
-              key: ValueKey('aaaaav'),
+              key: const ValueKey('aaaaav'),
               child: Text(
                 'Who\'s this guy?',
                 style: GoogleFonts.raleway(
                     fontWeight: FontWeight.bold,
                     fontSize: titleSize,
-                    color: Color(0xff666361)),
+                    color: const Color(0xff666361)),
               ),
             ),
           ),
           Padding(
-            key: ValueKey('aaaaaw'),
+            key: const ValueKey('aaaaaw'),
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Column(
-              key: ValueKey('aaaaax'),
+              key: const ValueKey('aaaaax'),
               children: [
-                Container(
-                  key: ValueKey('aaaaay'),
+                SizedBox(
+                  key: const ValueKey('aaaaay'),
                   width: descrptionBoxSize,
                   child: Text(
                     "I'm a freelancing Developer from Kerala,Inida.I have serious passion for UI effects, animations and creating intuitive, dynamic user experiences.",
-                    key: ValueKey('aaaaaz'),
+                    key: const ValueKey('aaaaaz'),
                     style: GoogleFonts.raleway(
-                        fontSize: descrptionSize, color: Color(0xff616161)),
+                        fontSize: descrptionSize,
+                        color: const Color(0xff616161)),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 InkWell(
-                  key: ValueKey('aaaaaaa'),
+                  key: const ValueKey('aaaaaaa'),
                   onTap: () {
                     widget.scroll!(4);
                   },
                   child: Padding(
-                    key: ValueKey('aaaaaab'),
-                    padding: EdgeInsets.only(bottom: 20),
+                    key: const ValueKey('aaaaaab'),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
                       'Let\'s make something special.',
-                      key: ValueKey('aaaaaac'),
+                      key: const ValueKey('aaaaaac'),
                       style: GoogleFonts.raleway(
-                          fontSize: descrptionSize, color: Color(0xff039bda)),
+                          fontSize: descrptionSize,
+                          color: const Color(0xff039bda)),
                       textAlign: TextAlign.center,
                     ),
                   ),

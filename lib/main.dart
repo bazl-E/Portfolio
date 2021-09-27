@@ -19,56 +19,61 @@ final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 void main() {
   setPathUrlStrategy();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  runApp(MyApp());
+  runApp(MyApp(
+    key: UniqueKey(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      key: ValueKey('aaaaaaaaaaaq'),
+      key: const ValueKey('aaaaaaaaaaaq'),
       providers: [
         ChangeNotifierProvider<WelcomescreenManager>(
-          key: ValueKey('aaaaaaaaaaar'),
+          key: const ValueKey('aaaaaaaaaaar'),
           create: (_) => WelcomescreenManager(),
         ),
         ChangeNotifierProvider<ProjectcreenManager>(
-          key: ValueKey('aaaaaaaaaaas'),
+          key: const ValueKey('aaaaaaaaaaas'),
           create: (_) => ProjectcreenManager(),
         ),
         ChangeNotifierProvider<BlogscreenManager>(
-          key: ValueKey('aaaaaaaaaaat'),
+          key: const ValueKey('aaaaaaaaaaat'),
           create: (_) => BlogscreenManager(),
         ),
         ChangeNotifierProvider<ContactscreenManager>(
-          key: ValueKey('aaaaaaaaaaau'),
+          key: const ValueKey('aaaaaaaaaaau'),
           create: (_) => ContactscreenManager(),
         ),
         ChangeNotifierProvider<BodyControllManager>(
-          key: ValueKey('aaaaaaaaaaav'),
+          key: const ValueKey('aaaaaaaaaaav'),
           create: (_) => BodyControllManager(),
         ),
         ChangeNotifierProvider<AboutscreenManager>(
-          key: ValueKey('aaaaaaaaaaaw'),
+          key: const ValueKey('aaaaaaaaaaaw'),
           create: (_) => AboutscreenManager(),
         ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {
         return MaterialApp(
-            key: ValueKey('aaaaaaaaaaax'),
+            key: const ValueKey('aaaaaaaaaaax'),
             debugShowCheckedModeBanner: false,
             title: 'Findbasilprofilo',
             theme: ThemeData(
               primarySwatch: Colors.amber,
             ),
             home: SplashScreenView(
-              navigateRoute: BodyController(),
+              navigateRoute: const BodyController(),
               duration: 3000,
               imageSize: 130,
               imageSrc: "assets/bazi.png",
               text: "Packing....",
               textType: TextType.TyperAnimatedText,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
