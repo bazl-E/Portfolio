@@ -49,15 +49,17 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
               parent: controllers[i], curve: Curves.fastLinearToSlowEaseIn)));
     }
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     controller2 =
-        AnimationController(vsync: this, duration: Duration(seconds: 4));
-    animae = Tween<Offset>(begin: Offset(-12.5, 0), end: Offset(0, 0)).animate(
-        CurvedAnimation(
-            parent: controller!, curve: Curves.fastLinearToSlowEaseIn));
-    animae2 = Tween<Offset>(begin: Offset(-18.5, 0), end: Offset(0, 0)).animate(
-        CurvedAnimation(
-            parent: controller2!, curve: Curves.fastLinearToSlowEaseIn));
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    animae =
+        Tween<Offset>(begin: const Offset(-12.5, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+                parent: controller!, curve: Curves.fastLinearToSlowEaseIn));
+    animae2 =
+        Tween<Offset>(begin: const Offset(-18.5, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+                parent: controller2!, curve: Curves.fastLinearToSlowEaseIn));
 
     // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
 
@@ -95,7 +97,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
     return ResponsiveBuilder(builder: (ctx, sizeInfo) {
       final double titleSize = sizeInfo.isMobile ? 33.33 : 40;
       return VisibilityDetector(
-        key: ValueKey('BlogScreenKey'),
+        key: const ValueKey('BlogScreenKey'),
         onVisibilityChanged: (vi) {
           if (vi.visibleFraction * 100 > 40 && manage.isFrist) {
             for (var i = 0; i < 4; i++) {
@@ -114,43 +116,43 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
             minHeight: sizeInfo.screenSize.height - kToolbarHeight,
             minWidth: double.infinity,
           ),
-          key: ValueKey('ar'),
+          key: const ValueKey('ar'),
           // height: widget.height!,
           // width: MediaQuery.of(context).size.width,
           child: Column(
-            key: ValueKey('as'),
+            key: const ValueKey('as'),
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SlideTransition(
-                key: ValueKey('at'),
+                key: const ValueKey('at'),
                 position: animae!,
                 child: Container(
-                  key: ValueKey('au'),
+                  key: const ValueKey('au'),
                   padding: EdgeInsets.only(top: 4.9.h, bottom: 10),
                   child: Text(
                     'BLOG',
-                    key: ValueKey('av'),
+                    key: const ValueKey('av'),
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: titleSize,
-                        color: Color(0xff444649)),
+                        color: const Color(0xff444649)),
                   ),
                 ),
               ),
               SlideTransition(
-                key: ValueKey('aw'),
+                key: const ValueKey('aw'),
                 position: animae2!,
                 child: Container(
-                  key: ValueKey('ax'),
+                  key: const ValueKey('ax'),
                   width: 70,
                   height: 4,
-                  color: Color(0xff45474a),
+                  color: const Color(0xff45474a),
                 ),
               ),
               SizedBox(
                 height: sizeInfo.isMobile ? 2.h : 7.9.h,
-                key: ValueKey('ay'),
+                key: const ValueKey('ay'),
               ),
               // FittedBox(
               //   key: ValueKey('az'),
@@ -160,13 +162,13 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                 padding: EdgeInsets.symmetric(
                     horizontal: sizeInfo.isMobile ? 20 : 70, vertical: 70),
                 child: Wrap(
-                  key: ValueKey('aaa'),
+                  key: const ValueKey('aaa'),
                   alignment: WrapAlignment.center,
                   spacing: 2.4.h,
                   runSpacing: 2.4.h,
                   children: [
                     BlogTile(
-                      key: ValueKey('aab'),
+                      key: const ValueKey('aab'),
                       controllers: controllers,
                       animations: animations,
                       date: 'APRIL 29, 2021',
@@ -179,7 +181,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                       index: 0,
                     ),
                     BlogTile(
-                      key: ValueKey('aac'),
+                      key: const ValueKey('aac'),
                       controllers: controllers,
                       animations: animations,
                       date: 'MARCH 19, 2020',
@@ -192,7 +194,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                       index: 1,
                     ),
                     BlogTile(
-                      key: ValueKey('aad'),
+                      key: const ValueKey('aad'),
                       controllers: controllers,
                       animations: animations,
                       date: 'March 09, 2020',
@@ -205,7 +207,7 @@ class _BlogScreenState extends State<BlogScreen> with TickerProviderStateMixin {
                       index: 2,
                     ),
                     BlogTile(
-                      key: ValueKey('aae'),
+                      key: const ValueKey('aae'),
                       controllers: controllers,
                       animations: animations,
                       date: 'FEBRUARY 23, 2021',

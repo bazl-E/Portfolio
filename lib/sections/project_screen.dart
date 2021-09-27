@@ -13,7 +13,7 @@ import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ProjectScreen extends StatefulWidget {
-  ProjectScreen({Key? key, this.height}) : super(key: key);
+  const ProjectScreen({Key? key, this.height}) : super(key: key);
   final double? height;
 
   @override
@@ -88,7 +88,7 @@ class _ProjectScreenState extends State<ProjectScreen>
           // Size(390, 300)
           ;
     }
-    return Size(0, 0);
+    return const Size(0, 0);
   }
 
   // void playAnimations() {
@@ -102,35 +102,38 @@ class _ProjectScreenState extends State<ProjectScreen>
     super.initState();
     for (var i = 0; i < 9; i++) {
       controllers.add(AnimationController(
-          vsync: this, duration: Duration(milliseconds: 250)));
-      topAnimations.add(Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0))
-          .animate(CurvedAnimation(
-              parent: controllers[i], curve: Curves.fastOutSlowIn)));
-      bottomAnimations.add(
-          Tween<Offset>(begin: Offset(0, -1), end: Offset(0, 0)).animate(
-              CurvedAnimation(
+          vsync: this, duration: const Duration(milliseconds: 250)));
+      topAnimations.add(
+          Tween<Offset>(begin: const Offset(0, 1), end: const Offset(0, 0))
+              .animate(CurvedAnimation(
                   parent: controllers[i], curve: Curves.fastOutSlowIn)));
-      slideAnimationControllers.add(
-          AnimationController(vsync: this, duration: Duration(seconds: 2)));
+      bottomAnimations.add(
+          Tween<Offset>(begin: const Offset(0, -1), end: const Offset(0, 0))
+              .animate(CurvedAnimation(
+                  parent: controllers[i], curve: Curves.fastOutSlowIn)));
+      slideAnimationControllers.add(AnimationController(
+          vsync: this, duration: const Duration(seconds: 2)));
 
       slideAnimations.add(Tween<Offset>(
-              begin: Offset(0, (i.toDouble() + 1) / 5), end: Offset(0, 0))
+              begin: Offset(0, (i.toDouble() + 1) / 5), end: const Offset(0, 0))
           .animate(CurvedAnimation(
               parent: slideAnimationControllers[i],
               curve: Curves.easeInOutQuint)));
     }
 
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _controller2 =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
-    _slideAnimation = Tween<Offset>(begin: Offset(30, 0), end: Offset(0, 0))
+    _slideAnimation = Tween<Offset>(
+            begin: const Offset(30, 0), end: const Offset(0, 0))
         .animate(
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
-    _slideAnimation2 = Tween<Offset>(begin: Offset(30, 0), end: Offset(0, 0))
-        .animate(CurvedAnimation(
-            parent: _controller2!, curve: Curves.fastOutSlowIn));
+    _slideAnimation2 =
+        Tween<Offset>(begin: const Offset(30, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+                parent: _controller2!, curve: Curves.fastOutSlowIn));
 
     // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
 
@@ -180,61 +183,61 @@ class _ProjectScreenState extends State<ProjectScreen>
             sizeInfo.isMobile ? sizeInfo.screenSize.width : 390,
             sizeInfo.isMobile ? 243 : 300);
         return Container(
-          key: ValueKey('aaah'),
-          color: Color(0xfff5f5f5),
+          key: const ValueKey('aaah'),
+          color: const Color(0xfff5f5f5),
           width: MediaQuery.of(context).size.width,
           child: Column(
-            key: ValueKey('aaai'),
+            key: const ValueKey('aaai'),
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                key: ValueKey('aaaj'),
-                padding: EdgeInsets.only(top: 50, bottom: 10),
+                key: const ValueKey('aaaj'),
+                padding: const EdgeInsets.only(top: 50, bottom: 10),
                 child: SlideTransition(
                   position: _slideAnimation!,
                   child: Text(
                     'PROJECTS',
-                    key: ValueKey('aaak'),
+                    key: const ValueKey('aaak'),
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: titleSize,
-                        color: Color(0xff444649)),
+                        color: const Color(0xff444649)),
                   ),
                 ),
               ),
               SlideTransition(
-                key: ValueKey('aaal'),
+                key: const ValueKey('aaal'),
                 position: _slideAnimation2!,
                 child: Container(
-                  key: ValueKey('aaam'),
+                  key: const ValueKey('aaam'),
                   width: 70,
                   height: 4,
-                  color: Color(0xff45474a),
+                  color: const Color(0xff45474a),
                 ),
               ),
               SizedBox(
-                key: ValueKey('aaan'),
+                key: const ValueKey('aaan'),
                 height: 3.97.h,
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
+                margin: const EdgeInsets.symmetric(horizontal: 40),
                 child: TitleSection(
                   manage: manage,
                   titles: titles,
-                  key: ValueKey('aaao'),
+                  key: const ValueKey('aaao'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
-                key: ValueKey('aaap'),
+                key: const ValueKey('aaap'),
                 padding: const EdgeInsets.all(20.0),
                 child: AnimatedContainer(
-                  key: ValueKey('aaaq'),
-                  duration: Duration(milliseconds: 600),
+                  key: const ValueKey('aaaq'),
+                  duration: const Duration(milliseconds: 600),
                   width: 80.9.w,
                   child: Wrap(
-                    key: ValueKey('aaar'),
+                    key: const ValueKey('aaar'),
                     alignment: WrapAlignment.center,
                     children: [
                       for (var i = 0; i < 9; i++)
@@ -259,16 +262,16 @@ class _ProjectScreenState extends State<ProjectScreen>
                             }
                           },
                           child: SlideTransition(
-                              key: ValueKey('aaat'),
+                              key: const ValueKey('aaat'),
                               position: slideAnimations[i],
                               child: AnimatedContainer(
-                                  key: ValueKey('aaau'),
-                                  duration: Duration(milliseconds: 500),
+                                  key: const ValueKey('aaau'),
+                                  duration: const Duration(milliseconds: 500),
                                   width: sizeGetter(i, projecttileSize).width,
                                   height: sizeGetter(i, projecttileSize).height,
                                   curve: Curves.fastOutSlowIn,
                                   child: ProjectTile(
-                                    key: ValueKey('aaav'),
+                                    key: const ValueKey('aaav'),
                                     i: i,
                                     images: images,
                                     subTiltles: subTiltles,
@@ -283,7 +286,7 @@ class _ProjectScreenState extends State<ProjectScreen>
                 ),
               ),
               SizedBox(
-                key: ValueKey('aaaw'),
+                key: const ValueKey('aaaw'),
                 height: 5.95.h,
               )
             ],

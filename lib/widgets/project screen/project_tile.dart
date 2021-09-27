@@ -24,23 +24,23 @@ class ProjectTile extends StatelessWidget {
         barrierColor: Colors.black.withOpacity(0.5),
         transitionBuilder: (context, a1, a2, widget) {
           return Transform.scale(
-            key: ValueKey('aaaaaaaaax'),
+            key: const ValueKey('aaaaaaaaax'),
             scale: a1.value,
             child: Opacity(
-                key: ValueKey('aaaaaaaaay'),
+                key: const ValueKey('aaaaaaaaay'),
                 opacity: a1.value,
                 child: ProjectDetails(
-                  key: ValueKey('aaaaaaaaaz'),
+                  key: const ValueKey('aaaaaaaaaz'),
                 )),
           );
         },
-        transitionDuration: Duration(milliseconds: 200),
+        transitionDuration: const Duration(milliseconds: 200),
         barrierDismissible: true,
         barrierLabel: '',
         context: context,
         pageBuilder: (context, animation1, animation2) {
           return Container(
-            key: ValueKey('aaaaaaaaaaa'),
+            key: const ValueKey('aaaaaaaaaaa'),
           );
         });
   }
@@ -49,62 +49,62 @@ class ProjectTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final manage = Provider.of<ProjectcreenManager>(context);
     return Stack(
-      key: ValueKey('aaaaaaaaaab'),
+      key: const ValueKey('aaaaaaaaaab'),
       children: [
-        Container(
-          key: ValueKey('aaaaaaaaaac'),
+        SizedBox(
+          key: const ValueKey('aaaaaaaaaac'),
           width: 390,
           height: 300,
           child: Image.asset(
             images[i],
-            key: ValueKey('aaaaaaaaaad'),
+            key: const ValueKey('aaaaaaaaaad'),
             fit: BoxFit.cover,
           ),
         ),
         AnimatedOpacity(
-          key: ValueKey('aaaaaaaaaae'),
+          key: const ValueKey('aaaaaaaaaae'),
           opacity: (manage.isHovered && (i == manage.hoveredIndex)) ? 1 : 0,
-          duration: Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 100),
           child: AnimatedContainer(
-            key: ValueKey('aaaaaaaaaaf'),
-            duration: Duration(milliseconds: 500),
+            key: const ValueKey('aaaaaaaaaaf'),
+            duration: const Duration(milliseconds: 500),
             width: 390,
             height: 300,
             child: Column(
-              key: ValueKey('aaaaaaaaaag'),
+              key: const ValueKey('aaaaaaaaaag'),
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SlideTransition(
-                  key: ValueKey('aaaaaaaaaah'),
+                  key: const ValueKey('aaaaaaaaaah'),
                   position: bottomAnimations[i],
                   child: Column(
-                    key: ValueKey('aaaaaaaaaai'),
+                    key: const ValueKey('aaaaaaaaaai'),
                     children: [
                       Text(
                         subTiltles.keys.toList()[i],
-                        key: ValueKey('aaaaaaaaaaj'),
+                        key: const ValueKey('aaaaaaaaaaj'),
                         style: GoogleFonts.raleway(
                           fontWeight: FontWeight.bold,
                           fontSize: 21.3,
-                          color: Color(0xff1b242f),
+                          color: const Color(0xff1b242f),
                         ),
                       ),
                       Text(
                         subTiltles.values.toList()[i],
-                        key: ValueKey('aaaaaaaaaak'),
+                        key: const ValueKey('aaaaaaaaaak'),
                         style: GoogleFonts.raleway(
                           fontSize: 16,
-                          color: Color(0xffe31b6d),
+                          color: const Color(0xffe31b6d),
                         ),
                       ),
                     ],
                   ),
                 ),
                 SlideTransition(
-                  key: ValueKey('aaaaaaaaaal'),
+                  key: const ValueKey('aaaaaaaaaal'),
                   position: topAnimations[i],
                   child: InkWell(
-                    key: ValueKey('aaaaaaaaaam'),
+                    key: const ValueKey('aaaaaaaaaam'),
                     onTap: () {
                       showcustomDialog(context);
                     },
@@ -116,28 +116,28 @@ class ProjectTile extends StatelessWidget {
                       }
                     },
                     child: AnimatedContainer(
-                      key: ValueKey('aaaaaaaaaan'),
-                      duration: Duration(milliseconds: 200),
+                      key: const ValueKey('aaaaaaaaaan'),
+                      duration: const Duration(milliseconds: 200),
                       width: 170,
                       decoration: BoxDecoration(
                           color:
                               (manage.buttonHovered && manage.hoveredIndex == i)
-                                  ? Color(0xffe31c6e)
+                                  ? const Color(0xffe31c6e)
                                   : null,
                           border: Border.all(color: Colors.pink, width: 2)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 10),
                       child: Center(
-                        key: ValueKey('aaaaaaaaaao'),
+                        key: const ValueKey('aaaaaaaaaao'),
                         child: Text(
                           'LEARN MORE',
-                          key: ValueKey('aaaaaaaaaap'),
+                          key: const ValueKey('aaaaaaaaaap'),
                           style: GoogleFonts.raleway(
                             fontSize: 17.3,
                             color: (manage.buttonHovered &&
                                     manage.hoveredIndex == i)
                                 ? Colors.white
-                                : Color(0xff1b242f),
+                                : const Color(0xff1b242f),
                           ),
                         ),
                       ),
@@ -146,7 +146,7 @@ class ProjectTile extends StatelessWidget {
                 )
               ],
             ),
-            color: Color(0xfff5f5f5),
+            color: const Color(0xfff5f5f5),
           ),
         ),
       ],

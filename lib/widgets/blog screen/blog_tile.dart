@@ -6,7 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BlogTile extends StatelessWidget {
-  BlogTile({
+  const BlogTile({
     Key? key,
     required this.image,
     required this.title,
@@ -45,7 +45,7 @@ class BlogTile extends StatelessWidget {
       final double descrptionSize = sizeInfo.isMobile ? 12 : 15;
 
       return InkWell(
-        key: ValueKey('aaaaaad'),
+        key: const ValueKey('aaaaaad'),
         onTap: () {
           launchURL(url);
         },
@@ -59,92 +59,92 @@ class BlogTile extends StatelessWidget {
           }
         },
         child: FadeTransition(
-          key: ValueKey('aaaaaae'),
+          key: const ValueKey('aaaaaae'),
           opacity: animations![index!],
 
           // duration: Duration(seconds: 1 + (index! + 1)),
           child: Container(
             // color: Colors.amber,
-            key: ValueKey('aaaaaaf'),
+            key: const ValueKey('aaaaaaf'),
             child: AnimatedOpacity(
-              key: ValueKey('aaaaaag'),
+              key: const ValueKey('aaaaaag'),
               opacity: manage.hoveredIndex == null
                   ? 1
                   : manage.isHovered && manage.hoveredIndex == index
                       ? 1
                       : .4,
-              duration: Duration(milliseconds: 450),
+              duration: const Duration(milliseconds: 450),
               child: Container(
-                key: ValueKey('aaaaaah'),
+                key: const ValueKey('aaaaaah'),
                 width: tileWidth,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
-                  key: ValueKey('aaaaaai'),
+                  key: const ValueKey('aaaaaai'),
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      key: ValueKey('aaaaaaj'),
+                    SizedBox(
+                      key: const ValueKey('aaaaaaj'),
                       height: imagesize.height,
                       width: imagesize.width,
                       child: Image.asset(
                         image!,
-                        key: ValueKey('aaaaaak'),
+                        key: const ValueKey('aaaaaak'),
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                       key: ValueKey('aaaaaal'),
                     ),
                     AnimatedDefaultTextStyle(
-                        key: ValueKey('aaaaaam'),
+                        key: const ValueKey('aaaaaam'),
                         child: Text(
                           title!,
-                          key: ValueKey('aaaaaan'),
+                          key: const ValueKey('aaaaaan'),
                         ),
                         style: GoogleFonts.raleway(
                           fontWeight: FontWeight.bold,
                           fontSize: titlesize,
                           color:
                               manage.isHovered && manage.hoveredIndex == index
-                                  ? Color(0xff04c2c9)
-                                  : Color(0xff626262),
+                                  ? const Color(0xff04c2c9)
+                                  : const Color(0xff626262),
                         ),
-                        duration: Duration(milliseconds: 450)),
-                    SizedBox(
+                        duration: const Duration(milliseconds: 450)),
+                    const SizedBox(
                       height: 10,
                       key: ValueKey('aaaaaao'),
                     ),
                     Text(
                       date!,
-                      key: ValueKey('aaaaaap'),
+                      key: const ValueKey('aaaaaap'),
                       style: GoogleFonts.raleway(
-                          fontSize: dateSize, color: Color(0xffa1a1a1)),
+                          fontSize: dateSize, color: const Color(0xffa1a1a1)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                       key: ValueKey('aaaaaaq'),
                     ),
                     Container(
-                      key: ValueKey('aaaaaar'),
+                      key: const ValueKey('aaaaaar'),
                       width: 70,
                       height: 2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Color(0xff05c2c9),
+                        color: const Color(0xff05c2c9),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                       key: ValueKey('aaaaaas'),
                     ),
                     Text(
                       discrption!,
-                      key: ValueKey('aaaaaat'),
+                      key: const ValueKey('aaaaaat'),
                       style: GoogleFonts.raleway(
                         fontSize: descrptionSize,
-                        color: Color(0xff7a7a7a),
+                        color: const Color(0xff7a7a7a),
                       ),
                     )
                   ],

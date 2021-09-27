@@ -3,6 +3,7 @@ import 'package:basil_personal_web/sections/about_screen.dart';
 import 'package:basil_personal_web/sections/blog_scree.dart';
 import 'package:basil_personal_web/sections/contact_screen.dart';
 import 'package:basil_personal_web/sections/project_screen.dart';
+// import 'package:basil_personal_web/widgets/body_controll/build-sliver_appBar.dart';
 import 'package:basil_personal_web/widgets/body_controll/build_sliver_appBar.dart';
 import 'package:basil_personal_web/widgets/body_controll/wrap_scroll_tag.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,9 @@ import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 class BodyController extends StatefulWidget {
+  const BodyController({
+    Key? key,
+  }) : super(key: key);
   @override
   _BodyControllerState createState() => _BodyControllerState();
 }
@@ -21,7 +25,7 @@ class _BodyControllerState extends State<BodyController>
 
   final scrollDirection = Axis.vertical;
 
-  final dataKey = new GlobalKey();
+  final dataKey = GlobalKey();
   final scfKey = GlobalKey<ScaffoldState>();
 
   final List<String> titles = [
@@ -53,16 +57,15 @@ class _BodyControllerState extends State<BodyController>
       final falmanage =
           Provider.of<BodyControllManager>(context, listen: false);
       final manage = Provider.of<BodyControllManager>(context, listen: false);
-      _autoScrollController!
-        ..addListener(
-          () => _isAppBarExpanded
-              ? manage.isExpaned != false
-                  ? falmanage.setisisExpaned(false)
-                  : {}
-              : manage.isExpaned != true
-                  ? falmanage.setisisExpaned(true)
-                  : {},
-        );
+      _autoScrollController!.addListener(
+        () => _isAppBarExpanded
+            ? manage.isExpaned != false
+                ? falmanage.setisisExpaned(false)
+                : {}
+            : manage.isExpaned != true
+                ? falmanage.setisisExpaned(true)
+                : {},
+      );
     });
 
     super.initState();
@@ -71,7 +74,7 @@ class _BodyControllerState extends State<BodyController>
   Future _scrollToIndex(int index) async {
     await _autoScrollController!.scrollToIndex(index,
         preferPosition: AutoScrollPosition.begin,
-        duration: Duration(milliseconds: 500));
+        duration: const Duration(milliseconds: 500));
   }
 
   // void showDrawer() {
@@ -91,7 +94,7 @@ class _BodyControllerState extends State<BodyController>
         slivers: <Widget>[
           BuildSliverAppBAr(
             // drawerKey: scfKey,
-            key: ValueKey('b'),
+            key: const ValueKey('b'),
             goToHome: goToHome,
             scrollToIndex: _scrollToIndex,
             titles: titles,
@@ -99,11 +102,11 @@ class _BodyControllerState extends State<BodyController>
             cntxt: context,
           ),
           SliverList(
-            key: ValueKey('c'),
+            key: const ValueKey('c'),
             delegate: SliverChildListDelegate(
               [
                 WrapScrollTag(
-                    key: ValueKey('d'),
+                    key: const ValueKey('d'),
                     autoScrollController: _autoScrollController,
                     index: 1,
                     child: AboutScreen(
@@ -111,27 +114,27 @@ class _BodyControllerState extends State<BodyController>
                       scroll: _scrollToIndex,
                     )),
                 WrapScrollTag(
-                    key: ValueKey('e'),
+                    key: const ValueKey('e'),
                     autoScrollController: _autoScrollController,
                     index: 2,
                     child: ProjectScreen(
-                      key: ValueKey('f'),
+                      key: const ValueKey('f'),
                       height: size - kToolbarHeight,
                     )),
                 WrapScrollTag(
-                    key: ValueKey('g'),
+                    key: const ValueKey('g'),
                     autoScrollController: _autoScrollController,
                     index: 3,
                     child: BlogScreen(
-                      key: ValueKey('h'),
+                      key: const ValueKey('h'),
                       height: size - kToolbarHeight,
                     )),
                 WrapScrollTag(
-                  key: ValueKey('i'),
+                  key: const ValueKey('i'),
                   autoScrollController: _autoScrollController,
                   index: 4,
                   child: ContactScreen(
-                    key: ValueKey('j'),
+                    key: const ValueKey('j'),
                     height: size - kToolbarHeight,
                     gotoHome: goToHome,
                   ),

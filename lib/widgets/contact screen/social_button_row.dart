@@ -32,39 +32,39 @@ class SocialButtonRow extends StatelessWidget {
         //     flex: 3,
         //     child:
         Container(
-      key: ValueKey('aaaaaaaq'),
+      key: const ValueKey('aaaaaaaq'),
       // height: double.infinity,
       child: Stack(
-        key: ValueKey('aaaaaaar'),
+        key: const ValueKey('aaaaaaar'),
         clipBehavior: Clip.none,
         children: [
           Column(
-            key: ValueKey('aaaaaaas'),
+            key: const ValueKey('aaaaaaas'),
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
+                margin: const EdgeInsets.symmetric(horizontal: 40),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Row(
-                    key: ValueKey('aaaaaaat'),
+                    key: const ValueKey('aaaaaaat'),
                     // mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SocialButton(
-                          key: ValueKey('aaaaaaau'),
+                          key: const ValueKey('aaaaaaau'),
                           animations2: animations2,
                           animations: animations,
                           controllers: controllers,
                           image: 'assets/11.png',
                           index: 0,
                           url: 'https://github.com/bazl-E'),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                         key: ValueKey('aaaaaaav'),
                       ),
                       SocialButton(
-                          key: ValueKey('aaaaaaaw'),
+                          key: const ValueKey('aaaaaaaw'),
                           animations2: animations2,
                           animations: animations,
                           controllers: controllers,
@@ -72,12 +72,12 @@ class SocialButtonRow extends StatelessWidget {
                           index: 1,
                           url:
                               'https://www.linkedin.com/mwlite/in/muhammed-basil-0a2b691b2'),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                         key: ValueKey('aaaaaaax'),
                       ),
                       SocialButton(
-                          key: ValueKey('aaaaaaay'),
+                          key: const ValueKey('aaaaaaay'),
                           animations2: animations2,
                           animations: animations,
                           controllers: controllers,
@@ -85,24 +85,24 @@ class SocialButtonRow extends StatelessWidget {
                           index: 2,
                           url:
                               'https://www.facebook.com/profile.php?id=100005176755893'),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                         key: ValueKey('aaaaaaaz'),
                       ),
                       SocialButton(
-                          key: ValueKey('aaaaaaaaa'),
+                          key: const ValueKey('aaaaaaaaa'),
                           animations2: animations2,
                           animations: animations,
                           controllers: controllers,
                           image: 'assets/14.png',
                           index: 3,
                           url: 'https://twitter.com/MhdBasil_E'),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                         key: ValueKey('aaaaaaaab'),
                       ),
                       SocialButton(
-                          key: ValueKey('aaaaaaaac'),
+                          key: const ValueKey('aaaaaaaac'),
                           animations2: animations2,
                           animations: animations,
                           controllers: controllers,
@@ -114,22 +114,22 @@ class SocialButtonRow extends StatelessWidget {
                 ),
               ),
               Row(
-                key: ValueKey('aaaaaaaad'),
+                key: const ValueKey('aaaaaaaad'),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Muhammed Basil E',
-                    key: ValueKey('aaaaaaaae'),
+                    key: const ValueKey('aaaaaaaae'),
                     style: GoogleFonts.raleway(
-                        color: Color(0xff515a66), fontSize: 14),
+                        color: const Color(0xff515a66), fontSize: 14),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 3,
                     key: ValueKey('aaaaaaaaf'),
                   ),
                   Text(
                     '©2021',
-                    key: ValueKey('aaaaaaaag'),
+                    key: const ValueKey('aaaaaaaag'),
                     style:
                         GoogleFonts.raleway(color: Colors.pink, fontSize: 14),
                   ),
@@ -141,11 +141,11 @@ class SocialButtonRow extends StatelessWidget {
             falmanage: falmanage,
             widget: widget,
             manage: manage,
-            key: ValueKey('aaaaaaaah'),
+            key: const ValueKey('aaaaaaaah'),
           ),
         ],
       ),
-      color: Color(0xff1b242f),
+      color: const Color(0xff1b242f),
       // )
     );
   }

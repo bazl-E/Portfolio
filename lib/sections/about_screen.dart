@@ -13,7 +13,7 @@ import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AboutScreen extends StatefulWidget {
-  AboutScreen({Key? key, this.height, this.scroll}) : super(key: key);
+  const AboutScreen({Key? key, this.height, this.scroll}) : super(key: key);
 
   final double? height;
   final Future Function(int index)? scroll;
@@ -48,30 +48,33 @@ class _AboutScreenState extends State<AboutScreen>
   void initState() {
     super.initState();
     _controller3 =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _opacityAnimation =
         Tween<double>(begin: 0.0, end: 1).animate(CurvedAnimation(
       parent: _controller3!,
       curve: Curves.easeInOut,
     ));
-    _controller4 =
-        AnimationController(vsync: this, duration: Duration(microseconds: 4));
+    _controller4 = AnimationController(
+        vsync: this, duration: const Duration(microseconds: 4));
     _transformAnimation = Tween(begin: 1, end: 0.0).animate(CurvedAnimation(
       parent: _controller4!,
       curve: Curves.easeInOut,
     ));
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _slideAnimation = Tween<Offset>(begin: Offset(-10.5, 0), end: Offset(0, 0))
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _slideAnimation = Tween<Offset>(
+            begin: const Offset(-10.5, 0), end: const Offset(0, 0))
         .animate(
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
     _controller2 =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _slideAnimation2 = Tween<Offset>(begin: Offset(-10.5, 0), end: Offset(0, 0))
-        .animate(CurvedAnimation(
-            parent: _controller2!, curve: Curves.fastOutSlowIn));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _slideAnimation2 =
+        Tween<Offset>(begin: const Offset(-10.5, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+                parent: _controller2!, curve: Curves.fastOutSlowIn));
 
-    _slideAnimation3 = Tween<Offset>(begin: Offset(30, 0), end: Offset(0, 0))
+    _slideAnimation3 = Tween<Offset>(
+            begin: const Offset(30, 0), end: const Offset(0, 0))
         .animate(
             CurvedAnimation(parent: _controller!, curve: Curves.fastOutSlowIn));
 
@@ -113,7 +116,7 @@ class _AboutScreenState extends State<AboutScreen>
     return ResponsiveBuilder(builder: (ctx, sizeInfo) {
       final double titleSize = sizeInfo.isMobile ? 34 : 40;
       return VisibilityDetector(
-        key: ValueKey('AboutScreenKey'),
+        key: const ValueKey('AboutScreenKey'),
         onVisibilityChanged: (vi) {
           if (vi.visibleFraction * 100 > 40 && manage.isFrist) {
             _controller!.forward().whenComplete(() {
@@ -128,52 +131,52 @@ class _AboutScreenState extends State<AboutScreen>
                 );
           }
         },
-        child: Container(
-          key: ValueKey('l'),
+        child: SizedBox(
+          key: const ValueKey('l'),
           width: MediaQuery.of(context).size.width,
           child: Column(
-            key: ValueKey('m'),
+            key: const ValueKey('m'),
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                key: ValueKey('n'),
+                key: const ValueKey('n'),
                 padding: EdgeInsets.only(top: 4.46.h, bottom: 0.99.h),
                 child: SlideTransition(
-                  key: ValueKey('o'),
+                  key: const ValueKey('o'),
                   position: _slideAnimation!,
                   child: Text(
                     'ABOUT',
-                    key: ValueKey('p'),
+                    key: const ValueKey('p'),
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: titleSize,
-                        color: Color(0xff444649)),
+                        color: const Color(0xff444649)),
                   ),
                 ),
               ),
               SlideTransition(
-                key: ValueKey('q'),
+                key: const ValueKey('q'),
                 position: _slideAnimation2!,
                 child: Container(
-                  key: ValueKey('r'),
+                  key: const ValueKey('r'),
                   width: 71,
                   height: 0.39.h,
-                  color: Color(0xff45474a),
+                  color: const Color(0xff45474a),
                 ),
               ),
               SizedBox(height: 6.h),
               Container(
-                key: ValueKey('s'),
+                key: const ValueKey('s'),
                 child: Wrap(
-                  key: ValueKey('t'),
+                  key: const ValueKey('t'),
                   alignment: WrapAlignment.spaceAround,
                   spacing: 3.97.h,
                   runSpacing: 3.97.h,
                   crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
                     CustomTile(
-                      key: ValueKey('u'),
+                      key: const ValueKey('u'),
                       icon: Icons.speed,
                       title: 'Fast',
                       descrption:
@@ -182,7 +185,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
-                      key: ValueKey('v'),
+                      key: const ValueKey('v'),
                       icon: Icons.lightbulb_outline,
                       title: 'Intuitive',
                       descrption:
@@ -191,7 +194,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
-                      key: ValueKey('w'),
+                      key: const ValueKey('w'),
                       icon: Icons.devices_outlined,
                       title: 'Responsive',
                       descrption:
@@ -200,7 +203,7 @@ class _AboutScreenState extends State<AboutScreen>
                       transformAnimation: _transformAnimation,
                     ),
                     CustomTile(
-                      key: ValueKey('x'),
+                      key: const ValueKey('x'),
                       icon: Icons.dynamic_form,
                       title: 'Dynamic',
                       descrption:
@@ -213,79 +216,79 @@ class _AboutScreenState extends State<AboutScreen>
               ),
               SizedBox(
                 height: 3.97.h,
-                key: ValueKey('y'),
+                key: const ValueKey('y'),
               ),
               SlideTransition(
-                key: ValueKey('z'),
+                key: const ValueKey('z'),
                 position: _slideAnimation!,
                 child: Padding(
-                  key: ValueKey('aa'),
+                  key: const ValueKey('aa'),
                   padding: const EdgeInsets.all(20.0),
                   child: Wrap(
                     alignment: WrapAlignment.center,
-                    key: ValueKey('ab'),
+                    key: const ValueKey('ab'),
                     children: [
                       ProfileSection(
                         widget: widget,
-                        key: ValueKey('ac'),
+                        key: const ValueKey('ac'),
                       ),
                       SizedBox(
                         width: 1.875.w,
-                        key: ValueKey('ad'),
+                        key: const ValueKey('ad'),
                       ),
                       SlideTransition(
-                        key: ValueKey('ae'),
+                        key: const ValueKey('ae'),
                         position: _slideAnimation3!,
                         child: Column(
-                          key: ValueKey('af'),
+                          key: const ValueKey('af'),
                           children: [
                             PercentageTile(
-                                key: ValueKey('ag'),
+                                key: const ValueKey('ag'),
                                 title: 'Flutter',
                                 percent: 90,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('ah'),
+                                key: const ValueKey('ah'),
                                 title: 'Dart',
                                 percent: 90,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('ai'),
+                                key: const ValueKey('ai'),
                                 title: 'FireBase',
                                 percent: 80,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('aj'),
+                                key: const ValueKey('aj'),
                                 title: 'HTTP and REST',
                                 percent: 80,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('ak'),
+                                key: const ValueKey('ak'),
                                 title: 'Git and GitHub',
                                 percent: 75,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('al'),
+                                key: const ValueKey('al'),
                                 title: 'NoSQL databases',
                                 percent: 65,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('am'),
+                                key: const ValueKey('am'),
                                 title: 'Animation',
                                 percent: 70,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('an'),
+                                key: const ValueKey('an'),
                                 title: 'UI Design',
                                 percent: 50,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('ao'),
+                                key: const ValueKey('ao'),
                                 title: 'Photoshop',
                                 percent: 55,
                                 getWidth: getWidth),
                             PercentageTile(
-                                key: ValueKey('ap'),
+                                key: const ValueKey('ap'),
                                 title: 'Sketch',
                                 percent: 50,
                                 getWidth: getWidth),
@@ -298,7 +301,7 @@ class _AboutScreenState extends State<AboutScreen>
               ),
               SizedBox(
                 height: 5.w,
-                key: ValueKey('aq'),
+                key: const ValueKey('aq'),
               ),
             ],
           ),

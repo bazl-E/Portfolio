@@ -12,7 +12,7 @@ import 'package:basil_personal_web/widgets/welcome%20screen/development_statemen
 class WelcomePage extends StatefulWidget {
   static const routeName = '/welcome';
 
-  WelcomePage({Key? key, this.scrollTo}) : super(key: key);
+  const WelcomePage({Key? key, this.scrollTo}) : super(key: key);
 
   final Future Function(int i)? scrollTo;
 
@@ -40,8 +40,8 @@ class _WelcomePageState extends State<WelcomePage>
   void initState() {
     super.initState();
 
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 450));
     _videoCOntroller = VideoPlayerController.asset('assets/basil.mp4');
     _videoCOntroller!.initialize().then((value) {
       if (_videoCOntroller!.value.isInitialized) {
@@ -68,17 +68,17 @@ class _WelcomePageState extends State<WelcomePage>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      key: ValueKey('aaax'),
+      key: const ValueKey('aaax'),
       body: Stack(
-        key: ValueKey('aaay'),
+        key: const ValueKey('aaay'),
         children: [
           SizedBox.expand(
-            key: ValueKey('aaaz'),
+            key: const ValueKey('aaaz'),
             child: FittedBox(
-              key: ValueKey('aaaaa'),
+              key: const ValueKey('aaaaa'),
               fit: BoxFit.cover,
               child: SizedBox(
-                key: ValueKey('aaaab'),
+                key: const ValueKey('aaaab'),
                 width: _videoCOntroller!.value.size.width,
                 height: _videoCOntroller!.value.size.height,
                 child: VideoPlayer(
@@ -88,28 +88,28 @@ class _WelcomePageState extends State<WelcomePage>
             ),
           ),
           Container(
-            key: ValueKey('aaaac'),
+            key: const ValueKey('aaaac'),
             height: size.height,
             width: size.width,
             color: Colors.transparent.withOpacity(.7),
           ),
           Positioned(
-            key: ValueKey('aaaad'),
+            key: const ValueKey('aaaad'),
             height: size.height,
             width: size.width,
             child: Container(
-              key: ValueKey('aaaae'),
-              margin: EdgeInsets.all(30),
+              key: const ValueKey('aaaae'),
+              margin: const EdgeInsets.all(30),
               child: FittedBox(
-                key: ValueKey('aaaaf'),
+                key: const ValueKey('aaaaf'),
                 fit: BoxFit.scaleDown,
                 child: Column(
-                  key: ValueKey('aaaag'),
+                  key: const ValueKey('aaaag'),
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RichText(
-                        key: ValueKey('aaaah'),
+                        key: const ValueKey('aaaah'),
                         textAlign: TextAlign.center,
                         text: TextSpan(children: [
                           TextSpan(
@@ -124,7 +124,7 @@ class _WelcomePageState extends State<WelcomePage>
                           )
                         ])),
                     RichText(
-                      key: ValueKey('aaaai'),
+                      key: const ValueKey('aaaai'),
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         text: 'I\'m a full-stack flutter developer',
@@ -132,15 +132,15 @@ class _WelcomePageState extends State<WelcomePage>
                             fontSize: 45, color: Colors.white),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                       key: ValueKey('aaaaj'),
                     ),
                     Material(
-                      key: ValueKey('aaaak'),
+                      key: const ValueKey('aaaak'),
                       color: Colors.transparent,
                       child: InkWell(
-                        key: ValueKey('aaaal'),
+                        key: const ValueKey('aaaal'),
                         onTap: () async {
                           widget.scrollTo!(1);
                         },
@@ -154,39 +154,39 @@ class _WelcomePageState extends State<WelcomePage>
                           }
                         },
                         child: AnimatedContainer(
-                            key: ValueKey('aaaam'),
-                            duration: Duration(milliseconds: 300),
+                            key: const ValueKey('aaaam'),
+                            duration: const Duration(milliseconds: 300),
                             padding: EdgeInsets.symmetric(
                                 horizontal: isPlaying ? 22 : 15,
                                 vertical: isPlaying ? 17 : 10),
                             decoration: BoxDecoration(
                               color: isPlaying
-                                  ? Color(0xff04c2c9)
+                                  ? const Color(0xff04c2c9)
                                   : Colors.transparent,
                               border: Border.all(
                                 width: 3,
                                 color: isPlaying
-                                    ? Color(0xff04c2c9)
+                                    ? const Color(0xff04c2c9)
                                     : Colors.white,
                               ),
                             ),
                             child: Row(
-                              key: ValueKey('aaaan'),
+                              key: const ValueKey('aaaan'),
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   'View my work',
-                                  key: ValueKey('aaaao'),
+                                  key: const ValueKey('aaaao'),
                                   style: GoogleFonts.ubuntu(
                                       fontSize: 20, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                   key: ValueKey('aaaap'),
                                 ),
                                 AnimatedIcon(
-                                  key: ValueKey('aaaaq'),
+                                  key: const ValueKey('aaaaq'),
                                   icon: AnimatedIcons.view_list,
                                   progress: _animationController!,
                                   color: Colors.white,
@@ -200,7 +200,7 @@ class _WelcomePageState extends State<WelcomePage>
               ),
             ),
           ),
-          DevelopmentStatements(
+          const DevelopmentStatements(
             key: ValueKey('aaaar'),
           )
         ],

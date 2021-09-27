@@ -2,7 +2,6 @@ import 'package:basil_personal_web/providers/body_controll_manage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class CustomTitles extends StatelessWidget {
   const CustomTitles({
@@ -23,9 +22,8 @@ class CustomTitles extends StatelessWidget {
     final falamanage = Provider.of<BodyControllManager>(context, listen: false);
     final manage = Provider.of<BodyControllManager>(context);
     return InkWell(
-      key: ValueKey('aaaaaaag'),
+      key: const ValueKey('aaaaaaag'),
       onTap: () async {
-        print(i);
         if (i == 0) {
           await goToHome();
         } else {
@@ -42,16 +40,16 @@ class CustomTitles extends StatelessWidget {
         }
       },
       child: Container(
-          key: ValueKey('aaaaaaah'),
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          key: const ValueKey('aaaaaaah'),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           // width: 100,
-          height: 75,
+          height: 53,
           child: Center(
-            key: ValueKey('aaaaaaai'),
+            key: const ValueKey('aaaaaaai'),
             child: AnimatedDefaultTextStyle(
                 child: Text(
                   titles[i],
-                  key: ValueKey('aaaaaaaj'),
+                  key: const ValueKey('aaaaaaaj'),
                 ),
                 style: GoogleFonts.raleway(
                     color:
@@ -59,7 +57,7 @@ class CustomTitles extends StatelessWidget {
                             ? Colors.pink
                             : Colors.white,
                     fontSize: 16),
-                duration: Duration(milliseconds: 400)),
+                duration: const Duration(milliseconds: 400)),
           )),
     );
   }
