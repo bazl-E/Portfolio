@@ -74,20 +74,55 @@ flutter:
     - assets/basil.mp4
     - assets/hexa.png
     - assets/prof.png
-    - assets/1.jpg
-    - assets/2.jpg
-    - assets/3.jpg
-    - assets/4.jpg
+    - assets/1.png
+    - assets/2.png
+    - assets/3.png
+    - assets/4.png
     - assets/5.jpg
-    - assets/6.jpg
-    - assets/7.jpg
-    - assets/8.jpg
-    - assets/9.jpg
+    - assets/6.png
+    - assets/7.png
+    - assets/8.png
+    - assets/9.png
     - assets/11.png
     - assets/12.png
     - assets/13.png
     - assets/14.png
     - assets/15.png
+    - assets/billing/a.png
+    - assets/billing/b.png
+    - assets/billing/c.png
+    - assets/billing/d.png
+    - assets/billing/e.png
+    - assets/billing/f.png
+    - assets/chat/a.png
+    - assets/chat/b.png
+    - assets/chat/c.png   
+    - assets/expense/a.png
+    - assets/expense/b.png
+    - assets/expense/c.png
+    - assets/expense/d.png    
+    - assets/link/a.png
+    - assets/link/b.png
+    - assets/link/c.png
+    - assets/link/d.png
+    - assets/link/e.png 
+    - assets/notification/a.png
+    - assets/notification/b.png
+    - assets/notification/c.png   
+    - assets/portfolio/a.jpg
+    - assets/portfolio/b.png
+    - assets/portfolio/c.png
+    - assets/portfolio/d.png
+    - assets/portfolio/e.png
+    - assets/portfolio/f.png    
+    - assets/shoppy/a.png
+    - assets/shoppy/b.png
+    - assets/shoppy/c.png
+    - assets/shoppy/d.png  
+    - assets/todo/a.png
+    - assets/todo/b.png
+    - assets/todo/c.png
+    - assets/todo/d.png            
     - assets/blog-1.jpg
     - assets/blog-2.jpg
     - assets/blog-3.jpg

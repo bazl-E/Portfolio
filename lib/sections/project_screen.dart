@@ -42,15 +42,15 @@ class _ProjectScreenState extends State<ProjectScreen>
   List<Animation<double>> sizeAnimations = [];
 
   final List<String> images = [
-    'assets/1.jpg',
-    'assets/2.jpg',
-    'assets/3.jpg',
-    'assets/4.jpg',
+    'assets/1.png',
+    'assets/2.png',
+    'assets/3.png',
+    'assets/4.png',
     'assets/5.jpg',
-    'assets/6.jpg',
-    'assets/7.jpg',
-    'assets/8.jpg',
-    'assets/9.jpg',
+    'assets/6.png',
+    'assets/7.png',
+    'assets/8.png',
+    'assets/9.png',
   ];
 
   final List titles = [
@@ -60,15 +60,15 @@ class _ProjectScreenState extends State<ProjectScreen>
     'FLUTTER WEB',
   ];
   final Map<String, String> subTiltles = {
-    'ChowNow Ordering': 'React JS / Python',
-    'ChowNow Discover': 'React JS / Python',
-    'New Relic': 'React / Ruby on Rails / AEM',
-    'Roambi': 'JavaScript',
-    'Walker Tracker': 'JS / Ruby on Rails',
-    'MY STAND': 'JS / Node.js on Sails',
-    'NEVER SURRENDER': 'JavaScript',
-    'Powur': 'Angular / Ruby on Rails',
-    'The Mall': 'React.js / Node',
+    'Ebook-billing': 'Flutter / Firebase',
+    'Connect': 'Flutter / Firebase',
+    'Billing': 'Flutter / Firebase',
+    'Shoppy': 'Flutter',
+    'Portfolio': 'Flutter/Web',
+    'Personal Expenses': 'Flutter',
+    'ToDo': 'Flutter',
+    'LinkTree': 'Flutter/Web',
+    'Learn Local Notification': 'Flutter/Dart',
   };
 
   Size sizeGetter(int i, Size size) {
@@ -77,7 +77,7 @@ class _ProjectScreenState extends State<ProjectScreen>
       return size
           //  Size(390, 300)
           ;
-    } else if ((listLenght == 2 && i == 4) || (listLenght == 2 && i == 7)) {
+    } else if ((listLenght == 4 && i == 4) || (listLenght == 4 && i == 7)) {
       return size
           // Size(390, 300)
           ;
@@ -85,7 +85,7 @@ class _ProjectScreenState extends State<ProjectScreen>
       return size
           // Size(390, 300)
           ;
-    } else if (listLenght == 4 && (i == 3 || i == 5 || i == 6 || i == 8)) {
+    } else if (listLenght == 2 && (i == 3 || i == 5 || i == 6 || i == 8)) {
       return size
           // Size(390, 300)
           ;
