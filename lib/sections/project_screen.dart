@@ -236,7 +236,8 @@ class _ProjectScreenState extends State<ProjectScreen>
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
                   key: const ValueKey('aaaq'),
-                  width: min(80.9.w, 1200),
+                  width: min(100.w > 1400 ? 80.9.w : 90.w, 1200),
+                  // width: 100.w > 1400 ? 80.9.w : 90.w,
                   child: Wrap(
                     key: const ValueKey('aaar'),
                     alignment: WrapAlignment.center,
