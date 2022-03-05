@@ -3,9 +3,10 @@ import 'package:basil_personal_web/widgets/project%20screen/project_detals.dart'
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectTile extends StatelessWidget {
-  const ProjectTile({
+  ProjectTile({
     Key? key,
     required this.i,
     required this.images,
@@ -18,6 +19,97 @@ class ProjectTile extends StatelessWidget {
   final Map<String, String> subTiltles;
   final List<Animation<Offset>> topAnimations;
   final List<Animation<Offset>> bottomAnimations;
+  final List<List<String>> desImages = [
+    [
+      'assets/billing/a.png',
+      'assets/billing/b.png',
+      'assets/billing/c.png',
+      'assets/billing/d.png',
+      'assets/billing/e.png',
+      'assets/billing/f.png',
+    ],
+    [
+      'assets/chat/a.png',
+      'assets/chat/b.png',
+      'assets/chat/c.png',
+    ],
+    [
+      'assets/billing/a.png',
+      'assets/billing/b.png',
+      'assets/billing/c.png',
+      'assets/billing/d.png',
+      'assets/billing/e.png',
+      'assets/billing/f.png',
+    ],
+    [
+      'assets/shoppy/a.png',
+      'assets/shoppy/b.png',
+      'assets/shoppy/c.png',
+      'assets/shoppy/d.png',
+    ],
+    [
+      'assets/portfolio/b.png',
+      'assets/portfolio/c.png',
+      'assets/portfolio/d.png',
+      'assets/portfolio/e.png',
+      'assets/portfolio/f.png',
+    ],
+    [
+      'assets/expense/a.png',
+      'assets/expense/b.png',
+      'assets/expense/c.png',
+      'assets/expense/d.png',
+    ],
+    [
+      'assets/todo/a.png',
+      'assets/todo/b.png',
+      'assets/todo/c.png',
+      'assets/todo/d.png',
+    ],
+    [
+      'assets/link/a.png',
+      'assets/link/b.png',
+      'assets/link/c.png',
+      'assets/link/d.png',
+      'assets/link/e.png',
+    ],
+    [
+      'assets/notification/a.png',
+      'assets/notification/b.png',
+      'assets/notification/c.png',
+    ],
+  ];
+  final List<String> urls = [
+    'https://github.com/bazl-E/commercial-billing-app',
+    'https://github.com/bazl-E/Chat-app-firebase-',
+    'https://github.com/bazl-E/billing-app-with-out-authentication',
+    'https://github.com/bazl-E/ShoppyShop',
+    'https://github.com/bazl-E/Portfolio',
+    'https://github.com/bazl-E/Expenses_Tracker',
+    'https://github.com/bazl-E/to_do-with-local-notification',
+    'https://github.com/bazl-E/Link-Tree',
+    'https://github.com/bazl-E/Learn_local_Notification',
+  ];
+  final Map<String, String> details = {
+    'Manage orders':
+        'Ebook-billing is an app that helps to manage all types of orders in a single app. also your data are stored in a cloud server .access and secure your data from anywhere using your user id and password',
+    'chatting platform':
+        'Connect is a simple application to stay connected with your friends. just join the chat by creating an account with a user id and profile picture every message contains user name and profile picture',
+    'Made managing orders simple':
+        'Billing is a simple app exactly the same as manage orders ,but this time you don\'t have to log in to access the application,so data are less secure',
+    'Do shopping while you are anywhere':
+        'Shoppy is geat looking application that helps to sell products, the unique style makes the application great and friendly.',
+    'find basil portfolio':
+        'As you think this is my portfolio the website you are currently in, i used flutter and dart to make ',
+    'Expenses tracker':
+        'Personal Expenses is another great-looking application that helps to store your expenses, so you can manage your salary. Also, this application gives you a weekly progression to find which day you spend most and which day you gained most.',
+    'Day managing assistant':
+        'ToDo is the best assistant to manage your day. this will helps you to divide your day into tasks.provide the tasks you have to do the day with the time so you will get reminders on the sharp time no matter how much tasks you have to do,the color codes used in this app helps you to feel friendly and find tasks easily',
+    'Store all your links in a single place':
+        'LinkTree as the name represents its \'s website which holds all your links,like social media youtube or other links so that you only have to provide a single small link in your profiles ,which makes your profile clean',
+    'Deeply Learn local notification in flutter':
+        'this app is a great source to learn all types of local notifications in a flutter.with the source code of the app within 5 minutes you can be a pro in flutter local notification. to achieve this we are added maximum comments in our code',
+  };
 
   void showcustomDialog(BuildContext context) {
     showGeneralDialog(
@@ -31,6 +123,14 @@ class ProjectTile extends StatelessWidget {
                 opacity: a1.value,
                 child: ProjectDetails(
                   key: const ValueKey('aaaaaaaaaz'),
+                  images: desImages[i],
+                  title: subTiltles.keys.toList()[i],
+                  subtitle: details.keys.toList()[i],
+                  descrption: details.values.toList()[i],
+                  gitUrl: urls[i],
+                  // descrption: ,
+                  // gitUrl: ,
+                  // subtitle: ,
                 )),
           );
         },

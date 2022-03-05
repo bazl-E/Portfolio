@@ -38,7 +38,9 @@ class _BuildSliverAppBArState extends State<BuildSliverAppBAr>
   void initState() {
     super.initState();
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
     sizeAnimation = Tween<double>(begin: 0, end: 180)
         .animate(CurvedAnimation(parent: controller!, curve: Curves.easeIn));
   }

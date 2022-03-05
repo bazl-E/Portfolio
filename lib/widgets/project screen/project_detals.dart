@@ -2,16 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDetails extends StatelessWidget {
-  ProjectDetails(
-      {Key? key,
-      this.images,
-      this.title,
-      this.subtitle,
-      this.descrption,
-      this.gitUrl})
-      : super(key: key);
+  ProjectDetails({
+    Key? key,
+    required this.images,
+    required this.title,
+    required this.subtitle,
+    required this.descrption,
+    required this.gitUrl,
+  }) : super(key: key);
   // final String? imageURl;
   final List<String>? images;
   final String? title;
@@ -26,6 +27,10 @@ class ProjectDetails extends StatelessWidget {
     Colors.blueGrey,
     Colors.purple,
   ];
+  void launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -51,15 +56,16 @@ class ProjectDetails extends StatelessWidget {
                         controller: controller,
                         // itemCount: i % colors.length,
                         itemBuilder: (ctx, i) => Container(
-                            key: ValueKey('aaaaaaaav$i'),
-                            child: Container(
-                              color: colors[i % colors.length],
-                            )
-                            // Image.asset(
-                            //   images![i],
-                            //   fit: BoxFit.cover,
-                            // ),
-                            ),
+                          key: ValueKey('aaaaaaaav$i'),
+                          // child: Container(
+                          //   color: colors[i % colors.length],
+
+                          // )
+                          child: Image.asset(
+                            images![i % images!.length],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       Positioned(
                         key: const ValueKey('aaaaaaaaw'),
@@ -102,7 +108,7 @@ class ProjectDetails extends StatelessWidget {
                                   controller.nextPage(
                                       duration:
                                           const Duration(milliseconds: 800),
-                                      curve: Curves.slowMiddle);
+                                      curve: Curves.easeIn);
                                 },
                                 child: Container(
                                   key: const ValueKey('aaaaaaaaad'),
@@ -142,13 +148,13 @@ class ProjectDetails extends StatelessWidget {
                     key: const ValueKey('aaaaaaaaah'),
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('ChowNow Discover',
+                      Text(title!,
                           key: const ValueKey('aaaaaaaaai'),
                           style: GoogleFonts.raleway(
                               fontSize: 30,
                               color: const Color(0xff444444),
                               fontWeight: FontWeight.bold)),
-                      Text('FOOD ORDERING PLATFORM',
+                      Text(subtitle!,
                           key: const ValueKey('aaaaaaaaaj'),
                           style: GoogleFonts.raleway(
                               fontWeight: FontWeight.bold,
@@ -168,7 +174,7 @@ class ProjectDetails extends StatelessWidget {
                         key: ValueKey('aaaaaaaaam'),
                       ),
                       Text(
-                        'ChowNow Discover is a platform that lets customers discover new local restaurants and provides business owners with tools to convert first time orders into lifelong diners.',
+                        descrption!,
                         key: const ValueKey('aaaaaaaaan'),
                         style: GoogleFonts.raleway(
                           fontSize: 14,
@@ -182,34 +188,40 @@ class ProjectDetails extends StatelessWidget {
                         key: const ValueKey('aaaaaaaaap'),
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            key: const ValueKey('aaaaaaaaaq'),
-                            width: 140,
-                            height: 40,
-                            color: const Color(0xffe31b6d),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 13,
-                            ),
-                            child: Row(
-                              key: const ValueKey('aaaaaaaaar'),
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                SizedBox(
-                                    key: const ValueKey('aaaaaaaaas'),
-                                    height: 23,
-                                    width: 23,
-                                    child: Image.asset('assets/11.png',
-                                        key: const ValueKey('aaaaaaaaat'),
-                                        color: Colors.white)),
-                                Text(
-                                  "VIEW GIT",
-                                  key: const ValueKey('aaaaaaaaau'),
-                                  style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
-                                ),
-                              ],
+                          InkWell(
+                            onTap: () {
+                              launchURL(gitUrl);
+                            },
+                            child: Container(
+                              key: const ValueKey('aaaaaaaaaq'),
+                              width: 140,
+                              height: 40,
+                              color: const Color(0xffe31b6d),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 13,
+                              ),
+                              child: Row(
+                                key: const ValueKey('aaaaaaaaar'),
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  SizedBox(
+                                      key: const ValueKey('aaaaaaaaas'),
+                                      height: 23,
+                                      width: 23,
+                                      child: Image.asset('assets/11.png',
+                                          key: const ValueKey('aaaaaaaaat'),
+                                          color: Colors.white)),
+                                  Text(
+                                    "VIEW GIT",
+                                    key: const ValueKey('aaaaaaaaau'),
+                                    style: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           IconButton(

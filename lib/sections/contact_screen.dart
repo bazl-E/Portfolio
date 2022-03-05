@@ -252,7 +252,7 @@ class _ContactScreenState extends State<ContactScreen>
                             key: const ValueKey('aat'),
                             // color: Colors.amber,
                             duration: const Duration(seconds: 1),
-                            curve: Curves.bounceInOut,
+                            curve: Curves.bounceIn,
                             margin: const EdgeInsets.symmetric(horizontal: 15),
                             width: width,
                             height: height,
