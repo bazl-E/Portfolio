@@ -19,32 +19,32 @@ class DevelopmentStatements extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: const [
-            Statements(
-              key: ValueKey('aaaaaaaaaaag'),
-              title: 'Under devolepment',
-              icon: Icons.warning_amber,
-              colorOfIcon: Colors.amber,
-            ),
-            SizedBox(
-              height: 3,
-              key: ValueKey('aaaaaaaaaaah'),
-            ),
-            Statements(
-              key: ValueKey('aaaaaaaaaaai'),
-              title: 'Inspired from Matthew Williams',
-              icon: Icons.light,
-              colorOfIcon: Colors.green,
-            ),
-            SizedBox(
-              height: 3,
-              key: ValueKey('aaaaaaaaaaaj'),
-            ),
-            Statements(
-              key: ValueKey('aaaaaaaaaaak'),
-              title: 'Made of flutter and dart',
-              icon: Icons.flutter_dash_rounded,
-              colorOfIcon: Colors.blue,
-            ),
+            // Statements(
+            //   key: ValueKey('aaaaaaaaaaag'),
+            //   title: 'Under devolepment',
+            //   icon: Icons.warning_amber,
+            //   colorOfIcon: Colors.amber,
+            // ),
+            // SizedBox(
+            //   height: 3,
+            //   key: ValueKey('aaaaaaaaaaah'),
+            // ),
+            // Statements(
+            //   key: ValueKey('aaaaaaaaaaai'),
+            //   title: 'Inspired from Matthew Williams',
+            //   icon: Icons.light,
+            //   colorOfIcon: Colors.green,
+            // ),
+            // SizedBox(
+            //   height: 3,
+            //   key: ValueKey('aaaaaaaaaaaj'),
+            // ),
+            // Statements(
+            //   key: ValueKey('aaaaaaaaaaak'),
+            //   title: 'Made of flutter and dart',
+            //   icon: Icons.flutter_dash_rounded,
+            //   colorOfIcon: Colors.blue,
+            // ),
           ],
         ),
       ),
